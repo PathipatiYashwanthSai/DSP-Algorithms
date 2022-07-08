@@ -1,0 +1,42 @@
+body {
+    background-color: #fff;
+    height: 100%;
+}
+
+.main{
+    display: flex;
+    flex-direction: row;
+    height:100vh;
+}
+.theory {
+    width: 65%;
+}
+.interface-section{
+    position: fixed;
+    overflow: auto;
+    top: 0%;
+    right: 0%;
+    border-radius: 2%;
+    color:white;
+    background-color: black;
+    height: 100vh;
+    width: 35%;
+    max-width: 35%;
+}
+
+.input-block {
+    margin: auto;
+}
+
+.outputSequence {
+    width: auto;
+    max-height: max-content;
+    background-color: #fff;
+    display: none;
+}
+
+.plot-title {
+    text-align: center;
+    display: none;
+    color: #fff;
+}
