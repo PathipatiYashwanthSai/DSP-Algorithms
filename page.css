@@ -1,6 +1,7 @@
 body {
     background-color: #fff;
     height: 100%;
+    font-family: 'Linux Libertine','Georgia','Times',serif;
 }
 
 .main{
@@ -16,7 +17,6 @@ body {
     overflow: auto;
     top: 0%;
     right: 0%;
-    border-radius: 2%;
     color:white;
     background-color: black;
     height: 100vh;
@@ -39,4 +39,33 @@ body {
     text-align: center;
     display: none;
     color: #fff;
+}
+
+table, td {
+    border: 1px solid rgb(90, 84, 84);
+    text-align: center;
+    min-width: 50%;
+    overflow: auto;
+}
+th{
+    border: 1px solid rgb(90, 84, 84);
+    text-align: center;
+    min-width: 50%;
+    overflow: auto;
+    background-color: rgb(250, 235, 215);
+}
+#exp{
+    margin:0 auto;
+}
+#exp1{
+    margin:0 auto;
+}
+#exp2{
+    margin:0 auto;
+}
+#exp3{
+    margin:0 auto;
+}
+#exp4{
+    margin:0 auto;
 }

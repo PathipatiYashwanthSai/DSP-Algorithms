@@ -10,20 +10,36 @@
 </head>
 <body>
     <div class="main">
-        <div class="theory">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore cupiditate voluptatibus excepturi, laboriosam cumque accusamus suscipit nam officiis voluptas ipsa error. Officiis, vel doloremque explicabo impedit vero dolores voluptatibus. Temporibus.
-            The Lorem ipsum text is derived from sections 1.10.32 and 1.10.33 of Cicero's 'De finibus bonorum et malorum'.[7][8] The physical source may have been the 1914 Loeb Classical Library edition of De finibus, where the Latin text, presented on the left-hand (even) pages, breaks off on page 34 with "Neque porro quisquam est qui do-" and continues on page 36 with "lorem ipsum ...", suggesting that the galley type of that page was mixed up to make the dummy text seen today.[1]
-
-The discovery of the text's origin is attributed to Richard McClintock, a Latin scholar at Hampden–Sydney College. McClintock connected Lorem ipsum to Cicero's writing sometime before 1982 while searching for instances of the Latin word consectetur, which was rarely used in classical literature.[2] McClintock first published his discovery in a 1994 letter to the editor of Before & After magazine, contesting the editor's earlier claim that Lorem ipsum held no meaning.[2]
-
-The relevant section of Cicero as printed in the source is reproduced below with fragments used in Lorem ipsum highlighted. Letters in brackets were added to Lorem ipsum and were not present in the source text:
-
-[32] Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit amet consectetur adipisci[ng] velit, sed quia non numquam [do] eius modi tempora inci[di]dunt, ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum[d] exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? [D]Quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur? [33] At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
-
-What follows is H. Rackham's translation, as printed in the Loeb Classical Library edition, with words at least partially represented in Lorem ipsum highlighted:[8]
-
-[32] But I must explain to you how all this mistaken idea of reprobating pleasure and extolling pain arose. To do so, I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure? [33] On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammeled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.
-
-See also
+        <div class="container">
+            <div class="theory">
+                <h2 style="text-align: center;"> Linear Convolution</h2><br>
+                <p>A key concept often introduced to those pursuing electronics engineering is Linear Convolution. This is a crucial component of Digital Signal Processing and Signals and Systems. Keeping general interest and academic implications in mind, this article introduces the concept of Convolution.</p>
+                <p><strong>Convolution:</strong> When speaking purely mathematically, convolution is the process by which one may compute the overlap of two graphs. In fact, convolution is also interpreted as the area shared by the two graphs over time. Metaphorically, it is a blend between the two functions as one passes over the other. So, given two functions F(n) and G(n), the convolution of the two is expressed and given by the following mathematical expression:</p>
+                <h5 style="text-align: center;">y(n)= ∑<sub>k</sub> f(k)g(n−k)= ∑<sub>k</sub> g(k)f(n−k)</h5>
+                <img src="assets/LinConv.jpg" alt="..." class="mx-auto d-block" width="750px"><br><br>
+                <p><strong>Linear Convolution:</strong> Linear Convolution is a means by which one may relate the output and input of an LTI system given the system’s impulse response. Clearly, it is required to convolve the input signal with the impulse response of the system. Using the expression earlier, the following equation can be formed-</p>
+                <h5 style="text-align: center;">y(n)= x(n)*h(n)= ∑<sub>k</sub> x(k)h(n−k)</h5>
+                <p>The reason why the expression is summed an infinite number of times is just to ensure that the probability of the two functions overlapping is 1. The impulse response is time-shifted endlessly so that during some duration of time, the two functions will certainly overlap. It may seem it would be careless on behalf of the programmer to run an infinite loop – the code may continue to execute for as long as the two functions do not overlap.</p>
+                <h4><strong>Explanation:</strong></h4>
+                <ul>
+                    <li>Take the input signal and impulse response as two separate single-row matrices.</li>
+                    <li>The first element of the impulse response is multiplied with every element of the input signal. This result is stored.</li>
+                    <li>The second element of the impulse response is multiplied with every element of the input signal. The result is shifted by one step to the right and stored.</li>
+                    <li>The above two steps are done for the remaining elements in the impulse response.</li>
+                    <li>Once all elements have been multiplied, align all the results under one another. Refer to the figure below.</li>
+                    <li>Vertically, add all the elements in each column.</li>
+                    <li>The resulting single row matrix is the convolved output.</li>
+                </ul>
+                <h4><strong>Example:</strong></h4><br>
+                <img src="assets/Linconvcalc.jpg" alt="..." class="mx-auto d-block" width="750px"><br><br>
+                <p>The step-by-step values for the provided input is shown below :</p>
+                <table id="exp">
+                </table><hr>
+                <table id="exp1">
+                </table><hr>
+                <table id="exp2">
+                </table><br><br>
+            </div>
         </div>
         <div class="interface-section">
             <div class="container pt-2 input-block">
@@ -53,6 +69,9 @@ See also
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script type="text/javascript">
         function linearConv() {
+            document.getElementById("exp").innerHTML="";
+            document.getElementById("exp1").innerHTML="";
+            document.getElementById("exp2").innerHTML="";
             const x = document.getElementById("a").value.split(",");
             const y = document.getElementById("b").value.split(",");
             const m = x.length;
@@ -60,6 +79,77 @@ See also
             const N = m+n-1;
             const xt = x.map((val) => parseFloat(val));
             const yt = y.map((val) => parseFloat(val));
+
+            
+            if(m<n) {
+                var tr = document.createElement('tr');
+                var str ='';
+                for(let i=0;i<n-m;i++){
+                    str+=`<td></td>`;
+                    tr.innerHTML=str;
+                }
+                for(let i=0;i<m;i++) {
+                    str+=`<td> ${xt[i]}</td>`;
+                    tr.innerHTML=str;
+                }
+                document.getElementById("exp").appendChild(tr);
+                var tr = document.createElement('tr');
+                var str ='';
+                for(let i=0;i<n;i++) {
+                    str+=`<td> ${yt[i]}</td>`;
+                    tr.innerHTML=str;
+                }
+                document.getElementById("exp").appendChild(tr);
+            } else if(n<m) {
+                var tr = document.createElement('tr');
+                var str ='';
+                for(let i=0;i<m;i++) {
+                    str+=`<td> ${xt[i]}</td>`;
+                    tr.innerHTML=str;
+                }
+                document.getElementById("exp").appendChild(tr);
+                var tr = document.createElement('tr');
+                var str ='';
+                for(let i=0;i<m-n;i++){
+                    str+=`<td></td>`;
+                    tr.innerHTML=str;
+                }
+                for(let i=0;i<n;i++) {
+                    str+=`<td> ${yt[i]}</td>`;
+                    tr.innerHTML=str;
+                }
+                document.getElementById("exp").appendChild(tr);
+            } else {
+                var tr = document.createElement('tr');
+                var str ='';
+                for(let i=0;i<m;i++) {
+                    str+=`<td> ${xt[i]}</td>`;
+                    tr.innerHTML=str;
+                }
+                document.getElementById("exp").appendChild(tr);
+                var tr = document.createElement('tr');
+                var str ='';
+                for(let i=0;i<n;i++) {
+                    str+=`<td> ${yt[i]}</td>`;
+                    tr.innerHTML=str;
+                }
+                document.getElementById("exp").appendChild(tr);
+            }
+            
+            for(let i=0;i<n;i++) {
+                var tr = document.createElement('tr');
+                var str ='';
+                for(let k=0;k<i;k++) {
+                    str+=`<td></td>`;
+                    tr.innerHTML=str;
+                }
+                for(let j=0;j<m;j++){
+                    str+=`<td> ${yt[i]*xt[j]}</td>`;
+                    tr.innerHTML=str;
+                }
+                document.getElementById("exp1").appendChild(tr);
+            }
+
             for(let a=0; a<N-m; a++) {
                 xt.push(0);
             }
@@ -78,9 +168,20 @@ See also
                 }
                 z.push(sum);
             }
-            document.getElementById("resp").innerText = z;
+            document.getElementById("resp").innerText = "The Circular Convolution output is: " + z2;
+            
+            
+            var tr = document.createElement('tr');
+            var str ='';
+            for(let i=0;i<N;i++) {
+                str+=`<th> ${z[i]}</th>`;
+                tr.innerHTML=str;
+            }
+            document.getElementById("exp2").appendChild(tr);
+
+
             const xyInputValues = [];
-            for(let j=0; j<N; j++) {
+            for(let j=0; j<m; j++) {
                 xyInputValues.push({x:j,y:xt[j]});
             }
             new Chart("inputResp", {
@@ -98,7 +199,7 @@ See also
             });
 
             const xyImpulseValues = [];
-            for(let j=0; j<N; j++) {
+            for(let j=0; j<n; j++) {
                 xyImpulseValues.push({x:j,y:yt[j]});
             }
             new Chart("impulseResp", {
