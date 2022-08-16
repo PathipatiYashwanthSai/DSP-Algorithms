@@ -17,28 +17,41 @@
                 <img src="assets/ccdi-1.svg" alt="..." class="mx-auto d-block"><br>
                 <p>Then the convolution can be written as:</p>
                 <img src="assets/ccdi-2.svg" alt="..." class="mx-auto d-block"><br>
+                <p>The step-by-step values for the provided input is shown below :</p>
+                <h4 class="plot-title" id="exp-part-1" style="color: black;">x(n) and h(n) :</h4>
+                <table id="exp">
+                </table><hr>
+                <h4 class="plot-title" id="exp-part-2" style="color: black;">Multiply the below sequences :</h4>
+                <table id="exp1">
+                </table><hr>
+                <h4 class="plot-title" id="exp-part-3" style="color: black;">y(n) :</h4>
+                <table id="exp2">
+                </table><br><br>
             </div>
         </div>
         <div class="interface-section">
             <div class="container pt-2 input-block">
                 <br>
                 <h3>Enter the first sequence :</h3>
-                <input id="a" placeholder="1,2,3,4"/>
+                <input id="a" placeholder="1,2,3,4..."/>
                 <br><br>
                 <h3>Enter the second sequence :</h3>
-                <input id="b" placeholder="1,2,3,4"/>
+                <input id="b" placeholder="1,2,3,4..."/>
                 <br><br>
                 <button type="submit" class="btn btn-warning" onclick="ccdi()">Submit</button>
                 <br><br>
                 <h4 id="resp"></h4>
                 <br><br>
                 <h4 class="plot-title" id="input-title">Input sequence :</h4><br>
+                <!-- Input sequence plot is displayed -->
                 <canvas class="outputSequence" id="inputResp"></canvas>
                 <br><br>
                 <h4 class="plot-title" id="impulse-title">Impulse sequence :</h4><br>
+                <!-- Impulse sequence plot is displayed -->
                 <canvas class="outputSequence" id="impulseResp"></canvas>
                 <br><br>
                 <h4 class="plot-title" id="output-title">Ouput sequence :</h4><br>
+                <!-- Output sequence plot is displayed -->
                 <canvas class="outputSequence" id="outputResp"></canvas><br><br>
             </div>
         </div>
@@ -47,6 +60,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script type="text/javascript">
         function dft(a,N) {
+            // function to perform dft
             const ak = [];
             for(let k=0;k<N;k++) {
                 realSum = 0;
@@ -60,6 +74,7 @@
             return ak;
         }
         function idft(dftSequence,N) {
+            // function to perform idft
             const idftSequence = [];
             for(let n=0; n<N; n++){
                 realSum = 0;
@@ -72,13 +87,76 @@
             return idftSequence;
         }
         function ccdi() {
+            // The explanatory tables are initiated with null
+            document.getElementById("exp").innerHTML="";
+            document.getElementById("exp1").innerHTML="";
+            document.getElementById("exp2").innerHTML="";
+            // Input sequences are taken
             const x = document.getElementById("a").value.split(",");
             const h = document.getElementById("b").value.split(",");
             const m = x.length;
             const n = h.length;
+            // N is the length to which convolution is performed
             const N = Math.max(m,n);
+            // Values are iterated and converted to float
             const xt = x.map((val) => parseFloat(val));
             const ht = h.map((val) => parseFloat(val));
+            // Input sequences are displayed for dynamic part
+            if(m<n) {
+                var tr = document.createElement('tr');
+                var str ='';
+                for(let i=0;i<n-m;i++){
+                    str+=`<td></td>`;
+                    tr.innerHTML=str;
+                }
+                for(let i=0;i<m;i++) {
+                    str+=`<td> ${xt[i]}</td>`;
+                    tr.innerHTML=str;
+                }
+                document.getElementById("exp").appendChild(tr);
+                var tr = document.createElement('tr');
+                var str ='';
+                for(let i=0;i<n;i++) {
+                    str+=`<td> ${ht[i]}</td>`;
+                    tr.innerHTML=str;
+                }
+                document.getElementById("exp").appendChild(tr);
+            } else if(n<m) {
+                var tr = document.createElement('tr');
+                var str ='';
+                for(let i=0;i<m;i++) {
+                    str+=`<td> ${xt[i]}</td>`;
+                    tr.innerHTML=str;
+                }
+                document.getElementById("exp").appendChild(tr);
+                var tr = document.createElement('tr');
+                var str ='';
+                for(let i=0;i<m-n;i++){
+                    str+=`<td></td>`;
+                    tr.innerHTML=str;
+                }
+                for(let i=0;i<n;i++) {
+                    str+=`<td> ${ht[i]}</td>`;
+                    tr.innerHTML=str;
+                }
+                document.getElementById("exp").appendChild(tr);
+            } else {
+                var tr = document.createElement('tr');
+                var str ='';
+                for(let i=0;i<m;i++) {
+                    str+=`<td> ${xt[i]}</td>`;
+                    tr.innerHTML=str;
+                }
+                document.getElementById("exp").appendChild(tr);
+                var tr = document.createElement('tr');
+                var str ='';
+                for(let i=0;i<n;i++) {
+                    str+=`<td> ${ht[i]}</td>`;
+                    tr.innerHTML=str;
+                }
+                document.getElementById("exp").appendChild(tr);
+            }
+
             for(let a=0; a<N-m; a++) {
                 xt.push(0);
             }
@@ -87,6 +165,39 @@
             }
             const xk = dft(xt,N);
             const hk = dft(ht,N);
+            // step-by-step of convolution is displayed
+            var tr = document.createElement('tr');
+            var str ='';
+            for(let i=0;i<xk.length;i++) {
+                if(Number(xk[i][1])<0) {
+                    str+=`<td> ${String(Math.round(xk[i][0])) + String(Math.round(xk[i][1])) + "i"}</td>`;
+                    tr.innerHTML=str;
+                } else if(Number(xk[i][1])>0) {
+                    str+=`<td> ${Math.round(xk[i][0]) + "+" + Math.round(xk[i][1]) + "i"}</td>`;
+                    tr.innerHTML=str;
+                } else {
+                    str+=`<td> ${Math.round(xk[i][0])}</td>`;
+                    tr.innerHTML=str;
+                }
+            }
+            document.getElementById("exp1").appendChild(tr);
+
+            var tr = document.createElement('tr');
+            var str ='';
+            for(let i=0;i<hk.length;i++) {
+                if(Number(hk[i][1])<0) {
+                    str+=`<td> ${String(Math.round(hk[i][0])) + String(Math.round(hk[i][1])) + "i"}</td>`;
+                    tr.innerHTML=str;
+                } else if(Number(xk[i][1])>0) {
+                    str+=`<td> ${Math.round(hk[i][0]) + "+" + Math.round(hk[i][1]) + "i"}</td>`;
+                    tr.innerHTML=str;
+                } else {
+                    str+=`<td> ${Math.round(hk[i][0])}</td>`;
+                    tr.innerHTML=str;
+                }
+            }
+            document.getElementById("exp1").appendChild(tr);
+
             const yk = [];
             for(let i=0; i<N; i++) {
                 ac = math.complex(xk[i][0],xk[i][1]);
@@ -94,7 +205,18 @@
                 yk.push(math.multiply(ac,bc));
             }
             const yt = idft(yk,N);
-            document.getElementById("resp").innerText = "The Convolution Output is: " + yt;
+            // output response is displayed
+            document.getElementById("resp").innerText = "The Convolution Output is: \n" + yt;
+
+            var tr = document.createElement('tr');
+            var str ='';
+            for(let i=0;i<yt.length;i++) {
+                str+=`<th> ${yt[i]}</th>`;
+                tr.innerHTML=str;
+            }
+            document.getElementById("exp2").appendChild(tr);
+
+            // input sequence will be plotted
             const xyInputValues = [];
             for(let j=0; j<m; j++) {
                 xyInputValues.push({x:j,y:xt[j]});
@@ -112,7 +234,7 @@
                     legend: {display: false}
                 }
             });
-
+            // impulse sequence will be plotted
             const xyImpulseValues = [];
             for(let j=0; j<n; j++) {
                 xyImpulseValues.push({x:j,y:ht[j]});
@@ -130,7 +252,7 @@
                     legend: {display: false}
                 }
             });
-
+            // output sequence will be plotted
             const xyOutputValues = [];
             for(let j=0; j<N; j++) {
                 xyOutputValues.push({x:j,y:yt[j]});
@@ -149,12 +271,16 @@
                 }
             });
 
+            // specific texts are displayed
             document.getElementById("inputResp").style.display ="block";
             document.getElementById("input-title").style.display ="block";
             document.getElementById("impulseResp").style.display ="block";
             document.getElementById("impulse-title").style.display ="block";
             document.getElementById("outputResp").style.display ="block";
             document.getElementById("output-title").style.display ="block";
+            document.getElementById("exp-part-1").style.display ="block";
+            document.getElementById("exp-part-2").style.display ="block";
+            document.getElementById("exp-part-3").style.display ="block";
 
         }
     </script>

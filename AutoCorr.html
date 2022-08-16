@@ -17,13 +17,13 @@
                 <p>Consider an finite length sequence, say x(n). Then the auto correlation of x(n) can be obtained by simply performing convolution between x(n) and x(-n) i.e</p>
                 <h5 style="text-align: center;">R<sub>xx</sub>(n) = x(n)*x(-n)</h5><br><br>
                 <p>The step-by-step values for the provided input is shown below :</p>
-                <h4 class="plot-title" id="exp-title">Input sequences for the convolution :</h4><br>
+                <h4 class="plot-title" id="exp-part-1" style="color: black;">x(n) :</h4>
                 <table id="exp">
                 </table><hr>
-                <h4 class="plot-title" id="exp1-title">The step-by-step values during the convolution :</h4><br>
+                <h4 class="plot-title" id="exp-part-2" style="color: black;">Add the below sequences :</h4>
                 <table id="exp1">
                 </table><hr>
-                <h4 class="plot-title" id="exp2-title">The sequence after the summation of above values :</h4><br>
+                <h4 class="plot-title" id="exp-part-3" style="color: black;">R<sub>xx</sub>(n) :</h4>
                 <table id="exp2">
                 </table><br><br>
             </div>
@@ -32,14 +32,16 @@
             <div class="container pt-2 input-block">
                 <br>
                 <h3>Enter the first sequence :</h3>
-                <input id="a" placeholder="1,2,3,4..." onchange="autoCorr()"/>
+                <input id="sequence" placeholder="1,2,3,4..." onchange="autoCorr()"/>
                 <br><br>
-                <h4 id="resp"></h4>
+                <h4 id="autoCorrResponse"></h4>
                 <br><br>
-                <h4 class="plot-title" id="input-title">Input sequence :</h4><br>
+                <h4 class="plot-title" id="input-title">x(n) :</h4><br>
+                <!-- Input sequence plot is displayed -->
                 <canvas class="outputSequence" id="inputResp"></canvas>
                 <br><br>
-                <h4 class="plot-title" id="output-title">Ouput sequence :</h4><br>
+                <h4 class="plot-title" id="output-title">R<sub>xx</sub>(n) :</h4><br>
+                <!-- Output sequence plot is displayed -->
                 <canvas class="outputSequence" id="outputResp"></canvas><br><br>
             </div>
         </div>
@@ -47,20 +49,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script type="text/javascript">
         function autoCorr() {
+            // The explanatory tables are initiated with null
             document.getElementById("exp").innerHTML="";
             document.getElementById("exp1").innerHTML="";
             document.getElementById("exp2").innerHTML="";
-            const x = document.getElementById("a").value.split(",");
-            const y = [...x];
-            y.reverse();
+            // Input sequence are taken
+            const x = document.getElementById("sequence").value.split(",");
+            const y = [...x].reverse();
             const m = x.length;
             const n = y.length;
+            // N is the length to which correlation is performed
             const N = m+n-1;
+            // Values are iterated and converted to float
             const xt = x.map((val) => parseFloat(val));
             const yt = y.map((val) => parseFloat(val));
-            const yt1 = y.map((val) => parseFloat(val)).reverse();
+            const ytReversed = y.map((val) => parseFloat(val)).reverse();
 
-            
+            // Input sequences are displayed for dynamic part
             if(m<n) {
                 var tr = document.createElement('tr');
                 var str ='';
@@ -115,7 +120,7 @@
                 }
                 document.getElementById("exp").appendChild(tr);
             }
-            
+            // step-by-step of convolution is displayed
             for(let i=0;i<n;i++) {
                 var tr = document.createElement('tr');
                 var str ='';
@@ -136,7 +141,7 @@
             for(let b=0; b<N-n; b++) {
                 yt.push(0);
             }
-            const z = [];
+            const Rxx = [];
             for(let i=0; i<N; i++){
                 sum = 0;
                 for(let j=0; j<N; j++){
@@ -146,20 +151,21 @@
                         sum += xt[j]*yt[N+i-j];
                     }
                 }
-                z.push(sum);
+                Rxx.push(sum);
             }
-            document.getElementById("resp").innerText = "The Auto Correlation output is: " + z;
+            // output response is displayed
+            document.getElementById("autoCorrResponse").innerText = "The Auto Correlation output is: \n" + Rxx;
             
             
             var tr = document.createElement('tr');
             var str ='';
             for(let i=0;i<N;i++) {
-                str+=`<th> ${z[i]}</th>`;
+                str+=`<th> ${Rxx[i]}</th>`;
                 tr.innerHTML=str;
             }
             document.getElementById("exp2").appendChild(tr);
 
-
+            // input sequence will be plotted
             const xyInputValues = [];
             for(let j=0; j<m; j++) {
                 xyInputValues.push({x:j,y:xt[j]});
@@ -178,9 +184,10 @@
                 }
             });
 
+            // output sequence will be plotted
             const xyOutputValues = [];
             for(let j=0; j<N; j++) {
-                xyOutputValues.push({x:j,y:z[j]});
+                xyOutputValues.push({x:j,y:Rxx[j]});
             }
             new Chart("outputResp", {
                 type: "scatter",
@@ -196,13 +203,14 @@
                 }
             });
 
+            // specific texts are displayed
             document.getElementById("inputResp").style.display ="block";
             document.getElementById("input-title").style.display ="block";
             document.getElementById("outputResp").style.display ="block";
             document.getElementById("output-title").style.display ="block";
-            document.getElementById("exp-title").style.display ="block";
-            document.getElementById("exp1-title").style.display ="block";
-            document.getElementById("exp2-title").style.display ="block";
+            document.getElementById("exp-part-1").style.display ="block";
+            document.getElementById("exp-part-2").style.display ="block";
+            document.getElementById("exp-part-3").style.display ="block";
 
         }
     </script>

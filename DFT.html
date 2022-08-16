@@ -17,26 +17,29 @@
             <p>The DFT is therefore said to be a frequency domain representation of the original input sequence. If the original sequence spans all the non-zero values of a function, its DTFT is continuous (and periodic), and the DFT provides discrete samples of one cycle. If the original sequence is one cycle of a periodic function, the DFT provides all the non-zero values of one DTFT cycle.</p>
             <p>The DFT is the most important discrete transform, used to perform Fourier analysis in many practical applications. In digital signal processing, the function is any quantity or signal that varies over time, such as the pressure of a sound wave, a radio signal, or daily temperature readings, sampled over a finite time interval. In image processing, the samples can be the values of pixels along a row or column of a raster image. The DFT is also used to efficiently solve partial differential equations, and to perform other operations such as convolutions or multiplying large integers.</p>
             <p> The formula used for the calculation of DFT of an input sequence is :</p>
-            <img src="assets/DFT_formula.svg" class="mx-auto d-block" alt="DFT formula" width="400px">
+            <img src="assets/DFT_formula.svg" class="mx-auto d-block" alt="DFT formula" width="50%">
             <h3>Example :</h3><br>
-            <img src="assets/Screenshot 2022-07-15 152209.png" alt="DFT example" class="mx-auto d-block"><br><br>
+            <img src="assets/Screenshot 2022-07-15 152209.png" alt="DFT example" class="mx-auto d-block" width="80%"><br><br>
             <p>The step-by-step values for the provided input is shown below :</p>
             <table id="exp">
-            </table><br><br>
+            </table>
+            <br><br>
         </div>
         </div>
         <div class="interface-section">
             <div class="container pt-2 input-block">
                 <br>
                 <h3>Enter the input sequence :</h3>
-                <input id="a" placeholder="1,2,3,4..." onchange="dft()"/>
+                <input id="inp" placeholder="1,2,3,4..." onchange="dft()"/>
                 <br><br>
-                <h4 id="resp"></h4>
+                <h4 id="dftResponse"></h4>
                 <br><br>
                 <h4 class="plot-title" id="mag-title">Magnitude Plot of DFT sequence :</h4><br>
+                <!-- magnitude sequence plot is displayed -->
                 <canvas class="outputSequence" id="magResp"></canvas>
                 <br><br>
                 <h4 class="plot-title" id="ph-title">Phase Plot of DFT sequence :</h4><br>
+                <!-- phase sequence plot is displayed -->
                 <canvas class="outputSequence" id="phResp"></canvas><br><br>
             </div>
         </div>
@@ -45,109 +48,118 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script type="text/javascript">
         function dft() {
-        const a = document.getElementById("a").value.split(",");
-        const at = a.map((val) => parseFloat(val));
-        const N = a.length;
-        const ak = [];
-        const real = [];
-        const img = [];
-        const explanation = [];
-        for(let k=0;k<N;k++) {
-            realSum = 0;
-            imgSum = 0;
-            step = [];
-            for(let n=0;n<N;n++) {
-                re = at[n]*Math.cos(2*Math.PI*k*n/N).toFixed(2);
-                im = -(at[n]*Math.sin(2*Math.PI*k*n/N).toFixed(2));
-                step.push(Math.round(re) + "+ " + "i" + "(" + Math.round(im) + ")");
-                realSum += re;
-                imgSum += im;
+            // function to perform dft
+            // The explanatory table is initiated with null
+            document.getElementById("exp").innerHTML="";
+            // Input sequences are taken
+            const x = document.getElementById("inp").value.split(",");
+            const xt = x.map((val) => parseFloat(val));
+            // N is the length to which dft is performed
+            const N = x.length;
+            const xk = [];
+            const real = [];
+            const img = [];
+            const explanation = [];
+            for(let k=0;k<N;k++) {
+                realSum = 0;
+                imgSum = 0;
+                step = [];
+                for(let n=0;n<N;n++) {
+                    re = xt[n]*Math.cos(2*Math.PI*k*n/N).toFixed(2);
+                    im = -(xt[n]*Math.sin(2*Math.PI*k*n/N).toFixed(2));
+                    step.push(Math.round(re) + "+ " + "i" + "(" + Math.round(im) + ")");
+                    realSum += re;
+                    imgSum += im;
+                }
+                explanation.push(step);
+                real.push(realSum);
+                img.push(imgSum);
+                if(imgSum<0) {
+                    xk.push(String(Math.round(realSum)) + String(Math.round(imgSum)) + "i");
+                } else if(imgSum>0) {
+                    xk.push(Math.round(realSum) + "+" + Math.round(imgSum) + "i");
+                } else {
+                    xk.push(Math.round(realSum));
+                }
             }
-            explanation.push(step);
-            real.push(realSum);
-            img.push(imgSum);
-            if(imgSum<0) {
-                ak.push(String(Math.round(realSum)) + String(Math.round(imgSum)) + "i");
-            } else if(imgSum>0) {
-                ak.push(Math.round(realSum) + "+" + Math.round(imgSum) + "i");
-            } else {
-                ak.push(Math.round(realSum));
+            const magResp = [];
+            const phResp = [];
+            for(let j=0; j<N; j++) {
+                magResp.push(Number(Math.sqrt(Math.pow(real[j],2) + Math.pow(img[j],2)).toFixed(2)));
+                ph = Number((Math.atan(img[j]/real[j])*180/Math.PI).toFixed(2));
+                if (real[j]>=0 & img[j]>=0) {
+                    phResp.push(ph);
+                } else if (real[j]<0 & img[j]<0) {
+                    phResp.push(ph-180);
+                } else {
+                    phResp.push(ph + 180);
+                }
             }
-            //ak.push(Math.round(realSum) + "+ " + "i" + "(" + Math.round(imgSum) + ")");
-            
-        }
-        const magResp = [];
-        const phResp = [];
-        for(let j=0; j<N; j++) {
-            magResp.push(Number(Math.sqrt(Math.pow(real[j],2) + Math.pow(img[j],2)).toFixed(2)));
-            ph = Number((Math.atan(img[j]/real[j])*180/Math.PI).toFixed(2));
-            if (real[j]>=0 & img[j]>=0) {
-                phResp.push(ph);
-            } else if (real[j]<0 & img[j]<0) {
-                phResp.push(ph-180);
-            } else {
-                phResp.push(ph + 180);
-            }
-        }
-        document.getElementById("resp").innerText= "The DFT sequence is : " + ak;
-        document.getElementById("exp").innerHTML="";
+            // output response is displayed
+            document.getElementById("dftResponse").innerText= "The DFT sequence is : \n" + xk;
 
-        var tr = document.createElement('tr');
-        var str ='<th>X[k]\\x[n]</th>';
-        for(let i=0;i<N;i++) {
-            str+=`<th> n = ${i}</th>`;
-            tr.innerHTML=str;
-        }
-        document.getElementById("exp").appendChild(tr);
-        for(let i=0;i<N;i++) {
+            // step-by-step of convolution is displayed
             var tr = document.createElement('tr');
-            str=`<td> k = ${i}</td>`;
-            for(let j=0;j<N;j++) {
-                str += `<td> ${explanation[i][j]}</td>`;
+            var str ='<th>X[k]\\x[n]</th>';
+            for(let i=0;i<N;i++) {
+                str+=`<th> n = ${i}</th>`;
                 tr.innerHTML=str;
             }
             document.getElementById("exp").appendChild(tr);
-        }
+            for(let i=0;i<N;i++) {
+                var tr = document.createElement('tr');
+                str=`<th> k = ${i}</th>`;
+                for(let j=0;j<N;j++) {
+                    str += `<td> ${explanation[i][j]}</td>`;
+                    tr.innerHTML=str;
+                }
+                document.getElementById("exp").appendChild(tr);
+            }
             document.getElementById("exp").innerHTML += `</tr>`
-        const xyMagValues = [];
-        for(let j=0; j<N; j++) {
-            xyMagValues.push({x:j,y:magResp[j]});
-        }
-        new Chart("magResp", {
-            type: "scatter",
-            data: {
-                datasets: [{
-                    pointRadius: 4,
-                    pointBackgroundColor: "rgb(0,0,255)",
-                    data: xyMagValues
-                }]
-            },
-            options: {
-                legend: {display: false}
-            }
-        });
 
-        const xyPhValues = [];
-        for(let j=0; j<N; j++) {
-            xyPhValues.push({x:j,y:phResp[j]});
-        }
-        new Chart("phResp", {
-            type: "scatter",
-            data: {
-                datasets: [{
-                    pointRadius: 4,
-                    pointBackgroundColor: "rgb(0,0,255)",
-                    data: xyPhValues
-                }]
-            },
-            options: {
-                legend: {display: false}
+            // magnitude response will be plotted
+            const xyMagValues = [];
+            for(let j=0; j<N; j++) {
+                xyMagValues.push({x:j,y:magResp[j]});
             }
-        });
-        document.getElementById("magResp").style.display ="block";
-        document.getElementById("mag-title").style.display ="block";
-        document.getElementById("phResp").style.display ="block";
-        document.getElementById("ph-title").style.display ="block";
+            new Chart("magResp", {
+                type: "scatter",
+                data: {
+                    datasets: [{
+                        pointRadius: 4,
+                        pointBackgroundColor: "rgb(0,0,255)",
+                        data: xyMagValues
+                    }]
+                },
+                options: {
+                    legend: {display: false}
+                }
+            });
+
+            // phase response will be plotted
+            const xyPhValues = [];
+            for(let j=0; j<N; j++) {
+                xyPhValues.push({x:j,y:phResp[j]});
+            }
+            new Chart("phResp", {
+                type: "scatter",
+                data: {
+                    datasets: [{
+                        pointRadius: 4,
+                        pointBackgroundColor: "rgb(0,0,255)",
+                        data: xyPhValues
+                    }]
+                },
+                options: {
+                    legend: {display: false}
+                }
+            });
+
+            // specific texts are displayed
+            document.getElementById("magResp").style.display ="block";
+            document.getElementById("mag-title").style.display ="block";
+            document.getElementById("phResp").style.display ="block";
+            document.getElementById("ph-title").style.display ="block";
 
         }
     </script>

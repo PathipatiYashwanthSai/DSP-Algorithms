@@ -12,7 +12,7 @@
     <div class="main">
         <div class="container">
             <div class="theory">
-                <h2 style="text-align: center;">Inverse Discrete Fourier Transform</h2><br>
+                <h2 style="text-align: center;"> Inverse Discrete Fourier Transform</h2><br>
                 <p> An inverse DFT is a Fourier series, using the DTFT samples as coefficients of complex sinusoids at the corresponding DTFT frequencies. It has the same sample-values as the original input sequence.</p>
                 <p>The discrete Fourier transform is an invertible, linear transformation</p>
                 <p><b>F</b>:C<sup>N</sup> --> C<sup>N</sup></p>
@@ -21,18 +21,20 @@
                 <img src="assets/IDFT_formula.svg" alt="IDFT formula" class="mx-auto d-block"><br><br>
                 <p>The step-by-step values for the provided input is shown below :</p>
                 <table id="exp">
-                </table><br><br>
+                </table>
+                <br><br>
             </div>
         </div>
         <div class="interface-section">
             <div class="container pt-2 input-block">
                 <br>
                 <h3>Enter the DFT sequence :</h3>
-                <input id="a" placeholder="1,2+2i,-5+3i,-6-8i..." onchange="idft()"/>
+                <input id="dftInput" placeholder="1,2+2i,-5+3i,-6-8i..." onchange="idft()"/>
                 <br><br>
-                <h4 id="resp"></h4>
+                <h4 id="idftResponse"></h4>
                 <br><br>
                 <h4 class="plot-title" id="graphTitle">Plot of IDFT sequence :</h4><br>
+                <!-- Output sequence plot is displayed -->
                 <canvas class="outputSequence" id="IDFT-Resp"></canvas><br><br>
             </div>
         </div>
@@ -41,11 +43,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script type="text/javascript">
         function idft() {
-            const a = document.getElementById("a").value.split(",");
-            const N = a.length;
+            // function to perform idft
+            // The explanatory table is initiated with null
+            document.getElementById("exp").innerHTML="";
+            // Input sequences are taken
+            const xk = document.getElementById("dftInput").value.split(",");
+            // N is the length to which dft is performed
+            const N = xk.length;
+            // Values are iterated and converted to complex numbers
             const dftSequence = [];
-            for(let i=0; i<a.length; i++) {
-                dftSequence.push(math.complex(a[i]));
+            for(let i=0; i<N; i++) {
+                dftSequence.push(math.complex(xk[i]));
             }
             const idftSequence = [];
             const explanation = [];
@@ -66,27 +74,29 @@
                 explanation.push(step);
                 idftSequence.push(Math.round(realSum/N));
             }
-            document.getElementById("resp").innerText = "The IDFT Sequence is: " + idftSequence;
-            document.getElementById("exp").innerHTML="";
+            // output response is displayed
+            document.getElementById("idftResponse").innerText = "The IDFT Sequence is: \n" + idftSequence;
 
-        var tr = document.createElement('tr');
-        var str ='<th>x[n]\\X[k]</th>';
-        for(let i=0;i<N;i++) {
-            str+=`<th> k = ${i}</th>`;
-            tr.innerHTML=str;
-        }
-        document.getElementById("exp").appendChild(tr);
-        for(let i=0;i<N;i++) {
+            // step-by-step of convolution is displayed
             var tr = document.createElement('tr');
-            str=`<td> n = ${i}</td>`;
-            for(let j=0;j<N;j++) {
-                str += `<td> ${explanation[i][j]}</td>`;
+            var str ='<th>x[n]\\X[k]</th>';
+            for(let i=0;i<N;i++) {
+                str+=`<th> k = ${i}</th>`;
                 tr.innerHTML=str;
             }
             document.getElementById("exp").appendChild(tr);
-        }
+            for(let i=0;i<N;i++) {
+                var tr = document.createElement('tr');
+                str=`<th> n = ${i}</th>`;
+                for(let j=0;j<N;j++) {
+                    str += `<td> ${explanation[i][j]}</td>`;
+                    tr.innerHTML=str;
+                }
+                document.getElementById("exp").appendChild(tr);
+            }
             document.getElementById("exp").innerHTML += `</tr>`
 
+            // idft sequence will be plotted
             const xyValues = [];
             for(let j=0; j<N; j++) {
                 xyValues.push({x:j,y:idftSequence[j]});
@@ -104,6 +114,8 @@
                     legend: {display: false}
                 }
             });
+
+            // specific texts are displayed
             document.getElementById("IDFT-Resp").style.display ="block";
             document.getElementById("graphTitle").style.display ="block";
 
