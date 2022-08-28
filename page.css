@@ -181,6 +181,8 @@ aside .sidebar a {
     height: 3.7rem;
     transition: all 300ms ease;
     width: 80%;
+    overflow: hidden;
+    padding: 10%;
 }
 
 aside .sidebar a h3 {
@@ -189,6 +191,7 @@ aside .sidebar a h3 {
 aside .sidebar{
     margin-top: 2%;
     margin-left: -25px;
+    overflow-y: auto;
 }
 aside .sidebar a.active {
     background: var(--color-light);

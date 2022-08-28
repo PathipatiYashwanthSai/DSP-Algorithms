@@ -1,0 +1,213 @@
+---
+title: FIR
+layout: default
+---
+
+<div class="container">
+    <aside>
+        <div class="top">
+            <h2>DSP</h2>
+            <div class="close" id="close-btn">
+                <span class="material-symbols-sharp">close</span>
+            </div>
+        </div>
+        <div class="sidebar">
+            <a href="index.html" class="">
+                <h3>Home Page</h3>
+            </a>
+            <a href="CrossCorr.html" class="">
+                <h3>Cross Correlation</h3>
+            </a>
+            <a href="AutoCorr.html" class="">
+                <h3>Auto Correlation</h3>
+            </a>
+            <a href="LinearConvolution.html" class="">
+                <h3>Linear Convolution</h3>
+            </a>
+            <a href="CircularConvolution.html" class="">
+                <h3>Circular Convolution</h3>
+            </a>
+            <a href="DFT.html" class="">
+                <h3>Discrete Fourier Transform</h3>
+            </a>
+            <a href="IDFT.html" class="">
+                <h3>Inverse Discrete Fourier Transform</h3>
+            </a>
+            <a href="Properties.html" class="">
+                <h3>DFT & IDFT Properties</h3>
+            </a>
+            <a href="Linearity.html" class="">
+                <h3>Linearity Property</h3>
+            </a>
+            <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Linear Convolution Property</h3>
+            </a>
+            <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Circular Convolution Property</h3>
+            </a>
+            <a href="CircularTimeShift.html" class="">
+                <h3>Circular Timeshift Property</h3>
+            </a>
+            <a href="Modulation.html" class="">
+                <h3>Modulation Property</h3>
+            </a>
+            <a href="differences(FIR&IIR).html" class="">
+                <h3>IIR and FIR differences</h3>
+            </a>
+            <a href="directform-1.html" class="">
+                <h3>IIR Direct Form-I</h3>
+            </a>
+            <a href="directForm-2.html" class="">
+                <h3>IIR Direct Form-II</h3>
+            </a>
+            <a href="transposedform.html" class="">
+                <h3>Transposed Form</h3>
+            </a>
+            <a href="cascadeform.html" class="">
+                <h3>IIR Cascade Form</h3>
+            </a>
+            <a href="parallelform(IIR).html" class="">
+                <h3>IIR Parallel Form</h3>
+            </a>
+            <a href="firdirectform.html" class="">
+                <h3>FIR Direct Form</h3>
+            </a>
+            <a href="ladder(IIR).html" class="">
+                <h3>IIR Ladder Structure</h3>
+            </a>
+            <a href="latticeStructure.html" class="">
+                <h3>Lattice Structure</h3>
+            </a>
+            <a href="upsample.html" class="">
+                <h3>Upsample</h3>
+            </a>
+            <a href="downsample.html" class="">
+                <h3>Downsample</h3>
+            </a>
+            <a href="interpolation.html" class="">
+                <h3>Interpolation</h3>
+            </a>
+            <a href="decimation.html" class="">
+                <h3>Decimation</h3>
+            </a>
+            <a href="fractionalSampling.html" class="">
+                <h3>Fractional Sampling Rate</h3>
+            </a>
+            <a href="bilinear.html" class="">
+                <h3>Bilinear Transformation</h3>
+            </a>
+            <a href="impulseinvariant.html" class="">
+                <h3>Impulse Invariant</h3>
+            </a>
+            <a href="FIR.html" class="active">
+                <h3>FIR</h3>
+            </a>
+            <a href="aprderivatives.html" class="">
+                <h3>Approximation of Derivatives</h3>
+            </a>
+            <a href="windows.html" class="active">
+                <h3>Window Techniques</h3>
+            </a>
+            <a href="butterworth.html" class="">
+                <h3>Butterworth Filters</h3>
+            </a>
+            <a href="chebyshev.html" class="">
+                <h3>Chebyshev Filters</h3>
+            </a>
+        </div>
+    </aside>
+    <div class="flex-container">
+        <main>
+            <h3 style="text-align:center;"> FIR Filters</h3>
+        <h4>Introduction</h4>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;A filter is a frequency selective system. Digital filters are classified as finite duration unit 
+            impulse response (FIR) filters or infinite duration unit impulse response (IIR) filters, 
+            depending on the form of the unit impulse response of the system. In the FIR system, the 
+            impulse response sequence is of finite duration, i.e., it has a finite number of non-zero terms. 
+            The IIR system has an infinite number of non-zero terms, i.e., its impulse response sequence is 
+            of infinite duration. IIR filters are usually implemented using recursive structures (feedbackpoles and zeros) and FIR filters are usually implemented using non-recursive structures (no 
+            feedback-only zeros). The response of the FIR filter depends only on the present and past input 
+            samples, whereas for the IIR filter, the present response is a function of the present and past
+            values of the excitation as well as past values of the response.
+            </p>
+        <h5>&nbsp;&nbsp;&nbsp;&nbsp;Advantages of FIR filter over IIR filters:</h5>
+        <ol>
+            <li>FIR filters are always stable</li>
+            <li>FIR filters with exactly linear phase can easily be designed.</li>
+            <li>FIR filters can be realized in both recursive and non-recursive structures.</li>
+            <li>FIR filters are free of limit cycle oscillations, when implemented on a finite word 
+                length digital system</li>
+            <li>Excellent design methods are available for various kinds of FIR filters.</li>
+        </ol>
+        <h5>&nbsp;&nbsp;&nbsp;&nbsp;Disadvantages of FIR filters:</h5>
+        <ol>
+            <li>The implementation of narrow transition band FIR filters is very costly, as it requires 
+                considerably more arithmetic operations and hardware components such as multipliers,
+                adders and delay elements.</li>
+            <li>Memory requirement and execution time are very high.</li>
+        </ol>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;FIR filters are employed in filtering problems where linear phase characteristics within the 
+            pass band of the filter are required. If this is not required, either an FIR or an IIR filter may be 
+            employed. An IIR filter has lesser number of side lobes in the stop band than an FIR filter 
+            with the same number of parameters. For this reason if some phase distortion is tolerable, 
+            an IIR filter is preferable. Also, the implementation of an IIR filter involves fewer 
+            parameters, less memory requirements and lower computational complexity</p>
+        <h3>Design techniques of FIR Filters</h3>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;The well known methods of designing FIR filters are as follows:</p>
+        <ol>
+            <li>Fourier series method</li>
+            <li>Window method</li>
+            <li>Frequency sampling method</li>
+            <li>Optimum filter design</li>
+        </ol>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;In Fourier series method, the desired frequency response Hd(n)
+         is converted to a Fourier series representation by replacing n by 2*pi*fT, where T
+          is the sampling time. Then using this expression, the Fourier coefficients are 
+          evaluated by taking inverse Fourier transform of Hd(n), which is the desired imp
+          ulse response of the filter hd(n). The Z-transform of hd(n) gives Hd(z) which is
+           the transfer function of the desired filter. The Hd(z) obtained from Hd(n) will b
+           e a transfer function of unrealizable non causal digital filter of infinite dura
+           tion. A finite duration impulse response h(n) can be obtained by truncatin
+           g the infinite duration impulse response hd(n) to N-samples. Now, take Z-transform of
+            h(n) to get H(z). This H(z) corresponds to a non-causal filter. So multiply this H(z) by
+             z–(N–1)/2 to get the transfer function of realizable causal filter of finite duration.</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;In window method, we begin with the desired frequency response specification 
+        Hd(n) and determine the corresponding unit sample response hd(n). The hd(n) is given
+         by the inverse Fourier transform of Hd(n). The unit sample response hd(n) will be an inf
+         inite sequence and must be truncated at some point, say, at n = N – 1 to yield an FIR 
+         filter of length N. The truncation is achieved by multiplying hd(n) by a window seq
+         uence w(n). The resultant sequence will be of length N and can be denoted by h(n). The 
+         Z-transform of h(n) will give the filter transfer function H(z). There have been many wi
+         ndows proposed like Rectangular window, Triangular window, Hanning window, Hamming wind
+         ow, Blackman wndow and Kaiser window that approximate the desired characteristics.</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;In optimum filter design method, the weighted approximation error between the desired frequenc
+        y response and the actual frequency response is spread evenly across the pass band and ev
+        enly across the stop band of the filter. This results in the reduction of maximum error.
+        The resulting filter have ripples in both the pass band and the stop band. This co
+        ncept of design is called optimum equiripple design criterion.</p>
+    <p>The various steps involved in designing FIR filters are as follows:</p>
+    <ol>
+        <li>Choose an ideal(desired) frequency response, Hd(n).</li>
+        <li>Take inverse Fourier transform of Hd(n)) to get hd (n) or sample Hd(n) at finite
+            number of points (N-points) to get H(k) </li> 
+        <li>If hd(n) is determined, then convert the infinite duration hd(n) to a finite duration
+            h(n) (usually h(n) is an N-point sequence) or if H(k) is determined, then take
+            N-point inverse DFT to get h(n).</li> 
+        <li>Take Z-transform of h(n) to get H(z), where H(z) is the transfer function of the
+            digital filter.</li>
+        <li> Choose a suitable structure and realize the filter.</li>
+    </ol>
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-sharp active">light_mode</span>
+                    <span class="material-symbols-sharp">dark_mode</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

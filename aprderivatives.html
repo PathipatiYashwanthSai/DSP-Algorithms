@@ -1,0 +1,177 @@
+---
+title: Aprroximation of Derivatives
+layout: default
+---
+
+<div class="container">
+    <aside>
+        <div class="top">
+            <h2>DSP</h2>
+            <div class="close" id="close-btn">
+                <span class="material-symbols-sharp">close</span>
+            </div>
+        </div>
+        <div class="sidebar">
+            <a href="index.html" class="">
+                <h3>Home Page</h3>
+            </a>
+            <a href="CrossCorr.html" class="">
+                <h3>Cross Correlation</h3>
+            </a>
+            <a href="AutoCorr.html" class="">
+                <h3>Auto Correlation</h3>
+            </a>
+            <a href="LinearConvolution.html" class="">
+                <h3>Linear Convolution</h3>
+            </a>
+            <a href="CircularConvolution.html" class="">
+                <h3>Circular Convolution</h3>
+            </a>
+            <a href="DFT.html" class="">
+                <h3>Discrete Fourier Transform</h3>
+            </a>
+            <a href="IDFT.html" class="">
+                <h3>Inverse Discrete Fourier Transform</h3>
+            </a>
+            <a href="Properties.html" class="">
+                <h3>DFT & IDFT Properties</h3>
+            </a>
+            <a href="Linearity.html" class="">
+                <h3>Linearity Property</h3>
+            </a>
+            <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Linear Convolution Property</h3>
+            </a>
+            <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Circular Convolution Property</h3>
+            </a>
+            <a href="CircularTimeShift.html" class="">
+                <h3>Circular Timeshift Property</h3>
+            </a>
+            <a href="Modulation.html" class="">
+                <h3>Modulation Property</h3>
+            </a>
+            <a href="differences(FIR&IIR).html" class="">
+                <h3>IIR and FIR differences</h3>
+            </a>
+            <a href="directform-1.html" class="">
+                <h3>IIR Direct Form-I</h3>
+            </a>
+            <a href="directForm-2.html" class="">
+                <h3>IIR Direct Form-II</h3>
+            </a>
+            <a href="transposedform.html" class="">
+                <h3>Transposed Form</h3>
+            </a>
+            <a href="cascadeform.html" class="">
+                <h3>IIR Cascade Form</h3>
+            </a>
+            <a href="parallelform(IIR).html" class="">
+                <h3>IIR Parallel Form</h3>
+            </a>
+            <a href="firdirectform.html" class="">
+                <h3>FIR Direct Form</h3>
+            </a>
+            <a href="ladder(IIR).html" class="">
+                <h3>IIR Ladder Structure</h3>
+            </a>
+            <a href="latticeStructure.html" class="">
+                <h3>Lattice Structure</h3>
+            </a>
+            <a href="upsample.html" class="">
+                <h3>Upsample</h3>
+            </a>
+            <a href="downsample.html" class="">
+                <h3>Downsample</h3>
+            </a>
+            <a href="interpolation.html" class="">
+                <h3>Interpolation</h3>
+            </a>
+            <a href="decimation.html" class="">
+                <h3>Decimation</h3>
+            </a>
+            <a href="fractionalSampling.html" class="">
+                <h3>Fractional Sampling Rate</h3>
+            </a>
+            <a href="bilinear.html" class="">
+                <h3>Bilinear Transformation</h3>
+            </a>
+            <a href="impulseinvariant.html" class="">
+                <h3>Impulse Invariant</h3>
+            </a>
+            <a href="FIR.html" class="">
+                <h3>FIR</h3>
+            </a>
+            <a href="aprderivatives.html" class="active">
+                <h3>Approximation of Derivatives</h3>
+            </a>
+            <a href="windows.html" class="active">
+                <h3>Window Techniques</h3>
+            </a>
+            <a href="butterworth.html" class="">
+                <h3>Butterworth Filters</h3>
+            </a>
+            <a href="chebyshev.html" class="">
+                <h3>Chebyshev Filters</h3>
+            </a>
+        </div>
+    </aside>
+    <div class="flex-container">
+        <main>
+            <h3 style="text-align:center;"> DESIGN OF IIR FILTER BY APPROXIMATION OF DERIVATIVES</h3><br><br>
+                <P>&nbsp;&nbsp;&nbsp;&nbsp;The analog filter having the rational system function H(s) can also be described by the linear
+                    constant coefficient differential equations</P>
+                   <p><img src="assets/Screenshot_20220715_220337.JPG" width="30%"></p> 
+                <p>In this method of IIR filter design by approximation of derivatives, an analog filter is
+                    converted into a digital filter by approximating the above differential equation into an
+                    equivalent difference equation</p>
+                <p>The backward difference formula is substituted for the derivative which is given by</p>
+                <p><img src="assets/IMG_20220715_220501.JPG"  width="30%"></p>
+                <p>Also, the second derivative can be replaced by backward difference equation</p>
+                <p><img src="assets/IMG_20220715_220604.JPG"  width="50%"></p>
+                <p>The ith derivative of function y(t) results in the equivalent frequency domain relationship as</p>
+                 <p><img src="assets/IMG_20220715_220756.JPG"  width="30%"></p>   
+                <p>Substituting s=jw in the expression for z, we get</p>
+                <p><img src="assets/IMG_20220715_220816.JPG"  width="30%"></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;It can be observed that the mapping of the equation s = (1 – z
+                    –1)/T, takes the left half
+                    plane of s-domain into the corresponding points inside the circle of radius 0.5 and centre at
+                    z = 0.5. Also the right half of the s-plane is mapped outside the unit circle. Because of this,
+                    this mapping results in a stable analog filter transformed into a stable digital filter. However,
+                    since the location of poles in the z-domain are confined to smaller frequencies, this design
+                    method can be used only for transforming analog low-pass filters and band pass filters which
+                    are having smaller resonant frequencies. This means that neither a high-pass filter nor a
+                    band-reject filter can be realized using this technique</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;The forward difference can be substituted for the derivative instead of the backward
+                    difference.</p>
+                <p>The mapping os s-plane into z plane by backward difference method is depicted in the figure shown below:</p>
+                <p><img src="assets/IMG_20220715_223656.JPG"></p>
+                <p>The limitations of the mapping methods discussed above can be overcome by using
+                    more complex substitution for the derivatives. An Nth order difference is proposed for the
+                    derivative, as shown</p>
+                <p><img src="assets/Screenshot_20220715_223731.JPG"  width="35%"></p>
+                <p>The mapping of s-plane into z-plane using forward difference method is shown below:</p>
+                <p><img src="assets/Screenshot_20220715_223758.JPG"></p>
+                <h4>EXAMPLE</h4>
+                <p>Convert the analog low pass filter represented by</p>
+                <p><img src="assets/IMG_20220715_224847.JPG"  width="30%"></p>
+                <p>into a digital filter making use of backward difference of derivation</p>
+                <h4>Solution</h4>
+                <p>We know that mapping formula for backward difference of derivative is given by,</p>
+                <p><img src="assets/IMG_20220715_224900.JPG" width="35%" ></p>
+                <P> For the given anlog transfer function the corresponding digital transfer function is given by,</P>
+                <p><img src="assets/IMG_20220715_224920.JPG" width="35%"></p>
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-sharp active">light_mode</span>
+                    <span class="material-symbols-sharp">dark_mode</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

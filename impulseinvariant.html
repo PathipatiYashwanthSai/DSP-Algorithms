@@ -1,0 +1,182 @@
+---
+title: Impulse Invariant
+layout: default
+---
+
+<div class="container">
+    <aside>
+        <div class="top">
+            <h2>DSP</h2>
+            <div class="close" id="close-btn">
+                <span class="material-symbols-sharp">close</span>
+            </div>
+        </div>
+        <div class="sidebar">
+            <a href="index.html" class="">
+                <h3>Home Page</h3>
+            </a>
+            <a href="CrossCorr.html" class="">
+                <h3>Cross Correlation</h3>
+            </a>
+            <a href="AutoCorr.html" class="">
+                <h3>Auto Correlation</h3>
+            </a>
+            <a href="LinearConvolution.html" class="">
+                <h3>Linear Convolution</h3>
+            </a>
+            <a href="CircularConvolution.html" class="">
+                <h3>Circular Convolution</h3>
+            </a>
+            <a href="DFT.html" class="">
+                <h3>Discrete Fourier Transform</h3>
+            </a>
+            <a href="IDFT.html" class="">
+                <h3>Inverse Discrete Fourier Transform</h3>
+            </a>
+            <a href="Properties.html" class="">
+                <h3>DFT & IDFT Properties</h3>
+            </a>
+            <a href="Linearity.html" class="">
+                <h3>Linearity Property</h3>
+            </a>
+            <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Linear Convolution Property</h3>
+            </a>
+            <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Circular Convolution Property</h3>
+            </a>
+            <a href="CircularTimeShift.html" class="">
+                <h3>Circular Timeshift Property</h3>
+            </a>
+            <a href="Modulation.html" class="">
+                <h3>Modulation Property</h3>
+            </a>
+            <a href="differences(FIR&IIR).html" class="">
+                <h3>IIR and FIR differences</h3>
+            </a>
+            <a href="directform-1.html" class="">
+                <h3>IIR Direct Form-I</h3>
+            </a>
+            <a href="directForm-2.html" class="">
+                <h3>IIR Direct Form-II</h3>
+            </a>
+            <a href="transposedform.html" class="">
+                <h3>Transposed Form</h3>
+            </a>
+            <a href="cascadeform.html" class="">
+                <h3>IIR Cascade Form</h3>
+            </a>
+            <a href="parallelform(IIR).html" class="">
+                <h3>IIR Parallel Form</h3>
+            </a>
+            <a href="firdirectform.html" class="">
+                <h3>FIR Direct Form</h3>
+            </a>
+            <a href="ladder(IIR).html" class="">
+                <h3>IIR Ladder Structure</h3>
+            </a>
+            <a href="latticeStructure.html" class="">
+                <h3>Lattice Structure</h3>
+            </a>
+            <a href="upsample.html" class="">
+                <h3>Upsample</h3>
+            </a>
+            <a href="downsample.html" class="">
+                <h3>Downsample</h3>
+            </a>
+            <a href="interpolation.html" class="">
+                <h3>Interpolation</h3>
+            </a>
+            <a href="decimation.html" class="">
+                <h3>Decimation</h3>
+            </a>
+            <a href="fractionalSampling.html" class="">
+                <h3>Fractional Sampling Rate</h3>
+            </a>
+            <a href="bilinear.html" class="">
+                <h3>Bilinear Transformation</h3>
+            </a>
+            <a href="impulseinvariant.html" class="active">
+                <h3>Impulse Invariant</h3>
+            </a>
+            <a href="FIR.html" class="">
+                <h3>FIR</h3>
+            </a>
+            <a href="aprderivatives.html" class="">
+                <h3>Approximation of Derivatives</h3>
+            </a>
+            <a href="windows.html" class="active">
+                <h3>Window Techniques</h3>
+            </a>
+            <a href="butterworth.html" class="">
+                <h3>Butterworth Filters</h3>
+            </a>
+            <a href="chebyshev.html" class="">
+                <h3>Chebyshev Filters</h3>
+            </a>
+        </div>
+    </aside>
+    <div class="flex-container">
+        <main>
+            <h3 style="text-align:center;">DESIGN OF IIR FILTER BY IMPULSE INVARIANT TRANSFORMATION</h3>
+    <P>&nbsp;&nbsp;&nbsp;&nbsp;In this technique, the desired impulse response of the digital filter is obtained by uniformly
+        sampling the impulse response of the equivalent analog filter. The main idea behind this is to
+        preserve the frequency response characteristics of the analog filter. For the digital filter to
+        possess the frequency response characteristics of the corresponding analog filter, the
+        sampling period T should be sufficiently small (or the sampling frequency should be
+        sufficiently high) to minimize (or completely avoid) the effects of aliasing.</P>
+        <p><img src="assets/IMG_20220715_230831.JPG" width="35%"></p>
+        <p>For impulse invariant transformation,</p>
+        <p><img src="assets/IMG_20220715_231027.JPG" width="25%"></p>
+        <p>The Laplace transform of analog filter impulse response gives the transfer function of analog filter</p>
+        <p><img src="assets/IMG_20220715_235036.JPG" width="25%"></p>
+        <p>The transformation technique can be well understood
+            by first considering simple distinct poles case for the analog transfer function
+        </p>
+        <p><img src="assets/IMG_20220715_235101.JPG" width="25%"></p>
+        <p>The analog response can be obtained
+            by taking inverse laplace transform.
+        </p>
+        <p><img src="assets/IMG_20220715_235114.JPG" width="25%"></p>
+        <p>The impulse response h(n) of the equivalent digital filter is obtained by uniformly
+            sampling ha(t), i.e.,</p>
+        <p><img src="assets/IMG_20220715_235125.JPG" width="25%"></p>
+        <p>The system function of the digital system of above expression can be obtained by
+            taking z-transform, i.e.,</p>
+        <p><img src="assets/IMG_20220716_000050.JPG" width="30%"></p>
+        <p>Using the above equation for h(n), we have</p>
+        <p><img src="assets/IMG_20220716_000101.JPG" width="30%"></p>
+        <p>Comparing the above expressions, we can say that impulse invariant transformation can be achieved 
+            by mapping,
+        </p>
+        <p><img src="assets/IMG_20220716_000116.JPG" width="30%"></p>
+        <h3>Useful impulse invariant transformations</h3>
+        <p><img src="assets/IMG_20220716_000833.JPG" width="40%"></p>
+        <p><img src="assets/IMG_20220716_000851.JPG" width="40%"></p>
+    <h4>EXAMPLE</h4>
+    <p>For the analog transfer function,</p>
+    <P><img src="assets/IMG_20220716_001237.JPG" width="35%"></P>
+    <p>determine H(z) if (a) T=1 sec (b)T=0.5 sec using impulse invariant transformation.</p>
+    <h4>Solution</h4>
+    <p>Using partial fractions, the given transfer functioncan be expressed as:</p>
+    <p><img src="assets/IMG_20220716_001251.JPG" width="40%"></p>
+    <p>By impulse invariant transformation, we know that</p>
+    <p><img src="assets/IMG_20220716_001301.JPG" width="40%"></p>
+    <p>Here Ha(s) has two poles and p1 = –1 and p2 = –3.
+        Therefore, the system function of the digital filter is:</p>
+    <p><img src="assets/IMG_20220716_001324.JPG" width="40%"></p>
+    <p><img src="assets/Screenshot_20220716_002044.JPG" width="40%"></p>
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-sharp active">light_mode</span>
+                    <span class="material-symbols-sharp">dark_mode</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

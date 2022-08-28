@@ -1,0 +1,162 @@
+---
+title: Butterworth
+layout: default
+---
+
+<div class="container">
+    <aside>
+        <div class="top">
+            <h2>DSP</h2>
+            <div class="close" id="close-btn">
+                <span class="material-symbols-sharp">close</span>
+            </div>
+        </div>
+        <div class="sidebar">
+            <a href="index.html" class="">
+                <h3>Home Page</h3>
+            </a>
+            <a href="CrossCorr.html" class="">
+                <h3>Cross Correlation</h3>
+            </a>
+            <a href="AutoCorr.html" class="">
+                <h3>Auto Correlation</h3>
+            </a>
+            <a href="LinearConvolution.html" class="">
+                <h3>Linear Convolution</h3>
+            </a>
+            <a href="CircularConvolution.html" class="">
+                <h3>Circular Convolution</h3>
+            </a>
+            <a href="DFT.html" class="">
+                <h3>Discrete Fourier Transform</h3>
+            </a>
+            <a href="IDFT.html" class="">
+                <h3>Inverse Discrete Fourier Transform</h3>
+            </a>
+            <a href="Properties.html" class="">
+                <h3>DFT & IDFT Properties</h3>
+            </a>
+            <a href="Linearity.html" class="">
+                <h3>Linearity Property</h3>
+            </a>
+            <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Linear Convolution Property</h3>
+            </a>
+            <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Circular Convolution Property</h3>
+            </a>
+            <a href="CircularTimeShift.html" class="">
+                <h3>Circular Timeshift Property</h3>
+            </a>
+            <a href="Modulation.html" class="">
+                <h3>Modulation Property</h3>
+            </a>
+            <a href="differences(FIR&IIR).html" class="">
+                <h3>IIR and FIR differences</h3>
+            </a>
+            <a href="directform-1.html" class="">
+                <h3>IIR Direct Form-I</h3>
+            </a>
+            <a href="directForm-2.html" class="">
+                <h3>IIR Direct Form-II</h3>
+            </a>
+            <a href="transposedform.html" class="">
+                <h3>Transposed Form</h3>
+            </a>
+            <a href="cascadeform.html" class="">
+                <h3>IIR Cascade Form</h3>
+            </a>
+            <a href="parallelform(IIR).html" class="">
+                <h3>IIR Parallel Form</h3>
+            </a>
+            <a href="firdirectform.html" class="">
+                <h3>FIR Direct Form</h3>
+            </a>
+            <a href="ladder(IIR).html" class="">
+                <h3>IIR Ladder Structure</h3>
+            </a>
+            <a href="latticeStructure.html" class="">
+                <h3>Lattice Structure</h3>
+            </a>
+            <a href="upsample.html" class="">
+                <h3>Upsample</h3>
+            </a>
+            <a href="downsample.html" class="">
+                <h3>Downsample</h3>
+            </a>
+            <a href="interpolation.html" class="">
+                <h3>Interpolation</h3>
+            </a>
+            <a href="decimation.html" class="">
+                <h3>Decimation</h3>
+            </a>
+            <a href="fractionalSampling.html" class="">
+                <h3>Fractional Sampling Rate</h3>
+            </a>
+            <a href="bilinear.html" class="">
+                <h3>Bilinear Transformation</h3>
+            </a>
+            <a href="impulseinvariant.html" class="">
+                <h3>Impulse Invariant</h3>
+            </a>
+            <a href="FIR.html" class="">
+                <h3>FIR</h3>
+            </a>
+            <a href="aprderivatives.html" class="">
+                <h3>Approximation of Derivatives</h3>
+            </a>
+            <a href="windows.html" class="active">
+                <h3>Window Techniques</h3>
+            </a>
+            <a href="butterworth.html" class="active">
+                <h3>Butterworth Filters</h3>
+            </a>
+            <a href="chebyshev.html" class="">
+                <h3>Chebyshev Filters</h3>
+            </a>
+        </div>
+    </aside>
+    <div class="flex-container">
+        <main>
+            <h3 style="text-align:center;" >Design proceure for low-pass digital Butterworth llR filter</h3>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;The low-pass digital Butterworth filter is designed as per the following steps:</p>
+            <p><img src="assets/IMG_20220716_011018.JPG" width="35%"></p>
+            <p><strong><i>step 1:</i></strong>Choose the type of transformation either bilinear or impulse invariant</p>
+            <p><strong><i>step 2:</i></strong>Calculate the ratio of analog frequencies</p>
+            <p><img src="assets/Screenshot_20220716_004745.JPG" width="35%"></p>
+            <p><strong><i>step 3:</i></strong>Decide the order of filter N such that</p>
+            <p><img src="assets/IMG_20220716_004810.JPG" width="35%"></p>
+            <p><strong><i>step 4:</i></strong>Calculate the analog cutoff frequency</p>
+            <p><img src="assets/IMG_20220716_005054.JPG" width="15%"></p>
+            <p><strong><i>step 5:</i></strong>Determine the transfer function of analog filter.</p>
+            <p>&nbsp;&nbsp; If N id odd, then H(s) is given by</p>
+            <p><img src="assets/IMG_20220716_005109.JPG" width="35%"></p>
+            <p>When the order N is odd,</p>
+            <p><img src="assets/IMG_20220716_005119.JPG" width="35%"></p>
+            <p>where the coefficient bk is given by,</p>
+            <p><img src="assets/IMG_20220716_005133.JPG" width="35%"></p>
+            <p><strong><i>step 6:</i></strong>Convert the analog transfer function into digital one 
+            usinng the choen transformation</p>
+            <h4>EXAMPLE 1:</h4>
+            <P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Design a buttterworth digital filter using the 
+                bilinear transformation. The specifications of the desired low pass filter are:
+            </P>
+            <p><img src="assets/IMG_20220716_005520.JPG" width="35%"></p>
+            <p>with T=1 sec</p>
+            <p><img src="assets/IMG_20220716_010350.JPG" width="55%"></p>
+            <p><img src="assets/IMG_20220716_010601.JPG" width="55%"></p>
+            <p><img src="assets/Screenshot_20220716_010744.JPG" width="35%"></p>
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-sharp active">light_mode</span>
+                    <span class="material-symbols-sharp">dark_mode</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

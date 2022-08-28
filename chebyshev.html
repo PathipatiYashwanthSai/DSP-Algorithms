@@ -1,0 +1,160 @@
+---
+title: Chebyshev
+layout: default
+---
+
+<div class="container">
+    <aside>
+        <div class="top">
+            <h2>DSP</h2>
+            <div class="close" id="close-btn">
+                <span class="material-symbols-sharp">close</span>
+            </div>
+        </div>
+        <div class="sidebar">
+            <a href="index.html" class="">
+                <h3>Home Page</h3>
+            </a>
+            <a href="CrossCorr.html" class="">
+                <h3>Cross Correlation</h3>
+            </a>
+            <a href="AutoCorr.html" class="">
+                <h3>Auto Correlation</h3>
+            </a>
+            <a href="LinearConvolution.html" class="">
+                <h3>Linear Convolution</h3>
+            </a>
+            <a href="CircularConvolution.html" class="">
+                <h3>Circular Convolution</h3>
+            </a>
+            <a href="DFT.html" class="">
+                <h3>Discrete Fourier Transform</h3>
+            </a>
+            <a href="IDFT.html" class="">
+                <h3>Inverse Discrete Fourier Transform</h3>
+            </a>
+            <a href="Properties.html" class="">
+                <h3>DFT & IDFT Properties</h3>
+            </a>
+            <a href="Linearity.html" class="">
+                <h3>Linearity Property</h3>
+            </a>
+            <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Linear Convolution Property</h3>
+            </a>
+            <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Circular Convolution Property</h3>
+            </a>
+            <a href="CircularTimeShift.html" class="">
+                <h3>Circular Timeshift Property</h3>
+            </a>
+            <a href="Modulation.html" class="">
+                <h3>Modulation Property</h3>
+            </a>
+            <a href="differences(FIR&IIR).html" class="">
+                <h3>IIR and FIR differences</h3>
+            </a>
+            <a href="directform-1.html" class="">
+                <h3>IIR Direct Form-I</h3>
+            </a>
+            <a href="directForm-2.html" class="">
+                <h3>IIR Direct Form-II</h3>
+            </a>
+            <a href="transposedform.html" class="">
+                <h3>Transposed Form</h3>
+            </a>
+            <a href="cascadeform.html" class="">
+                <h3>IIR Cascade Form</h3>
+            </a>
+            <a href="parallelform(IIR).html" class="">
+                <h3>IIR Parallel Form</h3>
+            </a>
+            <a href="firdirectform.html" class="">
+                <h3>FIR Direct Form</h3>
+            </a>
+            <a href="ladder(IIR).html" class="">
+                <h3>IIR Ladder Structure</h3>
+            </a>
+            <a href="latticeStructure.html" class="">
+                <h3>Lattice Structure</h3>
+            </a>
+            <a href="upsample.html" class="">
+                <h3>Upsample</h3>
+            </a>
+            <a href="downsample.html" class="">
+                <h3>Downsample</h3>
+            </a>
+            <a href="interpolation.html" class="">
+                <h3>Interpolation</h3>
+            </a>
+            <a href="decimation.html" class="">
+                <h3>Decimation</h3>
+            </a>
+            <a href="fractionalSampling.html" class="">
+                <h3>Fractional Sampling Rate</h3>
+            </a>
+            <a href="bilinear.html" class="">
+                <h3>Bilinear Transformation</h3>
+            </a>
+            <a href="impulseinvariant.html" class="">
+                <h3>Impulse Invariant</h3>
+            </a>
+            <a href="FIR.html" class="">
+                <h3>FIR</h3>
+            </a>
+            <a href="aprderivatives.html" class="">
+                <h3>Approximation of Derivatives</h3>
+            </a>
+            <a href="windows.html" class="active">
+                <h3>Window Techniques</h3>
+            </a>
+            <a href="butterworth.html" class="">
+                <h3>Butterworth Filters</h3>
+            </a>
+            <a href="chebyshev.html" class="active">
+                <h3>Chebyshev Filters</h3>
+            </a>
+        </div>
+    </aside>
+    <div class="flex-container">
+        <main>
+            <h3 style="text-align:center;">DESIGN OF LOW-PASS CHEBYSHEV FILTER</h3>
+            <p><strong><i>step 1:</i></strong>choose the type of transformation</p>
+            <p><strong><i>step 2:</i></strong>Calculate the attenuation constant</p>
+            <p><img src="assets/IMG_20220716_011632.JPG" width="35%"></p>
+            <p><strong><i>step 3:</i></strong>calculate the ratio of analog frequencies</p>
+            <p><img src="assets/IMG_20220716_011644.JPG" width="35%"></p>
+            <p><strong><i>step 4:</i></strong>Decide the order of filter N such that</p>
+            <p><img src="assets/IMG_20220716_011656.JPG" width="35%"></p>
+            <p><strong><i>step 5:</i></strong>Calculate the analog frequency</p>
+            <p><img src="assets/IMG_20220716_011713.JPG" width="35%"></p>
+            <p><strong><i>step 6:</i></strong>Determine the analog transfer function which is given by</p>
+            <p><img src="assets/IMG_20220716_012109.JPG" width="55%"></p>
+            <p>When N is odd, H(s) is given by</p>
+            <p><img src="assets/IMG_20220716_012121.JPG"></p>
+            <p>where,</p>
+            <p><img src="assets/IMG_20220716_012146.JPG"></p>
+            <p><strong><i>step 7:</i></strong>Using chosen transformation, the digital transfer function is determined</p>
+            
+            <h4>Example 1</h4>
+            <p>The specifications of the desired low pass filter is</p>
+            <p><img src="assets/Screenshot_20220719_120244.JPG" width="35%"></p>
+            <p>Design a Chebyshev digital filter using bilinear transformation</p>
+            <p><img src="assets/IMG_20220716_012644.JPG"></p>
+            <p><img src="assets/IMG_20220716_012704.JPG"></p>
+            <p><img src="assets/IMG_20220716_012720.JPG"></p>
+            <p><img src="assets/IMG_20220716_012735.JPG"></p>
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-sharp active">light_mode</span>
+                    <span class="material-symbols-sharp">dark_mode</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
