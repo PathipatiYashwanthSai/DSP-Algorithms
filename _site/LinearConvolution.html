@@ -15,196 +15,122 @@
     <script src="https://pagecdn.io/lib/mathjs/11.0.1/math.min.js" crossorigin="anonymous"  ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <div class="container">
-    <!-- <aside>
-    <div class="top">
-        <h2>DSP</h2>
-        <div class="close" id="close-btn">
-            <span class="material-symbols-sharp">close</span>
-        </div>
-    </div>
-    <div class="sidebar">
-        <a href="#" class="active">
-            <h3>Home Page</h3>
-        </a>
-        <a href="#" class="">
-            <h3>Basic Operations</h3>
-        </a>
-        <a href="CrossCorr.html" class="">
-            <h3>Cross Correlation</h3>
-        </a>
-        <a href="AutoCorr.html" class="">
-            <h3>Auto Correlation</h3>
-        </a>
-        <a href="LinearConvolution.html" class="">
-            <h3>Linear Convolution</h3>
-        </a>
-        <a href="CircularConvolution.html" class="">
-            <h3>Circular Convolution</h3>
-        </a>
-        <a href="DFT.html" class="">
-            <h3>Discrete Fourier Transform</h3>
-        </a>
-        <a href="IDFT.html" class="">
-            <h3>Inverse Discrete Fourier Transform</h3>
-        </a>
-        <a href="Properties.html" class="">
-            <h3>DFT & IDFT Properties</h3>
-        </a>
-        <a href="Linearity.html" class="">
-            <h3>Linearity Property</h3>
-        </a>
-        <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
-            <h3>Linear Convolution Property</h3>
-        </a>
-        <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
-            <h3>Circular Convolution Property</h3>
-        </a>
-        <a href="CircularTimeShift.html" class="">
-            <h3>Circular Timeshift Property</h3>
-        </a>
-        <a href="Modulation.html" class="">
-            <h3>Modulation Property</h3>
-        </a>
-    </div> -->
-    <!-- <div class="sidebar">
-        <ul>
-            <li class="list">
-                <a href="index.html">
-                    <h3>Home Page</h3>
-                </a>
-            </li>
-            <li class="list">
-        <a href="#">
-            <h3>Basic Operations</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="CrossCorr.html">
-            <h3>Cross Correlation</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="AutoCorr.html">
-            <h3>Auto Correlation</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="LinearConvolution.html">
-            <h3>Linear Convolution</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="CircularConvolution.html">
-            <h3>Circular Convolution</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="DFT.html">
-            <h3>Discrete Fourier Transform</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="IDFT.html">
-            <h3>Inverse Discrete Fourier Transform</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="Properties.html">
-            <h3>DFT & IDFT Properties</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="Linearity.html">
-            <h3>Linearity Property</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="LinearConvolutionUsingDFT&IDFT.html">
-            <h3>Linear Convolution Property</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="CircularConvolutionUsingDFT&IDFT.html">
-            <h3>Circular Convolution Property</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="CircularTimeShift.html">
-            <h3>Circular Timeshift Property</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="Modulation.html">
-            <h3>Modulation Property</h3>
-        </a>
-            </li>
-        </ul>
-    </div> -->
-    <main>
-        <h2 style="text-align: center;"> Linear Convolution</h2><br>
-        <p>A key concept often introduced to those pursuing electronics engineering is Linear Convolution. This is a crucial component of Digital Signal Processing and Signals and Systems. Keeping general interest and academic implications in mind, this article introduces the concept of Convolution.</p>
-        <p><strong>Convolution:</strong> When speaking purely mathematically, convolution is the process by which one may compute the overlap of two graphs. In fact, convolution is also interpreted as the area shared by the two graphs over time. Metaphorically, it is a blend between the two functions as one passes over the other. So, given two functions F(n) and G(n), the convolution of the two is expressed and given by the following mathematical expression:</p>
-        <h5 style="text-align: center;">y(n)= ∑<sub>k</sub> f(k)g(n−k)= ∑<sub>k</sub> g(k)f(n−k)</h5>
-        <img src="assets/LinConv.jpg" alt="..." class="mx-auto d-block" width="750px"><br><br>
-        <p><strong>Linear Convolution:</strong> Linear Convolution is a means by which one may relate the output and input of an LTI system given the system’s impulse response. Clearly, it is required to convolve the input signal with the impulse response of the system. Using the expression earlier, the following equation can be formed-</p>
-        <h5 style="text-align: center;">y(n)= x(n)*h(n)= ∑<sub>k</sub> x(k)h(n−k)</h5>
-        <p>The reason why the expression is summed an infinite number of times is just to ensure that the probability of the two functions overlapping is 1. The impulse response is time-shifted endlessly so that during some duration of time, the two functions will certainly overlap. It may seem it would be careless on behalf of the programmer to run an infinite loop – the code may continue to execute for as long as the two functions do not overlap.</p>
-        <h4><strong>Explanation:</strong></h4>
-        <ul>
-            <li>Take the input signal and impulse response as two separate single-row matrices.</li>
-            <li>The first element of the impulse response is multiplied with every element of the input signal. This result is stored.</li>
-            <li>The second element of the impulse response is multiplied with every element of the input signal. The result is shifted by one step to the right and stored.</li>
-            <li>The above two steps are done for the remaining elements in the impulse response.</li>
-            <li>Once all elements have been multiplied, align all the results under one another. Refer to the figure below.</li>
-            <li>Vertically, add all the elements in each column.</li>
-            <li>The resulting single row matrix is the convolved output.</li>
-        </ul>
-        <h4><strong>Example:</strong></h4><br>
-        <img src="assets/Linconvcalc.jpg" alt="..." class="mx-auto d-block" width="750px"><br><br>
-        <p>The step-by-step values for the provided input is shown below :</p>
-        <h4 class="plot-title" id="exp-part-1" style="color: black;">x(n) and h(n) :</h4>
-        <table id="exp">
-        </table><hr>
-        <h4 class="plot-title" id="exp-part-2" style="color: black;">Add the below sequences :</h4>
-        <table id="exp1">
-        </table><hr>
-        <h4 class="plot-title" id="exp-part-3" style="color: black;">y(n) :</h4>
-        <table id="exp2">
-        </table><br><br>
-    </main>
-    <div class="right">
+    <aside>
         <div class="top">
-            <button id="menu-btn">
-                <span class="material-symbols-sharp">menu</span>
-            </button>
-            <div class="theme-toggler">
-                <span class="material-symbols-sharp active">light_mode</span>
-                <span class="material-symbols-sharp">dark_mode</span>
+            <h2>DSP</h2>
+            <div class="close" id="close-btn">
+                <span class="material-symbols-sharp">close</span>
             </div>
         </div>
-        <div class="interface-section">
-            <br>
-            <h3>Enter the first sequence :</h3>
-            <input id="sequence1" placeholder="1,2,3,4..."/>
-            <br><br>
-            <h3>Enter the second sequence :</h3>
-            <input id="sequence2" placeholder="1,2,3,4..."/>
-            <br><br>
-            <button type="submit" class="btn btn-warning" onclick="linearConv()">Submit</button>
-            <br><br>
-            <h4 id="linearConvResponse"></h4>
-            <br><br>
-            <h4 class="plot-title" id="input-title">x(n) :</h4><br>
-            <!-- Input sequence plot is displayed -->
-            <canvas class="outputSequence" id="inputResp"></canvas> 
-            <br><br>
-            <h4 class="plot-title" id="impulse-title">h(n) :</h4><br>
-            <!-- Impulse sequence plot is displayed -->
-            <canvas class="outputSequence" id="impulseResp"></canvas>
-            <br><br>
-            <h4 class="plot-title" id="output-title">Linear Convolution Ouput y(n) :</h4><br>
-            <!-- Output sequence plot is displayed -->
-            <canvas class="outputSequence" id="outputResp"></canvas><br><br>
+        <div class="sidebar">
+            <a href="index.html" class="">
+                <h3>Home Page</h3>
+            </a>
+            <a href="CrossCorr.html" class="">
+                <h3>Cross Correlation</h3>
+            </a>
+            <a href="AutoCorr.html" class="">
+                <h3>Auto Correlation</h3>
+            </a>
+            <a href="LinearConvolution.html" class="active">
+                <h3>Linear Convolution</h3>
+            </a>
+            <a href="CircularConvolution.html" class="">
+                <h3>Circular Convolution</h3>
+            </a>
+            <a href="DFT.html" class="">
+                <h3>Discrete Fourier Transform</h3>
+            </a>
+            <a href="IDFT.html" class="">
+                <h3>Inverse Discrete Fourier Transform</h3>
+            </a>
+            <a href="Properties.html" class="">
+                <h3>DFT & IDFT Properties</h3>
+            </a>
+            <a href="Linearity.html" class="">
+                <h3>Linearity Property</h3>
+            </a>
+            <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Linear Convolution Property</h3>
+            </a>
+            <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Circular Convolution Property</h3>
+            </a>
+            <a href="CircularTimeShift.html" class="">
+                <h3>Circular Timeshift Property</h3>
+            </a>
+            <a href="Modulation.html" class="">
+                <h3>Modulation Property</h3>
+            </a>
+        </div>
+    </aside>
+    <div class="flex-container">
+        <main>
+            <h2 style="text-align: center;"> Linear Convolution</h2><br>
+            <p>A key concept often introduced to those pursuing electronics engineering is Linear Convolution. This is a crucial component of Digital Signal Processing and Signals and Systems. Keeping general interest and academic implications in mind, this article introduces the concept of Convolution.</p>
+            <p><strong>Convolution:</strong> When speaking purely mathematically, convolution is the process by which one may compute the overlap of two graphs. In fact, convolution is also interpreted as the area shared by the two graphs over time. Metaphorically, it is a blend between the two functions as one passes over the other. So, given two functions F(n) and G(n), the convolution of the two is expressed and given by the following mathematical expression:</p>
+            <h5 style="text-align: center;">y(n)= ∑<sub>k</sub> f(k)g(n−k)= ∑<sub>k</sub> g(k)f(n−k)</h5>
+            <img src="assets/LinConv.jpg" alt="..." class="mx-auto d-block" width="750px"><br><br>
+            <p><strong>Linear Convolution:</strong> Linear Convolution is a means by which one may relate the output and input of an LTI system given the system’s impulse response. Clearly, it is required to convolve the input signal with the impulse response of the system. Using the expression earlier, the following equation can be formed-</p>
+            <h5 style="text-align: center;">y(n)= x(n)*h(n)= ∑<sub>k</sub> x(k)h(n−k)</h5>
+            <p>The reason why the expression is summed an infinite number of times is just to ensure that the probability of the two functions overlapping is 1. The impulse response is time-shifted endlessly so that during some duration of time, the two functions will certainly overlap. It may seem it would be careless on behalf of the programmer to run an infinite loop – the code may continue to execute for as long as the two functions do not overlap.</p>
+            <h4><strong>Explanation:</strong></h4>
+            <ul>
+                <li>Take the input signal and impulse response as two separate single-row matrices.</li>
+                <li>The first element of the impulse response is multiplied with every element of the input signal. This result is stored.</li>
+                <li>The second element of the impulse response is multiplied with every element of the input signal. The result is shifted by one step to the right and stored.</li>
+                <li>The above two steps are done for the remaining elements in the impulse response.</li>
+                <li>Once all elements have been multiplied, align all the results under one another. Refer to the figure below.</li>
+                <li>Vertically, add all the elements in each column.</li>
+                <li>The resulting single row matrix is the convolved output.</li>
+            </ul>
+            <h4><strong>Example:</strong></h4><br>
+            <img src="assets/Linconvcalc.jpg" alt="..." class="mx-auto d-block" width="750px"><br><br>
+            <p>The step-by-step values for the provided input is shown below :</p>
+            <h4 class="plot-title" id="exp-part-1" style="color: black;">x(n) and h(n) :</h4>
+            <table id="exp">
+            </table><hr>
+            <h4 class="plot-title" id="exp-part-2" style="color: black;">Add the below sequences :</h4>
+            <table id="exp1">
+            </table><hr>
+            <h4 class="plot-title" id="exp-part-3" style="color: black;">y(n) :</h4>
+            <table id="exp2">
+            </table><br><br>
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-sharp active">light_mode</span>
+                    <span class="material-symbols-sharp">dark_mode</span>
+                </div>
+            </div>
+            <div class="interface-section">
+                <br>
+                <h3>Enter the first sequence :</h3>
+                <input id="sequence1" placeholder="1,2,3,4..."/>
+                <br><br>
+                <h3>Enter the second sequence :</h3>
+                <input id="sequence2" placeholder="1,2,3,4..."/>
+                <br><br>
+                <button type="submit" class="btn btn-warning" onclick="linearConv()">Submit</button>
+                <br><br>
+                <h4 id="linearConvResponse"></h4>
+                <br><br>
+                <h4 class="plot-title" id="input-title">x(n) :</h4><br>
+                <!-- Input sequence plot is displayed -->
+                <canvas class="outputSequence" id="inputResp"></canvas> 
+                <br><br>
+                <h4 class="plot-title" id="impulse-title">h(n) :</h4><br>
+                <!-- Impulse sequence plot is displayed -->
+                <canvas class="outputSequence" id="impulseResp"></canvas>
+                <br><br>
+                <h4 class="plot-title" id="output-title">Linear Convolution Ouput y(n) :</h4><br>
+                <!-- Output sequence plot is displayed -->
+                <canvas class="outputSequence" id="outputResp"></canvas><br><br>
+            </div>
         </div>
     </div>
 </div>

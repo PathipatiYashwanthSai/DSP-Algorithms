@@ -3,74 +3,124 @@ title: Circular Convolution
 layout: default
 ---
 <div class="container">
-    {% include scrollbar.html %}
-    <main>
-        <h2 style="text-align: center;"> Circular Convolution</h2><br>
-        <p><strong>Circular convolution</strong>, also known as <strong>cyclic convolution</strong>, is a special case of <strong>periodic convolution</strong>, which is the convolution of two periodic functions that have the same period. Periodic convolution arises, for example, in the context of the discrete-time Fourier transform (DTFT). In particular, the DTFT of the product of two discrete sequences is the periodic convolution of the DTFTs of the individual sequences. And each DTFT is a periodic summation of a continuous Fourier transform function (see DTFT § Definition). Although DTFTs are usually continuous functions of frequency, the concepts of periodic and circular convolution are also directly applicable to discrete sequences of data. In that context, circular convolution plays an important role in maximizing the efficiency of a certain kind of common filtering operation.</p>
-        <h4><strong>Circular convolution:</strong></h4>
-        <p>The periodic convolution of two T-periodic functions, h<sub>T</sub>(t) and x<sub>T</sub>(t) can be defined as:</p>
-        <img src="assets/circConvFormula-1.svg" alt="..." class="mx-auto d-block" style="background: white; width: 50%;"><br>
-        <p>where t<sub>o</sub> is an arbitrary parameter.  An alternative definition, in terms of the notation of normal linear or aperiodic convolution, follows from expressing  h<sub>T</sub>(t) and  x<sub>T</sub>(t) as periodic summations of aperiodic components h  and x, i.e.:</p>
-        <img src="assets/circConvFormula-2.svg" alt="..." class="mx-auto d-block" style="background: white; width: 75%;"><br>
-        <p>Then:</p>
-        <img src="assets/circConvFormula-3.svg" alt="..." class="mx-auto d-block" style="background: white;"><br>
-        <p><strong>Derivation for above equation:</strong></p>
-        <img src="assets/circConvFormula-4.svg" alt="..." class="mx-auto d-block" style="background: white;"><br>
-        <p>Both forms can be called periodic convolution. The term circular convolution arises from the important special case of constraining the non-zero portions of both h and x to the interval <strong>[0,T]</strong></p>
-        <p><Strong>For Discrete sequences:</Strong></p>
-        <p>Similarly, for discrete sequences, and a parameter <strong>N</strong>, we can write a <strong>circular convolution</strong> of aperiodic functions h and x as:</p>
-        <img src="assets/circConvFormula-5.svg" alt="..." class="mx-auto d-block" style="background: white; width: 80%;"><br>
-        <p>This function is <strong>N</strong>-periodic. It has at most <strong>N</strong> unique values. For the special case that the non-zero extent of both x and h are ≤ N, it is reducible to matrix multiplication where the kernel of the integral transform is a circulant matrix.</p><br><br>
-        <p>The step-by-step values for the provided input is shown below :</p>
-        <h4 class="plot-title" id="exp-part-1" style="color: black;">x(n) and h(n) :</h4>
-        <table id="exp">
-        </table><hr>
-        <h4 class="plot-title" id="exp-part-2" style="color: black;">Add the below sequences :</h4>
-        <table id="exp1">
-        </table><hr>
-        <h4 class="plot-title" id="exp-part-3" style="color: black;">Linear Convoluted output :</h4>
-        <table id="exp2">
-        </table><hr>
-        <h4 class="plot-title" id="exp-part-4" style="color: black;">Split and add the sequences as shown below :</h4>
-        <table id="exp3">
-        </table><hr>
-        <h4 class="plot-title" id="exp-part-5" style="color: black;">y<sub>c</sub>(n) :</h4>
-        <table id="exp4">
-        </table><hr><br><br>
-    </main>
-    <div class="right">
+    <aside>
         <div class="top">
-            <button id="menu-btn">
-                <span class="material-symbols-sharp">menu</span>
-            </button>
-            <div class="theme-toggler">
-                <span class="material-symbols-sharp active">light_mode</span>
-                <span class="material-symbols-sharp">dark_mode</span>
+            <h2>DSP</h2>
+            <div class="close" id="close-btn">
+                <span class="material-symbols-sharp">close</span>
             </div>
         </div>
-        <div class="interface-section">
-            <br>
-            <h3>Enter the first sequence :</h3>
-            <input id="sequence1" placeholder="1,2,3,4..."/>
-            <br><br>
-            <h3>Enter the second sequence :</h3>
-            <input id="sequence2" placeholder="1,2,3,4..."/>
-            <br><br>
-            <button type="submit" class="btn btn-warning" onclick="circularConv()">Submit</button>
-            <br><br>
-            <h4 id="circularConvResponse"></h4>
-            <br><br>
-            <h4 class="plot-title" id="input-title">x(n) :</h4><br>
-            <!-- Input sequence plot is displayed -->
-            <canvas class="outputSequence" id="inputResp"></canvas>
-            <br><br>
-            <h4 class="plot-title" id="impulse-title">h(n) :</h4><br>
-            <!-- Impulse sequence plot is displayed -->
-            <canvas class="outputSequence" id="impulseResp"></canvas>
-            <br><br>
-            <h4 class="plot-title" id="output-title">Circular Convolution Ouput y(n) :</h4><br>
-            <!-- Output sequence plot is displayed -->
-            <canvas class="outputSequence" id="outputResp"></canvas><br><br>
+        <div class="sidebar">
+            <a href="index.html" class="">
+                <h3>Home Page</h3>
+            </a>
+            <a href="CrossCorr.html" class="">
+                <h3>Cross Correlation</h3>
+            </a>
+            <a href="AutoCorr.html" class="">
+                <h3>Auto Correlation</h3>
+            </a>
+            <a href="LinearConvolution.html" class="">
+                <h3>Linear Convolution</h3>
+            </a>
+            <a href="CircularConvolution.html" class="active">
+                <h3>Circular Convolution</h3>
+            </a>
+            <a href="DFT.html" class="">
+                <h3>Discrete Fourier Transform</h3>
+            </a>
+            <a href="IDFT.html" class="">
+                <h3>Inverse Discrete Fourier Transform</h3>
+            </a>
+            <a href="Properties.html" class="">
+                <h3>DFT & IDFT Properties</h3>
+            </a>
+            <a href="Linearity.html" class="">
+                <h3>Linearity Property</h3>
+            </a>
+            <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Linear Convolution Property</h3>
+            </a>
+            <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Circular Convolution Property</h3>
+            </a>
+            <a href="CircularTimeShift.html" class="">
+                <h3>Circular Timeshift Property</h3>
+            </a>
+            <a href="Modulation.html" class="">
+                <h3>Modulation Property</h3>
+            </a>
+        </div>
+    </aside>
+    <div class="flex-container">
+        <main>
+            <h2 style="text-align: center;"> Circular Convolution</h2><br>
+            <p><strong>Circular convolution</strong>, also known as <strong>cyclic convolution</strong>, is a special case of <strong>periodic convolution</strong>, which is the convolution of two periodic functions that have the same period. Periodic convolution arises, for example, in the context of the discrete-time Fourier transform (DTFT). In particular, the DTFT of the product of two discrete sequences is the periodic convolution of the DTFTs of the individual sequences. And each DTFT is a periodic summation of a continuous Fourier transform function (see DTFT § Definition). Although DTFTs are usually continuous functions of frequency, the concepts of periodic and circular convolution are also directly applicable to discrete sequences of data. In that context, circular convolution plays an important role in maximizing the efficiency of a certain kind of common filtering operation.</p>
+            <h4><strong>Circular convolution:</strong></h4>
+            <p>The periodic convolution of two T-periodic functions, h<sub>T</sub>(t) and x<sub>T</sub>(t) can be defined as:</p>
+            <img src="assets/circConvFormula-1.svg" alt="..." class="mx-auto d-block" style="background: white; width: 50%;"><br>
+            <p>where t<sub>o</sub> is an arbitrary parameter.  An alternative definition, in terms of the notation of normal linear or aperiodic convolution, follows from expressing  h<sub>T</sub>(t) and  x<sub>T</sub>(t) as periodic summations of aperiodic components h  and x, i.e.:</p>
+            <img src="assets/circConvFormula-2.svg" alt="..." class="mx-auto d-block" style="background: white; width: 75%;"><br>
+            <p>Then:</p>
+            <img src="assets/circConvFormula-3.svg" alt="..." class="mx-auto d-block" style="background: white;"><br>
+            <p><strong>Derivation for above equation:</strong></p>
+            <img src="assets/circConvFormula-4.svg" alt="..." class="mx-auto d-block" style="background: white;"><br>
+            <p>Both forms can be called periodic convolution. The term circular convolution arises from the important special case of constraining the non-zero portions of both h and x to the interval <strong>[0,T]</strong></p>
+            <p><Strong>For Discrete sequences:</Strong></p>
+            <p>Similarly, for discrete sequences, and a parameter <strong>N</strong>, we can write a <strong>circular convolution</strong> of aperiodic functions h and x as:</p>
+            <img src="assets/circConvFormula-5.svg" alt="..." class="mx-auto d-block" style="background: white; width: 80%;"><br>
+            <p>This function is <strong>N</strong>-periodic. It has at most <strong>N</strong> unique values. For the special case that the non-zero extent of both x and h are ≤ N, it is reducible to matrix multiplication where the kernel of the integral transform is a circulant matrix.</p><br><br>
+            <p>The step-by-step values for the provided input is shown below :</p>
+            <h4 class="plot-title" id="exp-part-1" style="color: black;">x(n) and h(n) :</h4>
+            <table id="exp">
+            </table><hr>
+            <h4 class="plot-title" id="exp-part-2" style="color: black;">Add the below sequences :</h4>
+            <table id="exp1">
+            </table><hr>
+            <h4 class="plot-title" id="exp-part-3" style="color: black;">Linear Convoluted output :</h4>
+            <table id="exp2">
+            </table><hr>
+            <h4 class="plot-title" id="exp-part-4" style="color: black;">Split and add the sequences as shown below :</h4>
+            <table id="exp3">
+            </table><hr>
+            <h4 class="plot-title" id="exp-part-5" style="color: black;">y<sub>c</sub>(n) :</h4>
+            <table id="exp4">
+            </table><hr><br><br>
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-sharp active">light_mode</span>
+                    <span class="material-symbols-sharp">dark_mode</span>
+                </div>
+            </div>
+            <div class="interface-section">
+                <br>
+                <h3>Enter the first sequence :</h3>
+                <input id="sequence1" placeholder="1,2,3,4..."/>
+                <br><br>
+                <h3>Enter the second sequence :</h3>
+                <input id="sequence2" placeholder="1,2,3,4..."/>
+                <br><br>
+                <button type="submit" class="btn btn-warning" onclick="circularConv()">Submit</button>
+                <br><br>
+                <h4 id="circularConvResponse"></h4>
+                <br><br>
+                <h4 class="plot-title" id="input-title">x(n) :</h4><br>
+                <!-- Input sequence plot is displayed -->
+                <canvas class="outputSequence" id="inputResp"></canvas>
+                <br><br>
+                <h4 class="plot-title" id="impulse-title">h(n) :</h4><br>
+                <!-- Impulse sequence plot is displayed -->
+                <canvas class="outputSequence" id="impulseResp"></canvas>
+                <br><br>
+                <h4 class="plot-title" id="output-title">Circular Convolution Ouput y(n) :</h4><br>
+                <!-- Output sequence plot is displayed -->
+                <canvas class="outputSequence" id="outputResp"></canvas><br><br>
+            </div>
         </div>
     </div>
 </div>

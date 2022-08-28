@@ -3,47 +3,97 @@ title: Auto Correlation
 layout: default
 ---
 <div class="container">
-    {% include scrollbar.html %}
-    <main>
-        <h2 style="text-align: center;"> Auto Correlation</h2><br>
-        <p>Autocorrelation is a mathematical representation of the degree of similarity between a given time series and a lagged version of itself over successive time intervals. It's conceptually similar to the correlation between two different time series, but autocorrelation uses the same time series twice: once in its original form and once lagged one or more time periods.</p>
-        <p>Consider an finite length sequence, say x(n). Then the auto correlation of x(n) can be obtained by simply performing convolution between x(n) and x(-n) i.e</p>
-        <h5 style="text-align: center;">R<sub>xx</sub>(n) = x(n)*x(-n)</h5><br><br>
-        <p>The step-by-step values for the provided input is shown below :</p>
-        <h4 class="plot-title" id="exp-part-1">x(n) :</h4>
-        <table id="exp">
-        </table><hr>
-        <h4 class="plot-title" id="exp-part-2">Add the below sequences :</h4>
-        <table id="exp1">
-        </table><hr>
-        <h4 class="plot-title" id="exp-part-3">R<sub>xx</sub>(n) :</h4>
-        <table id="exp2">
-        </table><br><br>
-    </main>
-    <div class="right">
+    <aside>
         <div class="top">
-            <button id="menu-btn">
-                <span class="material-symbols-sharp">menu</span>
-            </button>
-            <div class="theme-toggler">
-                <span class="material-symbols-sharp active">light_mode</span>
-                <span class="material-symbols-sharp">dark_mode</span>
+            <h2>DSP</h2>
+            <div class="close" id="close-btn">
+                <span class="material-symbols-sharp">close</span>
             </div>
         </div>
-        <div class="interface-section">
-            <br>
-            <h3>Enter the first sequence :</h3>
-            <input id="sequence" placeholder="1,2,3,4..." onchange="autoCorr()"/>
-            <br><br>
-            <h4 id="autoCorrResponse"></h4>
-            <br><br>
-            <h4 class="plot-title" id="input-title">x(n) :</h4><br>
-            <!-- Input sequence plot is displayed -->
-            <canvas class="outputSequence" id="inputResp"></canvas>
-            <br><br>
-            <h4 class="plot-title" id="output-title">R<sub>xx</sub>(n) :</h4><br>
-            <!-- Output sequence plot is displayed -->
-            <canvas class="outputSequence" id="outputResp"></canvas><br><br>
+        <div class="sidebar">
+            <a href="index.html" class="">
+                <h3>Home Page</h3>
+            </a>
+            <a href="CrossCorr.html" class="">
+                <h3>Cross Correlation</h3>
+            </a>
+            <a href="AutoCorr.html" class="active">
+                <h3>Auto Correlation</h3>
+            </a>
+            <a href="LinearConvolution.html" class="">
+                <h3>Linear Convolution</h3>
+            </a>
+            <a href="CircularConvolution.html" class="">
+                <h3>Circular Convolution</h3>
+            </a>
+            <a href="DFT.html" class="">
+                <h3>Discrete Fourier Transform</h3>
+            </a>
+            <a href="IDFT.html" class="">
+                <h3>Inverse Discrete Fourier Transform</h3>
+            </a>
+            <a href="Properties.html" class="">
+                <h3>DFT & IDFT Properties</h3>
+            </a>
+            <a href="Linearity.html" class="">
+                <h3>Linearity Property</h3>
+            </a>
+            <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Linear Convolution Property</h3>
+            </a>
+            <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Circular Convolution Property</h3>
+            </a>
+            <a href="CircularTimeShift.html" class="">
+                <h3>Circular Timeshift Property</h3>
+            </a>
+            <a href="Modulation.html" class="">
+                <h3>Modulation Property</h3>
+            </a>
+        </div>
+    </aside>
+    <div class="flex-container">
+        <main>
+            <h2 style="text-align: center;"> Auto Correlation</h2><br>
+            <p>Autocorrelation is a mathematical representation of the degree of similarity between a given time series and a lagged version of itself over successive time intervals. It's conceptually similar to the correlation between two different time series, but autocorrelation uses the same time series twice: once in its original form and once lagged one or more time periods.</p>
+            <p>Consider an finite length sequence, say x(n). Then the auto correlation of x(n) can be obtained by simply performing convolution between x(n) and x(-n) i.e</p>
+            <h5 style="text-align: center;">R<sub>xx</sub>(n) = x(n)*x(-n)</h5><br><br>
+            <p>The step-by-step values for the provided input is shown below :</p>
+            <h4 class="plot-title" id="exp-part-1">x(n) :</h4>
+            <table id="exp">
+            </table><hr>
+            <h4 class="plot-title" id="exp-part-2">Add the below sequences :</h4>
+            <table id="exp1">
+            </table><hr>
+            <h4 class="plot-title" id="exp-part-3">R<sub>xx</sub>(n) :</h4>
+            <table id="exp2">
+            </table><br><br>
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-sharp active">light_mode</span>
+                    <span class="material-symbols-sharp">dark_mode</span>
+                </div>
+            </div>
+            <div class="interface-section">
+                <br>
+                <h3>Enter the first sequence :</h3>
+                <input id="sequence" placeholder="1,2,3,4..." onchange="autoCorr()"/>
+                <br><br>
+                <h4 id="autoCorrResponse"></h4>
+                <br><br>
+                <h4 class="plot-title" id="input-title">x(n) :</h4><br>
+                <!-- Input sequence plot is displayed -->
+                <canvas class="outputSequence" id="inputResp"></canvas>
+                <br><br>
+                <h4 class="plot-title" id="output-title">R<sub>xx</sub>(n) :</h4><br>
+                <!-- Output sequence plot is displayed -->
+                <canvas class="outputSequence" id="outputResp"></canvas><br><br>
+            </div>
         </div>
     </div>
 </div>

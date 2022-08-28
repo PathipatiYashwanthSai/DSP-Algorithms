@@ -3,40 +3,90 @@ title: IDFT
 layout: default
 ---
 <div class="container">
-    {% include scrollbar.html %}
-    <main>
-        <h2 style="text-align: center;"> Inverse Discrete Fourier Transform</h2><br>
-        <p> An inverse DFT is a Fourier series, using the DTFT samples as coefficients of complex sinusoids at the corresponding DTFT frequencies. It has the same sample-values as the original input sequence.</p>
-        <p>The discrete Fourier transform is an invertible, linear transformation</p>
-        <p><b>F</b>:C<sup>N</sup> --> C<sup>N</sup></p>
-        <p>with <b>C</b> denoting the set of complex numbers. Its inverse is known as Inverse Discrete Fourier Transform (IDFT). In other words, for any <b>N</b>>0, an N-dimensional complex vector has a DFT and an IDFT which are in turn N-dimensional complex vectors.</p>
-        <p>The inverse transform is given by:</p>
-        <img src="assets/IDFT_formula.svg" alt="IDFT formula" class="mx-auto d-block" style="width: 50%; height: 25%; background: white;"><br><br>
-        <p>The step-by-step values for the provided input is shown below :</p>
-        <table id="exp">
-        </table>
-        <br><br>
-    </main>
-    <div class="right">
+    <aside>
         <div class="top">
-            <button id="menu-btn">
-                <span class="material-symbols-sharp">menu</span>
-            </button>
-            <div class="theme-toggler">
-                <span class="material-symbols-sharp active">light_mode</span>
-                <span class="material-symbols-sharp">dark_mode</span>
+            <h2>DSP</h2>
+            <div class="close" id="close-btn">
+                <span class="material-symbols-sharp">close</span>
             </div>
         </div>
-        <div class="interface-section">
-            <br>
-            <h3>Enter the DFT sequence :</h3>
-            <input id="dftInput" placeholder="1,2+2i,-5+3i,-6-8i..." onchange="idft()"/>
+        <div class="sidebar">
+            <a href="index.html" class="">
+                <h3>Home Page</h3>
+            </a>
+            <a href="CrossCorr.html" class="">
+                <h3>Cross Correlation</h3>
+            </a>
+            <a href="AutoCorr.html" class="">
+                <h3>Auto Correlation</h3>
+            </a>
+            <a href="LinearConvolution.html" class="">
+                <h3>Linear Convolution</h3>
+            </a>
+            <a href="CircularConvolution.html" class="">
+                <h3>Circular Convolution</h3>
+            </a>
+            <a href="DFT.html" class="">
+                <h3>Discrete Fourier Transform</h3>
+            </a>
+            <a href="IDFT.html" class="active">
+                <h3>Inverse Discrete Fourier Transform</h3>
+            </a>
+            <a href="Properties.html" class="">
+                <h3>DFT & IDFT Properties</h3>
+            </a>
+            <a href="Linearity.html" class="">
+                <h3>Linearity Property</h3>
+            </a>
+            <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Linear Convolution Property</h3>
+            </a>
+            <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Circular Convolution Property</h3>
+            </a>
+            <a href="CircularTimeShift.html" class="">
+                <h3>Circular Timeshift Property</h3>
+            </a>
+            <a href="Modulation.html" class="">
+                <h3>Modulation Property</h3>
+            </a>
+        </div>
+    </aside>
+    <div class="flex-container">
+        <main>
+            <h2 style="text-align: center;"> Inverse Discrete Fourier Transform</h2><br>
+            <p> An inverse DFT is a Fourier series, using the DTFT samples as coefficients of complex sinusoids at the corresponding DTFT frequencies. It has the same sample-values as the original input sequence.</p>
+            <p>The discrete Fourier transform is an invertible, linear transformation</p>
+            <p><b>F</b>:C<sup>N</sup> --> C<sup>N</sup></p>
+            <p>with <b>C</b> denoting the set of complex numbers. Its inverse is known as Inverse Discrete Fourier Transform (IDFT). In other words, for any <b>N</b>>0, an N-dimensional complex vector has a DFT and an IDFT which are in turn N-dimensional complex vectors.</p>
+            <p>The inverse transform is given by:</p>
+            <img src="assets/IDFT_formula.svg" alt="IDFT formula" class="mx-auto d-block" style="width: 50%; height: 25%; background: white;"><br><br>
+            <p>The step-by-step values for the provided input is shown below :</p>
+            <table id="exp">
+            </table>
             <br><br>
-            <h4 id="idftResponse"></h4>
-            <br><br>
-            <h4 class="plot-title" id="graphTitle">Plot of IDFT sequence :</h4><br>
-            <!-- Output sequence plot is displayed -->
-            <canvas class="outputSequence" id="IDFT-Resp"></canvas><br><br>
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-sharp active">light_mode</span>
+                    <span class="material-symbols-sharp">dark_mode</span>
+                </div>
+            </div>
+            <div class="interface-section">
+                <br>
+                <h3>Enter the DFT sequence :</h3>
+                <input id="dftInput" placeholder="1,2+2i,-5+3i,-6-8i..." onchange="idft()"/>
+                <br><br>
+                <h4 id="idftResponse"></h4>
+                <br><br>
+                <h4 class="plot-title" id="graphTitle">Plot of IDFT sequence :</h4><br>
+                <!-- Output sequence plot is displayed -->
+                <canvas class="outputSequence" id="IDFT-Resp"></canvas><br><br>
+            </div>
         </div>
     </div>
 </div>

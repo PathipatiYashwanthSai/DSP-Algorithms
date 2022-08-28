@@ -15,191 +15,117 @@
     <script src="https://pagecdn.io/lib/mathjs/11.0.1/math.min.js" crossorigin="anonymous"  ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <div class="container">
-    <!-- <aside>
-    <div class="top">
-        <h2>DSP</h2>
-        <div class="close" id="close-btn">
-            <span class="material-symbols-sharp">close</span>
-        </div>
-    </div>
-    <div class="sidebar">
-        <a href="#" class="active">
-            <h3>Home Page</h3>
-        </a>
-        <a href="#" class="">
-            <h3>Basic Operations</h3>
-        </a>
-        <a href="CrossCorr.html" class="">
-            <h3>Cross Correlation</h3>
-        </a>
-        <a href="AutoCorr.html" class="">
-            <h3>Auto Correlation</h3>
-        </a>
-        <a href="LinearConvolution.html" class="">
-            <h3>Linear Convolution</h3>
-        </a>
-        <a href="CircularConvolution.html" class="">
-            <h3>Circular Convolution</h3>
-        </a>
-        <a href="DFT.html" class="">
-            <h3>Discrete Fourier Transform</h3>
-        </a>
-        <a href="IDFT.html" class="">
-            <h3>Inverse Discrete Fourier Transform</h3>
-        </a>
-        <a href="Properties.html" class="">
-            <h3>DFT & IDFT Properties</h3>
-        </a>
-        <a href="Linearity.html" class="">
-            <h3>Linearity Property</h3>
-        </a>
-        <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
-            <h3>Linear Convolution Property</h3>
-        </a>
-        <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
-            <h3>Circular Convolution Property</h3>
-        </a>
-        <a href="CircularTimeShift.html" class="">
-            <h3>Circular Timeshift Property</h3>
-        </a>
-        <a href="Modulation.html" class="">
-            <h3>Modulation Property</h3>
-        </a>
-    </div> -->
-    <!-- <div class="sidebar">
-        <ul>
-            <li class="list">
-                <a href="index.html">
-                    <h3>Home Page</h3>
-                </a>
-            </li>
-            <li class="list">
-        <a href="#">
-            <h3>Basic Operations</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="CrossCorr.html">
-            <h3>Cross Correlation</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="AutoCorr.html">
-            <h3>Auto Correlation</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="LinearConvolution.html">
-            <h3>Linear Convolution</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="CircularConvolution.html">
-            <h3>Circular Convolution</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="DFT.html">
-            <h3>Discrete Fourier Transform</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="IDFT.html">
-            <h3>Inverse Discrete Fourier Transform</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="Properties.html">
-            <h3>DFT & IDFT Properties</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="Linearity.html">
-            <h3>Linearity Property</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="LinearConvolutionUsingDFT&IDFT.html">
-            <h3>Linear Convolution Property</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="CircularConvolutionUsingDFT&IDFT.html">
-            <h3>Circular Convolution Property</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="CircularTimeShift.html">
-            <h3>Circular Timeshift Property</h3>
-        </a>
-            </li>
-            <li class="list">
-        <a href="Modulation.html">
-            <h3>Modulation Property</h3>
-        </a>
-            </li>
-        </ul>
-    </div> -->
-    <main>
-        <h2 style="text-align: center;"> Circular Time Shift</h2><br>
-        <p><h4><strong>Statement:</strong></h4> Shifting the sequence in time domain by ‘l’ samples is equivalent to multiplying the sequence in frequency domain by the twiddle factor.</p>
-        <p><h4><strong>Proof:</strong></h4> We will be proving the property</p>
-        <p>x((n-l))N = x(n-l) ==> DFT[x(n-l)] = X(k)e<sup>-2πjlk/N</sup>
-        or X(k)W<sup>kl</sup><sub>N</sub></p> where W is the twiddle factor.
-        <pre><h6>According to DFT,
-
-            DFT [x(n)] =   ∑<sub>n=0</sub><sup>N-1</sup> x(n) e<sup>-2πjkn/N</sup>
-            
-            DFT [x(n-l)] =  ∑<sub>n=0</sub><sup>N-1</sup> x(n-l) e<sup>-2πjkn/N</sup>
-            
-            Let n-l=p
-            
-            n=p+l
-            
-            DFT [x(p)] =  ∑<sub>p=0</sub><sup>N-1</sup> x(p) e<sup>-2πjk(p+l)/N</sup>
-            
-            = e<sup>-2πjkl/N</sup> ∑<sub>p=0</sub><sup>N-1</sup> x(p) e<sup>-2πjkp/N</sup>
-            
-            = X(k)e<sup>-2πjkl/N</sup>
-            
-            Hence, proved.</h6></pre>
-        <p>The step-by-step values for the provided input is shown below :</p>
-        <table id="exp">
-        </table><hr>
-        <table id="exp1">
-        </table><hr>
-        <table id="exp2">
-        </table><hr>
-        <table id="exp3">
-        </table><br><br>
-    </main>
-    <div class="right">
+    <aside>
         <div class="top">
-            <button id="menu-btn">
-                <span class="material-symbols-sharp">menu</span>
-            </button>
-            <div class="theme-toggler">
-                <span class="material-symbols-sharp active">light_mode</span>
-                <span class="material-symbols-sharp">dark_mode</span>
+            <h2>DSP</h2>
+            <div class="close" id="close-btn">
+                <span class="material-symbols-sharp">close</span>
             </div>
         </div>
-        <div class="interface-section">
-            <br>
-            <h3>Enter the sequence :</h3>
-            <input id="a" placeholder="1,2,3,4..."/>
-            <br><br>
-            <h3>Enter the time-shifting factor :</h3>
-            <input id="b" type="number"/>
-            <br><br>
-            <button type="submit" class="btn btn-warning" onclick="cts()">Submit</button>
-            <br><br>
-            <h4 id="resp"></h4>
-            <br><br>
-            <h4 class="plot-title" id="input-title">Input sequence :</h4><br>
-            <canvas class="outputSequence" id="inputResp"></canvas>
-            <br><br>
-            <h4 class="plot-title" id="impulse-title">Time-Shifted sequence :</h4><br>
-            <canvas class="outputSequence" id="impulseResp"></canvas><br><br>
+        <div class="sidebar">
+            <a href="index.html" class="">
+                <h3>Home Page</h3>
+            </a>
+            <a href="CrossCorr.html" class="">
+                <h3>Cross Correlation</h3>
+            </a>
+            <a href="AutoCorr.html" class="">
+                <h3>Auto Correlation</h3>
+            </a>
+            <a href="LinearConvolution.html" class="">
+                <h3>Linear Convolution</h3>
+            </a>
+            <a href="CircularConvolution.html" class="">
+                <h3>Circular Convolution</h3>
+            </a>
+            <a href="DFT.html" class="">
+                <h3>Discrete Fourier Transform</h3>
+            </a>
+            <a href="IDFT.html" class="">
+                <h3>Inverse Discrete Fourier Transform</h3>
+            </a>
+            <a href="Properties.html" class="">
+                <h3>DFT & IDFT Properties</h3>
+            </a>
+            <a href="Linearity.html" class="">
+                <h3>Linearity Property</h3>
+            </a>
+            <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Linear Convolution Property</h3>
+            </a>
+            <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Circular Convolution Property</h3>
+            </a>
+            <a href="CircularTimeShift.html" class="active">
+                <h3>Circular Timeshift Property</h3>
+            </a>
+            <a href="Modulation.html" class="">
+                <h3>Modulation Property</h3>
+            </a>
+        </div>
+    </aside>
+    <div class="flex-container">
+        <main>
+            <h2 style="text-align: center;"> Circular Time Shift</h2><br>
+            <p><h4><strong>Statement:</strong></h4> Shifting the sequence in time domain by ‘l’ samples is equivalent to multiplying the sequence in frequency domain by the twiddle factor.</p>
+            <p><h4><strong>Proof:</strong></h4> We will be proving the property</p>
+            <p>x((n-l))N = x(n-l) ==> DFT[x(n-l)] = X(k)e<sup>-2πjlk/N</sup>
+            or X(k)W<sup>kl</sup><sub>N</sub></p> where W is the twiddle factor.
+            <pre><h6>According to DFT,
+    
+                DFT [x(n)] =   ∑<sub>n=0</sub><sup>N-1</sup> x(n) e<sup>-2πjkn/N</sup>
+                
+                DFT [x(n-l)] =  ∑<sub>n=0</sub><sup>N-1</sup> x(n-l) e<sup>-2πjkn/N</sup>
+                
+                Let n-l=p
+                
+                n=p+l
+                
+                DFT [x(p)] =  ∑<sub>p=0</sub><sup>N-1</sup> x(p) e<sup>-2πjk(p+l)/N</sup>
+                
+                = e<sup>-2πjkl/N</sup> ∑<sub>p=0</sub><sup>N-1</sup> x(p) e<sup>-2πjkp/N</sup>
+                
+                = X(k)e<sup>-2πjkl/N</sup>
+                
+                Hence, proved.</h6></pre>
+            <p>The step-by-step values for the provided input is shown below :</p>
+            <table id="exp">
+            </table><hr>
+            <table id="exp1">
+            </table><hr>
+            <table id="exp2">
+            </table><hr>
+            <table id="exp3">
+            </table><br><br>
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-sharp active">light_mode</span>
+                    <span class="material-symbols-sharp">dark_mode</span>
+                </div>
+            </div>
+            <div class="interface-section">
+                <br>
+                <h3>Enter the sequence :</h3>
+                <input id="a" placeholder="1,2,3,4..."/>
+                <br><br>
+                <h3>Enter the time-shifting factor :</h3>
+                <input id="b" type="number"/>
+                <br><br>
+                <button type="submit" class="btn btn-warning" onclick="cts()">Submit</button>
+                <br><br>
+                <h4 id="resp"></h4>
+                <br><br>
+                <h4 class="plot-title" id="input-title">Input sequence :</h4><br>
+                <canvas class="outputSequence" id="inputResp"></canvas>
+                <br><br>
+                <h4 class="plot-title" id="impulse-title">Time-Shifted sequence :</h4><br>
+                <canvas class="outputSequence" id="impulseResp"></canvas><br><br>
+            </div>
         </div>
     </div>
 </div>

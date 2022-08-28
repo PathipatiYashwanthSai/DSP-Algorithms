@@ -3,52 +3,102 @@ title: Modulation Property
 layout: default
 ---
 <div class="container">
-    {% include scrollbar.html %}
-    <main>
-        <h2 style="text-align: center;">Modulation</h2><br>
-        <p><h4><strong>Statement:</strong></h4> The multiplication of two sequences in the time domain is equivalent to their circular convolution in the frequency domain.</p>
-        <h4><strong>Mathematical representation:</strong></h4>
-        <img src="assets/multiplication-property-of-dft.webp" alt="..." class="mx-auto d-block" style="width: 75%;"><br>
-        <p>The step-by-step values for the provided input is shown below :</p>
-        <table id="exp">
-        </table><hr>
-        <table id="exp1">
-        </table><hr>
-        <table id="exp2">
-        </table><hr>
-        <table id="exp3">
-        </table><br><br>
-    </main>
-    <div class="right">
+    <aside>
         <div class="top">
-            <button id="menu-btn">
-                <span class="material-symbols-sharp">menu</span>
-            </button>
-            <div class="theme-toggler">
-                <span class="material-symbols-sharp active">light_mode</span>
-                <span class="material-symbols-sharp">dark_mode</span>
+            <h2>DSP</h2>
+            <div class="close" id="close-btn">
+                <span class="material-symbols-sharp">close</span>
             </div>
         </div>
-        <div class="interface-section">
-            <br>
-            <h3>Enter the first sequence :</h3>
-            <input id="a" placeholder="1,2,3,4"/>
-            <br><br>
-            <h3>Enter the second sequence :</h3>
-            <input id="b" placeholder="1,2,3,4"/>
-            <br><br>
-            <button type="submit" class="btn btn-warning" onclick="mod()">Submit</button>
-            <br><br>
-            <h4 id="resp"></h4>
-            <br><br>
-            <h4 class="plot-title" id="input-title">First sequence :</h4><br>
-            <canvas class="outputSequence" id="inputResp"></canvas>
-            <br><br>
-            <h4 class="plot-title" id="impulse-title">Second sequence :</h4><br>
-            <canvas class="outputSequence" id="impulseResp"></canvas>
-            <br><br>
-            <h4 class="plot-title" id="output-title">Ouput sequence :</h4><br>
-            <canvas class="outputSequence" id="outputResp"></canvas><br><br>
+        <div class="sidebar">
+            <a href="index.html" class="">
+                <h3>Home Page</h3>
+            </a>
+            <a href="CrossCorr.html" class="">
+                <h3>Cross Correlation</h3>
+            </a>
+            <a href="AutoCorr.html" class="">
+                <h3>Auto Correlation</h3>
+            </a>
+            <a href="LinearConvolution.html" class="">
+                <h3>Linear Convolution</h3>
+            </a>
+            <a href="CircularConvolution.html" class="">
+                <h3>Circular Convolution</h3>
+            </a>
+            <a href="DFT.html" class="">
+                <h3>Discrete Fourier Transform</h3>
+            </a>
+            <a href="IDFT.html" class="">
+                <h3>Inverse Discrete Fourier Transform</h3>
+            </a>
+            <a href="Properties.html" class="">
+                <h3>DFT & IDFT Properties</h3>
+            </a>
+            <a href="Linearity.html" class="">
+                <h3>Linearity Property</h3>
+            </a>
+            <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Linear Convolution Property</h3>
+            </a>
+            <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Circular Convolution Property</h3>
+            </a>
+            <a href="CircularTimeShift.html" class="">
+                <h3>Circular Timeshift Property</h3>
+            </a>
+            <a href="Modulation.html" class="active">
+                <h3>Modulation Property</h3>
+            </a>
+        </div>
+    </aside>
+    <div class="flex-container">
+        <main>
+            <h2 style="text-align: center;">Modulation</h2><br>
+            <p><h4><strong>Statement:</strong></h4> The multiplication of two sequences in the time domain is equivalent to their circular convolution in the frequency domain.</p>
+            <h4><strong>Mathematical representation:</strong></h4>
+            <img src="assets/multiplication-property-of-dft.webp" alt="..." class="mx-auto d-block" style="width: 75%;"><br>
+            <p>The step-by-step values for the provided input is shown below :</p>
+            <table id="exp">
+            </table><hr>
+            <table id="exp1">
+            </table><hr>
+            <table id="exp2">
+            </table><hr>
+            <table id="exp3">
+            </table><br><br>
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-sharp active">light_mode</span>
+                    <span class="material-symbols-sharp">dark_mode</span>
+                </div>
+            </div>
+            <div class="interface-section">
+                <br>
+                <h3>Enter the first sequence :</h3>
+                <input id="a" placeholder="1,2,3,4"/>
+                <br><br>
+                <h3>Enter the second sequence :</h3>
+                <input id="b" placeholder="1,2,3,4"/>
+                <br><br>
+                <button type="submit" class="btn btn-warning" onclick="mod()">Submit</button>
+                <br><br>
+                <h4 id="resp"></h4>
+                <br><br>
+                <h4 class="plot-title" id="input-title">First sequence :</h4><br>
+                <canvas class="outputSequence" id="inputResp"></canvas>
+                <br><br>
+                <h4 class="plot-title" id="impulse-title">Second sequence :</h4><br>
+                <canvas class="outputSequence" id="impulseResp"></canvas>
+                <br><br>
+                <h4 class="plot-title" id="output-title">Ouput sequence :</h4><br>
+                <canvas class="outputSequence" id="outputResp"></canvas><br><br>
+            </div>
         </div>
     </div>
 </div>
