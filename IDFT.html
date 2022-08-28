@@ -1,126 +1,123 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="page.css">
-    <title>IDFT</title>
-</head>
-<body>
-    <div class="main">
-        <div class="container">
-            <div class="theory">
-                <h2 style="text-align: center;"> Inverse Discrete Fourier Transform</h2><br>
-                <p> An inverse DFT is a Fourier series, using the DTFT samples as coefficients of complex sinusoids at the corresponding DTFT frequencies. It has the same sample-values as the original input sequence.</p>
-                <p>The discrete Fourier transform is an invertible, linear transformation</p>
-                <p><b>F</b>:C<sup>N</sup> --> C<sup>N</sup></p>
-                <p>with <b>C</b> denoting the set of complex numbers. Its inverse is known as Inverse Discrete Fourier Transform (IDFT). In other words, for any <b>N</b>>0, an N-dimensional complex vector has a DFT and an IDFT which are in turn N-dimensional complex vectors.</p>
-                <p>The inverse transform is given by:</p>
-                <img src="assets/IDFT_formula.svg" alt="IDFT formula" class="mx-auto d-block"><br><br>
-                <p>The step-by-step values for the provided input is shown below :</p>
-                <table id="exp">
-                </table>
-                <br><br>
+---
+title: IDFT
+layout: default
+---
+<div class="container">
+    {% include scrollbar.html %}
+    <main>
+        <h2 style="text-align: center;"> Inverse Discrete Fourier Transform</h2><br>
+        <p> An inverse DFT is a Fourier series, using the DTFT samples as coefficients of complex sinusoids at the corresponding DTFT frequencies. It has the same sample-values as the original input sequence.</p>
+        <p>The discrete Fourier transform is an invertible, linear transformation</p>
+        <p><b>F</b>:C<sup>N</sup> --> C<sup>N</sup></p>
+        <p>with <b>C</b> denoting the set of complex numbers. Its inverse is known as Inverse Discrete Fourier Transform (IDFT). In other words, for any <b>N</b>>0, an N-dimensional complex vector has a DFT and an IDFT which are in turn N-dimensional complex vectors.</p>
+        <p>The inverse transform is given by:</p>
+        <img src="assets/IDFT_formula.svg" alt="IDFT formula" class="mx-auto d-block" style="width: 50%; height: 25%; background: white;"><br><br>
+        <p>The step-by-step values for the provided input is shown below :</p>
+        <table id="exp">
+        </table>
+        <br><br>
+    </main>
+    <div class="right">
+        <div class="top">
+            <button id="menu-btn">
+                <span class="material-symbols-sharp">menu</span>
+            </button>
+            <div class="theme-toggler">
+                <span class="material-symbols-sharp active">light_mode</span>
+                <span class="material-symbols-sharp">dark_mode</span>
             </div>
         </div>
         <div class="interface-section">
-            <div class="container pt-2 input-block">
-                <br>
-                <h3>Enter the DFT sequence :</h3>
-                <input id="dftInput" placeholder="1,2+2i,-5+3i,-6-8i..." onchange="idft()"/>
-                <br><br>
-                <h4 id="idftResponse"></h4>
-                <br><br>
-                <h4 class="plot-title" id="graphTitle">Plot of IDFT sequence :</h4><br>
-                <!-- Output sequence plot is displayed -->
-                <canvas class="outputSequence" id="IDFT-Resp"></canvas><br><br>
-            </div>
+            <br>
+            <h3>Enter the DFT sequence :</h3>
+            <input id="dftInput" placeholder="1,2+2i,-5+3i,-6-8i..." onchange="idft()"/>
+            <br><br>
+            <h4 id="idftResponse"></h4>
+            <br><br>
+            <h4 class="plot-title" id="graphTitle">Plot of IDFT sequence :</h4><br>
+            <!-- Output sequence plot is displayed -->
+            <canvas class="outputSequence" id="IDFT-Resp"></canvas><br><br>
         </div>
     </div>
-    <script src="https://pagecdn.io/lib/mathjs/10.5.3/math.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <script type="text/javascript">
-        function idft() {
-            // function to perform idft
-            // The explanatory table is initiated with null
-            document.getElementById("exp").innerHTML="";
-            // Input sequences are taken
-            const xk = document.getElementById("dftInput").value.split(",");
-            // N is the length to which dft is performed
-            const N = xk.length;
-            // Values are iterated and converted to complex numbers
-            const dftSequence = [];
-            for(let i=0; i<N; i++) {
-                dftSequence.push(math.complex(xk[i]));
-            }
-            const idftSequence = [];
-            const explanation = [];
-            for(let n=0; n<N; n++){
-                realSum = 0;
-                step = [];
-                for(let k=0; k<N; k++) {
-                    mul = math.multiply(dftSequence[k],String(Math.cos(2*Math.PI*k*n/N)) + "+" + String(Math.sin(2*Math.PI*k*n/N)) + "i");
-                    realSum += Number(mul["re"]);
-                    if(Number(mul['im'])<0) {
-                        step.push(mul["re"].toFixed(2) + mul['im'].toFixed(2) + "i");
-                    } else if(Number(mul['im'])>0) {
-                        step.push(mul["re"].toFixed(2) + "+" + mul['im'].toFixed(2) + "i");
-                    } else {
-                        step.push(mul["re"].toFixed(2));
-                    }
-                }
-                explanation.push(step);
-                idftSequence.push(Math.round(realSum/N));
-            }
-            // output response is displayed
-            document.getElementById("idftResponse").innerText = "The IDFT Sequence is: \n" + idftSequence;
+</div>
 
-            // step-by-step of convolution is displayed
+<script type="text/javascript">
+    function idft() {
+        // function to perform idft
+        // The explanatory table is initiated with null
+        document.getElementById("exp").innerHTML="";
+        // Input sequences are taken
+        const xk = document.getElementById("dftInput").value.split(",");
+        // N is the length to which dft is performed
+        const N = xk.length;
+        // Values are iterated and converted to complex numbers
+        const dftSequence = [];
+        for(let i=0; i<N; i++) {
+            dftSequence.push(math.complex(xk[i]));
+        }
+        const idftSequence = [];
+        const explanation = [];
+        for(let n=0; n<N; n++){
+            realSum = 0;
+            step = [];
+            for(let k=0; k<N; k++) {
+                mul = math.multiply(dftSequence[k],String(Math.cos(2*Math.PI*k*n/N)) + "+" + String(Math.sin(2*Math.PI*k*n/N)) + "i");
+                realSum += Number(mul["re"]);
+                if(Number(mul['im'])<0) {
+                    step.push(mul["re"].toFixed(2) + mul['im'].toFixed(2) + "i");
+                } else if(Number(mul['im'])>0) {
+                    step.push(mul["re"].toFixed(2) + "+" + mul['im'].toFixed(2) + "i");
+                } else {
+                    step.push(mul["re"].toFixed(2));
+                }
+            }
+            explanation.push(step);
+            idftSequence.push(Math.round(realSum/N));
+        }
+        // output response is displayed
+        document.getElementById("idftResponse").innerText = "The IDFT Sequence is: \n" + idftSequence;
+
+        // step-by-step of convolution is displayed
+        var tr = document.createElement('tr');
+        var str ='<th>x[n]\\X[k]</th>';
+        for(let i=0;i<N;i++) {
+            str+=`<th> k = ${i}</th>`;
+            tr.innerHTML=str;
+        }
+        document.getElementById("exp").appendChild(tr);
+        for(let i=0;i<N;i++) {
             var tr = document.createElement('tr');
-            var str ='<th>x[n]\\X[k]</th>';
-            for(let i=0;i<N;i++) {
-                str+=`<th> k = ${i}</th>`;
+            str=`<th> n = ${i}</th>`;
+            for(let j=0;j<N;j++) {
+                str += `<td> ${explanation[i][j]}</td>`;
                 tr.innerHTML=str;
             }
             document.getElementById("exp").appendChild(tr);
-            for(let i=0;i<N;i++) {
-                var tr = document.createElement('tr');
-                str=`<th> n = ${i}</th>`;
-                for(let j=0;j<N;j++) {
-                    str += `<td> ${explanation[i][j]}</td>`;
-                    tr.innerHTML=str;
-                }
-                document.getElementById("exp").appendChild(tr);
-            }
-            document.getElementById("exp").innerHTML += `</tr>`
-
-            // idft sequence will be plotted
-            const xyValues = [];
-            for(let j=0; j<N; j++) {
-                xyValues.push({x:j,y:idftSequence[j]});
-            }
-            new Chart("IDFT-Resp", {
-                type: "scatter",
-                data: {
-                    datasets: [{
-                        pointRadius: 4,
-                        pointBackgroundColor: "rgb(0,0,255)",
-                        data: xyValues
-                    }]
-                },
-                options: {
-                    legend: {display: false}
-                }
-            });
-
-            // specific texts are displayed
-            document.getElementById("IDFT-Resp").style.display ="block";
-            document.getElementById("graphTitle").style.display ="block";
-
         }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-</body>
-</html>
+        document.getElementById("exp").innerHTML += `</tr>`
+
+        // idft sequence will be plotted
+        const xyValues = [];
+        for(let j=0; j<N; j++) {
+            xyValues.push({x:j,y:idftSequence[j]});
+        }
+        new Chart("IDFT-Resp", {
+            type: "scatter",
+            data: {
+                datasets: [{
+                    pointRadius: 4,
+                    pointBackgroundColor: "rgb(0,0,255)",
+                    data: xyValues
+                }]
+            },
+            options: {
+                legend: {display: false}
+            }
+        });
+
+        // specific texts are displayed
+        document.getElementById("IDFT-Resp").style.display ="block";
+        document.getElementById("graphTitle").style.display ="block";
+
+    }
+</script>

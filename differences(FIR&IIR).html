@@ -1,0 +1,114 @@
+---
+title: FIR and IIR differences
+layout: default
+---
+
+<div class="container">
+    <aside>
+        <div class="top">
+            <h2>DSP</h2>
+            <div class="close" id="close-btn">
+                <span class="material-symbols-sharp">close</span>
+            </div>
+        </div>
+        <div class="sidebar">
+            <a href="index.html" class="active">
+                <h3>Home Page</h3>
+            </a>
+            <a href="CrossCorr.html" class="">
+                <h3>Cross Correlation</h3>
+            </a>
+            <a href="AutoCorr.html" class="">
+                <h3>Auto Correlation</h3>
+            </a>
+            <a href="LinearConvolution.html" class="">
+                <h3>Linear Convolution</h3>
+            </a>
+            <a href="CircularConvolution.html" class="">
+                <h3>Circular Convolution</h3>
+            </a>
+            <a href="DFT.html" class="">
+                <h3>Discrete Fourier Transform</h3>
+            </a>
+            <a href="IDFT.html" class="">
+                <h3>Inverse Discrete Fourier Transform</h3>
+            </a>
+            <a href="Properties.html" class="">
+                <h3>DFT & IDFT Properties</h3>
+            </a>
+            <a href="Linearity.html" class="">
+                <h3>Linearity Property</h3>
+            </a>
+            <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Linear Convolution Property</h3>
+            </a>
+            <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Circular Convolution Property</h3>
+            </a>
+            <a href="CircularTimeShift.html" class="">
+                <h3>Circular Timeshift Property</h3>
+            </a>
+            <a href="Modulation.html" class="">
+                <h3>Modulation Property</h3>
+            </a>
+        </div>
+    </aside>
+    <div class="flex-container">
+        <main>
+            <table class= "table table-hover">
+
+                <tr class="row">
+                  <th scope="col" class="col col-mid-4">
+                    <h3 style="text-align: center;">
+                        <strong>FIR Filter</strong>
+                    </h3>
+                  </th>
+                  <th scope="col" class="col col-mid-4">
+                    <h3 style="text-align: center;">
+                        <strong>IIR Filter</strong>
+                    </h3>
+                  </th>
+                </tr>
+ 
+            <tbody>
+                <tr class="row"> 
+                    <td class="col col-mid-4" style="text-align: center;">1.FIR filter stands for finite impulse response filter.</td>
+                    <td class="col col-mid-4"  style="text-align: center;" >1.IIR filter stands for infinite impulse response filter.</td>
+                   
+                </tr>
+                <tr class="row"> 
+                    <td class="col col-mid-4"  style="text-align: center;">2.Design is based on all the infinite samples of the impulse response.</td>
+                    <td class="col col-mid-4"  style="text-align: center;">2.Design is based on only a finite number of samples of impulse response.</td>
+                </tr>
+                <tr class="row"> 
+                    <td class="col col-mid-4"  style="text-align: center;">3.The impulse response cannot be directly converted to digital filter transfer function.</td>
+                    <td class="col col-mid-4"  style="text-align: center;">3.The impulse response can be directly converted to digital filter transfer function. </td>
+                </tr>
+                <tr class="row"> 
+                    <td class="col col-mid-4"  style="text-align: center;">4.The digital filter can be directly designed. First analog filter is to be designed and it has to be transformed to a digital filter.</td>
+                    <td class="col col-mid-4"  style="text-align: center;">4.The digital filter can be directly designed.</td>
+                </tr>
+                <tr class="row"> 
+                    <td class="col col-mid-4"  style="text-align: center;">5.The specifications include the desired characteristics for magnitude response only.</td>
+                    <td class="col col-mid-4"  style="text-align: center;">5.The specifications include the desired characteristics for both magnitude and phase response.</td>
+                </tr>
+                <tr class="row"> 
+                    <td class="col col-mid-4" style="text-align: center;">6.Linear phase characteristics cannot be achieved .</td>
+                    <td class="col col-mid-4"  style="text-align: center;" >6.Linear phase charactyeristics can be achieved.</td>
+                </tr>
+            </tbody> 
+        </table>
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-sharp active">light_mode</span>
+                    <span class="material-symbols-sharp">dark_mode</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

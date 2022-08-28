@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Sharp">
+    <link rel="stylesheet" href="page.css">
+    <title>Home Page</title>
+</head>
+<body>
+    <!-- <script src="https://pagecdn.io/lib/mathjs/10.5.3/math.min.js" crossorigin="anonymous"></script> -->
+    <script src="https://pagecdn.io/lib/mathjs/11.0.1/math.min.js" crossorigin="anonymous"  ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <div class="container">
+    <aside>
+        <div class="top">
+            <h2>DSP</h2>
+            <div class="close" id="close-btn">
+                <span class="material-symbols-sharp">close</span>
+            </div>
+        </div>
+        <div class="sidebar">
+            <a href="index.html" class="active">
+                <h3>Home Page</h3>
+            </a>
+            <a href="CrossCorr.html" class="">
+                <h3>Cross Correlation</h3>
+            </a>
+            <a href="AutoCorr.html" class="">
+                <h3>Auto Correlation</h3>
+            </a>
+            <a href="LinearConvolution.html" class="">
+                <h3>Linear Convolution</h3>
+            </a>
+            <a href="CircularConvolution.html" class="">
+                <h3>Circular Convolution</h3>
+            </a>
+            <a href="DFT.html" class="">
+                <h3>Discrete Fourier Transform</h3>
+            </a>
+            <a href="IDFT.html" class="">
+                <h3>Inverse Discrete Fourier Transform</h3>
+            </a>
+            <a href="Properties.html" class="">
+                <h3>DFT & IDFT Properties</h3>
+            </a>
+            <a href="Linearity.html" class="">
+                <h3>Linearity Property</h3>
+            </a>
+            <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Linear Convolution Property</h3>
+            </a>
+            <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Circular Convolution Property</h3>
+            </a>
+            <a href="CircularTimeShift.html" class="">
+                <h3>Circular Timeshift Property</h3>
+            </a>
+            <a href="Modulation.html" class="">
+                <h3>Modulation Property</h3>
+            </a>
+        </div>
+    </aside>
+    <div class="flex-container">
+        <main>
+            <h2 style="text-align: center;">DIGITAL SIGNAL PROCESSING</h2><br>
+            <h4><strong>WHAT IS DSP??</strong></h4>
+            <p style="font-size: large;">Digital Signal Processors (DSP) take real-world signals like voice, audio, video, temperature, 
+                pressure, or position that have been digitized and then mathematically manipulate them. A DSP is designed for performing 
+                mathematical functions like "add", "subtract", "multiply" and "divide" very quickly. Signals need to be processed so that 
+                the information that they contain can be displayed, analyzed, or converted to another type of signal that may be of use. 
+                In the real-world, analog products detect signals such as sound, light, temperature or pressure and manipulate them. 
+                Converters such as an Analog-to-Digital converter then take the real-world signal and turn it into the digital format of 1's and 0's. 
+                From here, the DSP takes over by capturing the digitized information and processing it. It then feeds the digitized information back for use in the real world. 
+                It does this in one of two ways, either digitally or in an analog format by going through a Digital-to-Analog converter. All of this occurs at very high speeds. 
+                To illustrate this concept, the diagram below shows how a DSP is used in an MP3 audio player. During the recording phase, analog audio is input through a receiver or other source. 
+                This analog signal is then converted to a digital signal by an analog-to-digital converter and passed to the DSP. The DSP performs the MP3 encoding and saves the file to memory. 
+                During the playback phase, the file is taken from memory, decoded by the DSP and then converted back to an analog signal through the digital-to-analog converter so it can be output through the speaker system. 
+                In a more complex example, the DSP would perform other functions such as volume control, equalization and user interface.</p>
+            <img src="assets/intoimg.gif" alt="..."><br><br>
+            <h4><strong>WHAT IS INSIDE DSP??</strong></h4>
+            <P style="font-size: large;">A DSP contains these key components:
+                Program Memory: Stores the programs the DSP will use to process data
+                Data Memory: Stores the information to be processed
+                Compute Engine: Performs the math processing, accessing the program from the Program Memory and the data from the Data Memory
+                Input/Output: Serves a range of functions to connect to the outside world.</P>
+            <img src="assets/INRO_1.gif"><br><br>
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-sharp active">light_mode</span>
+                    <span class="material-symbols-sharp">dark_mode</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="responsive.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

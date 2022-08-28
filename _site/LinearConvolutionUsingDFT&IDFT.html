@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Sharp">
+    <link rel="stylesheet" href="page.css">
+    <title>Linear Convolution Property</title>
+</head>
+<body>
+    <!-- <script src="https://pagecdn.io/lib/mathjs/10.5.3/math.min.js" crossorigin="anonymous"></script> -->
+    <script src="https://pagecdn.io/lib/mathjs/11.0.1/math.min.js" crossorigin="anonymous"  ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <div class="container">
+    <!-- <aside>
+    <div class="top">
+        <h2>DSP</h2>
+        <div class="close" id="close-btn">
+            <span class="material-symbols-sharp">close</span>
+        </div>
+    </div>
+    <div class="sidebar">
+        <a href="#" class="active">
+            <h3>Home Page</h3>
+        </a>
+        <a href="#" class="">
+            <h3>Basic Operations</h3>
+        </a>
+        <a href="CrossCorr.html" class="">
+            <h3>Cross Correlation</h3>
+        </a>
+        <a href="AutoCorr.html" class="">
+            <h3>Auto Correlation</h3>
+        </a>
+        <a href="LinearConvolution.html" class="">
+            <h3>Linear Convolution</h3>
+        </a>
+        <a href="CircularConvolution.html" class="">
+            <h3>Circular Convolution</h3>
+        </a>
+        <a href="DFT.html" class="">
+            <h3>Discrete Fourier Transform</h3>
+        </a>
+        <a href="IDFT.html" class="">
+            <h3>Inverse Discrete Fourier Transform</h3>
+        </a>
+        <a href="Properties.html" class="">
+            <h3>DFT & IDFT Properties</h3>
+        </a>
+        <a href="Linearity.html" class="">
+            <h3>Linearity Property</h3>
+        </a>
+        <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+            <h3>Linear Convolution Property</h3>
+        </a>
+        <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+            <h3>Circular Convolution Property</h3>
+        </a>
+        <a href="CircularTimeShift.html" class="">
+            <h3>Circular Timeshift Property</h3>
+        </a>
+        <a href="Modulation.html" class="">
+            <h3>Modulation Property</h3>
+        </a>
+    </div> -->
+    <!-- <div class="sidebar">
+        <ul>
+            <li class="list">
+                <a href="index.html">
+                    <h3>Home Page</h3>
+                </a>
+            </li>
+            <li class="list">
+        <a href="#">
+            <h3>Basic Operations</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="CrossCorr.html">
+            <h3>Cross Correlation</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="AutoCorr.html">
+            <h3>Auto Correlation</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="LinearConvolution.html">
+            <h3>Linear Convolution</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="CircularConvolution.html">
+            <h3>Circular Convolution</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="DFT.html">
+            <h3>Discrete Fourier Transform</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="IDFT.html">
+            <h3>Inverse Discrete Fourier Transform</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="Properties.html">
+            <h3>DFT & IDFT Properties</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="Linearity.html">
+            <h3>Linearity Property</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="LinearConvolutionUsingDFT&IDFT.html">
+            <h3>Linear Convolution Property</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="CircularConvolutionUsingDFT&IDFT.html">
+            <h3>Circular Convolution Property</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="CircularTimeShift.html">
+            <h3>Circular Timeshift Property</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="Modulation.html">
+            <h3>Modulation Property</h3>
+        </a>
+            </li>
+        </ul>
+    </div> -->
+    <main>
+        <h2 style="text-align: center;"> Linear Convolution Using DFT and IDFT</h2><br>
+        <p>Using simple words it is said that the linear convolution of two sequences can be obtained as the inverse transform of the product of the individual transforms.</p>
+        <h4><strong>Explanation:</strong></h4>
+        <ul>
+            <li>Take the input signal and impulse response as two separate single-row matrices.</li>
+            <li>Identify the DFT of the input signal.</li>
+            <li>Identify the DFT of the impulse response.</li>
+            <li>Obtain the product of the DFT transforms of input signal and impulse response.</li>
+            <li>The output convoluted sequence can be then obtained by performing inverse DFT to the product.</li>
+        </ul><br>
+        <p>The step-by-step values for the provided input is shown below :</p>
+        <h4 class="plot-title" id="exp-part-1" style="color: black;">x(n) and h(n) :</h4>
+        <table id="exp">
+        </table><hr>
+        <h4 class="plot-title" id="exp-part-2" style="color: black;">Multiply the below sequences :</h4>
+        <table id="exp1">
+        </table><hr>
+        <h4 class="plot-title" id="exp-part-3" style="color: black;">y(n) :</h4>
+        <table id="exp2">
+        </table><br><br>
+    </main>
+    <div class="right">
+        <div class="top">
+            <button id="menu-btn">
+                <span class="material-symbols-sharp">menu</span>
+            </button>
+            <div class="theme-toggler">
+                <span class="material-symbols-sharp active">light_mode</span>
+                <span class="material-symbols-sharp">dark_mode</span>
+            </div>
+        </div>
+        <div class="interface-section">
+            <br>
+            <h3>Enter the first sequence :</h3>
+            <input id="sequence1" placeholder="1,2,3,4..."/>
+            <br><br>
+            <h3>Enter the second sequence :</h3>
+            <input id="sequence2" placeholder="1,2,3,4..."/>
+            <br><br>
+            <button type="submit" class="btn btn-warning" onclick="lcdi()">Submit</button>
+            <br><br>
+            <h4 id="convolutionResponse"></h4>
+            <br><br>
+            <h4 class="plot-title" id="input-title">x(n) :</h4><br>
+            <!-- Input sequence plot is displayed -->
+            <canvas class="outputSequence" id="inputResp"></canvas>
+            <br><br>
+            <h4 class="plot-title" id="impulse-title">h(n) :</h4><br>
+            <!-- Impulse sequence plot is displayed -->
+            <canvas class="outputSequence" id="impulseResp"></canvas>
+            <br><br>
+            <h4 class="plot-title" id="output-title">y(n) :</h4><br>
+            <!-- Output sequence plot is displayed -->
+            <canvas class="outputSequence" id="outputResp"></canvas><br><br>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function dft(a,N) {
+        // function to perform dft
+        const ak = [];
+        for(let k=0;k<N;k++) {
+            realSum = 0;
+            imgSum = 0;
+            for(let n=0;n<N;n++) {
+                realSum += a[n]*Math.cos(2*Math.PI*k*n/N).toFixed(2);
+                imgSum += -(a[n]*Math.sin(2*Math.PI*k*n/N).toFixed(2));
+            }
+            ak.push([realSum,imgSum]);
+        }
+        return ak;
+    }
+    function idft(dftSequence,N) {
+        // function to perform idft
+        const idftSequence = [];
+        for(let n=0; n<N; n++){
+            realSum = 0;
+            for(let k=0; k<N; k++) {
+                mul = math.multiply(dftSequence[k],String(Math.cos(2*Math.PI*k*n/N)) + "+" + String(Math.sin(2*Math.PI*k*n/N)) + "i");
+                realSum += Number(mul["re"]);
+            }
+            idftSequence.push(Math.round(realSum/N));
+        }
+        return idftSequence;
+    }
+    function lcdi() {
+        // The explanatory tables are initiated with null
+        document.getElementById("exp").innerHTML="";
+        document.getElementById("exp1").innerHTML="";
+        document.getElementById("exp2").innerHTML="";
+        // Input sequences are taken
+        const x = document.getElementById("sequence1").value.split(",");
+        const h = document.getElementById("sequence2").value.split(",");
+        const m = x.length;
+        const n = h.length;
+        // N is the length to which convolution is performed
+        const N = m+n-1;
+        // Values are iterated and converted to float
+        const xt = x.map((val) => parseFloat(val));
+        const ht = h.map((val) => parseFloat(val));
+        // Input sequences are displayed for dynamic part
+        if(m<n) {
+            var tr = document.createElement('tr');
+            var str ='';
+            for(let i=0;i<n-m;i++){
+                str+=`<td></td>`;
+                tr.innerHTML=str;
+            }
+            for(let i=0;i<m;i++) {
+                str+=`<td> ${xt[i]}</td>`;
+                tr.innerHTML=str;
+            }
+            document.getElementById("exp").appendChild(tr);
+            var tr = document.createElement('tr');
+            var str ='';
+            for(let i=0;i<n;i++) {
+                str+=`<td> ${ht[i]}</td>`;
+                tr.innerHTML=str;
+            }
+            document.getElementById("exp").appendChild(tr);
+        } else if(n<m) {
+            var tr = document.createElement('tr');
+            var str ='';
+            for(let i=0;i<m;i++) {
+                str+=`<td> ${xt[i]}</td>`;
+                tr.innerHTML=str;
+            }
+            document.getElementById("exp").appendChild(tr);
+            var tr = document.createElement('tr');
+            var str ='';
+            for(let i=0;i<m-n;i++){
+                str+=`<td></td>`;
+                tr.innerHTML=str;
+            }
+            for(let i=0;i<n;i++) {
+                str+=`<td> ${ht[i]}</td>`;
+                tr.innerHTML=str;
+            }
+            document.getElementById("exp").appendChild(tr);
+        } else {
+            var tr = document.createElement('tr');
+            var str ='';
+            for(let i=0;i<m;i++) {
+                str+=`<td> ${xt[i]}</td>`;
+                tr.innerHTML=str;
+            }
+            document.getElementById("exp").appendChild(tr);
+            var tr = document.createElement('tr');
+            var str ='';
+            for(let i=0;i<n;i++) {
+                str+=`<td> ${ht[i]}</td>`;
+                tr.innerHTML=str;
+            }
+            document.getElementById("exp").appendChild(tr);
+        }
+
+        for(let a=0; a<N-m; a++) {
+            xt.push(0);
+        }
+        for(let b=0; b<N-n; b++) {
+            ht.push(0);
+        }
+        const xk = dft(xt,N);
+        const hk = dft(ht,N);
+        // step-by-step of convolution is displayed
+        var tr = document.createElement('tr');
+        var str ='';
+        for(let i=0;i<xk.length;i++) {
+            if(Number(xk[i][1])<0) {
+                str+=`<td> ${String(Math.round(xk[i][0])) + String(Math.round(xk[i][1])) + "i"}</td>`;
+                tr.innerHTML=str;
+            } else if(Number(xk[i][1])>0) {
+                str+=`<td> ${Math.round(xk[i][0]) + "+" + Math.round(xk[i][1]) + "i"}</td>`;
+                tr.innerHTML=str;
+            } else {
+                str+=`<td> ${Math.round(xk[i][0])}</td>`;
+                tr.innerHTML=str;
+            }
+        }
+        document.getElementById("exp1").appendChild(tr);
+
+        var tr = document.createElement('tr');
+        var str ='';
+        for(let i=0;i<hk.length;i++) {
+            if(Number(hk[i][1])<0) {
+                str+=`<td> ${String(Math.round(hk[i][0])) + String(Math.round(hk[i][1])) + "i"}</td>`;
+                tr.innerHTML=str;
+            } else if(Number(xk[i][1])>0) {
+                str+=`<td> ${Math.round(hk[i][0]) + "+" + Math.round(hk[i][1]) + "i"}</td>`;
+                tr.innerHTML=str;
+            } else {
+                str+=`<td> ${Math.round(hk[i][0])}</td>`;
+                tr.innerHTML=str;
+            }
+        }
+        document.getElementById("exp1").appendChild(tr);
+
+        const yk = [];
+        for(let i=0; i<N; i++) {
+            ac = math.complex(xk[i][0],xk[i][1]);
+            bc = math.complex(hk[i][0],hk[i][1]);
+            yk.push(math.multiply(ac,bc));
+        }
+        const yt = idft(yk,N);
+        // output response is displayed
+        document.getElementById("convolutionResponse").innerText = "The Convolution Output is: \n" + yt;
+
+        var tr = document.createElement('tr');
+        var str ='';
+        for(let i=0;i<yt.length;i++) {
+            str+=`<th> ${yt[i]}</th>`;
+            tr.innerHTML=str;
+        }
+        document.getElementById("exp2").appendChild(tr);
+
+        // input sequence will be plotted
+        const xyInputValues = [];
+        for(let j=0; j<m; j++) {
+            xyInputValues.push({x:j,y:xt[j]});
+        }
+        new Chart("inputResp", {
+            type: "scatter",
+            data: {
+                datasets: [{
+                    pointRadius: 4,
+                    pointBackgroundColor: "rgb(0,0,255)",
+                    data: xyInputValues
+                }]
+            },
+            options: {
+                legend: {display: false}
+            }
+        });
+        // impulse sequence will be plotted
+        const xyImpulseValues = [];
+        for(let j=0; j<n; j++) {
+            xyImpulseValues.push({x:j,y:ht[j]});
+        }
+        new Chart("impulseResp", {
+            type: "scatter",
+            data: {
+                datasets: [{
+                    pointRadius: 4,
+                    pointBackgroundColor: "rgb(0,0,255)",
+                    data: xyImpulseValues
+                }]
+            },
+            options: {
+                legend: {display: false}
+            }
+        });
+        // output sequence will be plotted
+        const xyOutputValues = [];
+        for(let j=0; j<N; j++) {
+            xyOutputValues.push({x:j,y:yt[j]});
+        }
+        new Chart("outputResp", {
+            type: "scatter",
+            data: {
+                datasets: [{
+                    pointRadius: 4,
+                    pointBackgroundColor: "rgb(0,0,255)",
+                    data: xyOutputValues
+                }]
+            },
+            options: {
+                legend: {display: false}
+            }
+        });
+
+        // specific texts are displayed
+        document.getElementById("inputResp").style.display ="block";
+        document.getElementById("input-title").style.display ="block";
+        document.getElementById("impulseResp").style.display ="block";
+        document.getElementById("impulse-title").style.display ="block";
+        document.getElementById("outputResp").style.display ="block";
+        document.getElementById("output-title").style.display ="block";
+        document.getElementById("exp-part-1").style.display ="block";
+        document.getElementById("exp-part-2").style.display ="block";
+        document.getElementById("exp-part-3").style.display ="block";
+    }
+</script>
+
+    <script src="responsive.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

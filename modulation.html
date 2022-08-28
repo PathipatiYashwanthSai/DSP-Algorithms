@@ -1,259 +1,255 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="page.css">
-    <title>Modulation</title>
-</head>
-<body>
-    <div class="main">
-        <div class="container">
-            <div class="theory">
-                <h2 style="text-align: center;">Modulation</h2><br>
-                <p><h4><strong>Statement:</strong></h4> The multiplication of two sequences in the time domain is equivalent to their circular convolution in the frequency domain.</p>
-                <h4><strong>Mathematical representation:</strong></h4>
-                <img src="assets/multiplication-property-of-dft.webp" alt="..." class="mx-auto d-block"><br>
-                <p>The step-by-step values for the provided input is shown below :</p>
-                <table id="exp">
-                </table><hr>
-                <table id="exp1">
-                </table><hr>
-                <table id="exp2">
-                </table><hr>
-                <table id="exp3">
-                </table><br><br>
+---
+title: Modulation Property
+layout: default
+---
+<div class="container">
+    {% include scrollbar.html %}
+    <main>
+        <h2 style="text-align: center;">Modulation</h2><br>
+        <p><h4><strong>Statement:</strong></h4> The multiplication of two sequences in the time domain is equivalent to their circular convolution in the frequency domain.</p>
+        <h4><strong>Mathematical representation:</strong></h4>
+        <img src="assets/multiplication-property-of-dft.webp" alt="..." class="mx-auto d-block" style="width: 75%;"><br>
+        <p>The step-by-step values for the provided input is shown below :</p>
+        <table id="exp">
+        </table><hr>
+        <table id="exp1">
+        </table><hr>
+        <table id="exp2">
+        </table><hr>
+        <table id="exp3">
+        </table><br><br>
+    </main>
+    <div class="right">
+        <div class="top">
+            <button id="menu-btn">
+                <span class="material-symbols-sharp">menu</span>
+            </button>
+            <div class="theme-toggler">
+                <span class="material-symbols-sharp active">light_mode</span>
+                <span class="material-symbols-sharp">dark_mode</span>
             </div>
         </div>
         <div class="interface-section">
-            <div class="container pt-2 input-block">
-                <br>
-                <h3>Enter the first sequence :</h3>
-                <input id="a" placeholder="1,2,3,4"/>
-                <br><br>
-                <h3>Enter the second sequence :</h3>
-                <input id="b" placeholder="1,2,3,4"/>
-                <br><br>
-                <button type="submit" class="btn btn-warning" onclick="mod()">Submit</button>
-                <br><br>
-                <h4 id="resp"></h4>
-                <br><br>
-                <h4 class="plot-title" id="input-title">First sequence :</h4><br>
-                <canvas class="outputSequence" id="inputResp"></canvas>
-                <br><br>
-                <h4 class="plot-title" id="impulse-title">Second sequence :</h4><br>
-                <canvas class="outputSequence" id="impulseResp"></canvas>
-                <br><br>
-                <h4 class="plot-title" id="output-title">Ouput sequence :</h4><br>
-                <canvas class="outputSequence" id="outputResp"></canvas><br><br>
-            </div>
+            <br>
+            <h3>Enter the first sequence :</h3>
+            <input id="a" placeholder="1,2,3,4"/>
+            <br><br>
+            <h3>Enter the second sequence :</h3>
+            <input id="b" placeholder="1,2,3,4"/>
+            <br><br>
+            <button type="submit" class="btn btn-warning" onclick="mod()">Submit</button>
+            <br><br>
+            <h4 id="resp"></h4>
+            <br><br>
+            <h4 class="plot-title" id="input-title">First sequence :</h4><br>
+            <canvas class="outputSequence" id="inputResp"></canvas>
+            <br><br>
+            <h4 class="plot-title" id="impulse-title">Second sequence :</h4><br>
+            <canvas class="outputSequence" id="impulseResp"></canvas>
+            <br><br>
+            <h4 class="plot-title" id="output-title">Ouput sequence :</h4><br>
+            <canvas class="outputSequence" id="outputResp"></canvas><br><br>
         </div>
     </div>
-    <script src="https://pagecdn.io/lib/mathjs/10.5.3/math.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <script type="text/javascript">
-        function mod() {
-            document.getElementById("exp").innerHTML="";
-            document.getElementById("exp1").innerHTML="";
-            document.getElementById("exp2").innerHTML="";
-            document.getElementById("exp3").innerHTML="";
-            const x = document.getElementById("a").value.split(",");
-            const h = document.getElementById("b").value.split(",");
-            const m = x.length;
-            const n = h.length;
-            const N = Math.max(m,n);
-            const N1 = m+n-1;
-            const xt = x.map((val) => parseFloat(val));
-            const ht = h.map((val) => parseFloat(val));
-            for(let a=0; a<N1-m; a++) {
-                xt.push(0);
-            }
-            for(let b=0; b<N1-n; b++) {
-                ht.push(0);
-            }
-            const xk = dft(xt,N1);
-            const hk = dft(ht,N1);
-            const xk1 = dft(xt,m);
-            const hk1 = dft(ht,n);
-            function dft(a,N) {
-                const ak = [];
-                for(let k=0;k<N;k++) {
-                    realSum = 0;
-                    imgSum = 0;
-                    for(let n=0;n<N;n++) {
-                        realSum += a[n]*Math.cos(2*Math.PI*k*n/N).toFixed(2);
-                        imgSum += -(a[n]*Math.sin(2*Math.PI*k*n/N).toFixed(2));
-                    }
-                    ak.push([realSum,imgSum]);
-                }
-                return ak;
-            }
-            function idft(dftSequence,N) {
-                const idftSequence = [];
-                for(let n=0; n<N; n++){
-                    realSum = 0;
-                    for(let k=0; k<N; k++) {
-                        mul = math.multiply(dftSequence[k],String(Math.cos(2*Math.PI*k*n/N)) + "+" + String(Math.sin(2*Math.PI*k*n/N)) + "i");
-                        realSum += Number(mul["re"]);
-                    }
-                    idftSequence.push(Math.round(realSum/N/N));
-                }
-                return idftSequence;
-            }
-            const z = [];
-            for(let i=0; i<N1; i++){
-                    sum = 0;
-                    for(let j=0; j<N1; j++){
-                        if(j <=i) {
-                            ac = math.complex(xk[j][0],xk[j][1]);
-                            bc = math.complex(hk[i-j][0],hk[i-j][1]);
-                            sum = math.add(math.multiply(ac,bc),sum);
-                        } else {
-                            ac = math.complex(xk[j][0],xk[j][1]);
-                            bc = math.complex(hk[N1+i-j][0],hk[N1+i-j][1]);
-                            sum = math.add(math.multiply(ac,bc),sum);
-                        }
-                    }
-                    z.push(sum);
-            }
-            const yt = idft(z,N1).slice(0,N);
-            const yk = dft(yt,N);
-            document.getElementById("resp").innerText = "The modulation output is: " + yt;
-            const xyInputValues = [];
-            for(let j=0; j<m; j++) {
-                xyInputValues.push({x:j,y:xt[j]});
-            }
-            new Chart("inputResp", {
-                type: "scatter",
-                data: {
-                    datasets: [{
-                        pointRadius: 4,
-                        pointBackgroundColor: "rgb(0,0,255)",
-                        data: xyInputValues
-                    }]
-                },
-                options: {
-                    legend: {display: false}
-                }
-            });
+</div>
 
-            const xyImpulseValues = [];
-            for(let j=0; j<n; j++) {
-                xyImpulseValues.push({x:j,y:ht[j]});
-            }
-            new Chart("impulseResp", {
-                type: "scatter",
-                data: {
-                    datasets: [{
-                        pointRadius: 4,
-                        pointBackgroundColor: "rgb(0,0,255)",
-                        data: xyImpulseValues
-                    }]
-                },
-                options: {
-                    legend: {display: false}
-                }
-            });
-
-            const xyOutputValues = [];
-            for(let j=0; j<N; j++) {
-                xyOutputValues.push({x:j,y:yt[j]});
-            }
-            new Chart("outputResp", {
-                type: "scatter",
-                data: {
-                    datasets: [{
-                        pointRadius: 4,
-                        pointBackgroundColor: "rgb(0,0,255)",
-                        data: xyOutputValues
-                    }]
-                },
-                options: {
-                    legend: {display: false}
-                }
-            });
-
-            var tr = document.createElement('tr');
-            var str ='';
-            for(let i=0;i<m;i++) {
-                str+=`<td> ${xt[i]}</td>`;
-                tr.innerHTML=str;
-            }
-            document.getElementById("exp").appendChild(tr);
-            var tr = document.createElement('tr');
-            var str ='';
-            for(let i=0;i<n;i++) {
-                str+=`<td> ${ht[i]}</td>`;
-                tr.innerHTML=str;
-            }
-            document.getElementById("exp").appendChild(tr);
-
-            var tr = document.createElement('tr');
-            var str ='';
-            for(let i=0;i<m;i++) {
-                if(Number(xk1[i][1])>0){
-                    str+=`<td> ${xk1[i][0].toFixed(2) + "+" + xk1[i][1].toFixed(2) + "i"}</td>`;
-                    tr.innerHTML=str;
-                } else if(Number(xk1[i][1])<0){
-                    str+=`<td> ${String(xk1[i][0].toFixed(2)) + String(xk1[i][1].toFixed(2)) + "i"}</td>`;
-                    tr.innerHTML=str;
-                } else {
-                    str+=`<td> ${xk1[i][0].toFixed(2)}</td>`;
-                    tr.innerHTML=str;
-                }
-            }
-            document.getElementById("exp1").appendChild(tr);
-            var tr = document.createElement('tr');
-            var str ='';
-            for(let i=0;i<n;i++) {
-                if(Number(hk1[i][1])>0){
-                    str+=`<td> ${hk1[i][0].toFixed(2) + "+" + hk1[i][1].toFixed(2) + "i"}</td>`;
-                    tr.innerHTML=str;
-                } else if(Number(hk1[i][1])<0){
-                    str+=`<td> ${String(hk1[i][0].toFixed(2)) + String(hk1[i][1].toFixed(2)) + "i"}</td>`;
-                    tr.innerHTML=str;
-                } else {
-                    str+=`<td> ${hk1[i][0].toFixed(2)}</td>`;
-                    tr.innerHTML=str;
-                }
-            }
-            document.getElementById("exp1").appendChild(tr);
-
-            var tr = document.createElement('tr');
-            var str ='';
-            for(let i=0;i<N;i++) {
-                if(Number(yk[i][1])>0){
-                    str+=`<td> ${yk[i][0].toFixed(2) + "+" + yk[i][1].toFixed(2) + "i"}</td>`;
-                    tr.innerHTML=str;
-                } else if(Number(yk[i][1])<0){
-                    str+=`<td> ${String(yk[i][0].toFixed(2)) + String(yk[i][1].toFixed(2)) + "i"}</td>`;
-                    tr.innerHTML=str;
-                } else {
-                    str+=`<td> ${yk[i][0].toFixed(2)}</td>`;
-                    tr.innerHTML=str;
-                }
-            }
-            document.getElementById("exp2").appendChild(tr);
-
-            var tr = document.createElement('tr');
-            var str ='';
-            for(let i=0;i<N;i++) {
-                str+=`<th> ${yt[i]}</th>`;
-                tr.innerHTML=str;
-            }
-            document.getElementById("exp3").appendChild(tr);
-
-            document.getElementById("inputResp").style.display ="block";
-            document.getElementById("input-title").style.display ="block";
-            document.getElementById("impulseResp").style.display ="block";
-            document.getElementById("impulse-title").style.display ="block";
-            document.getElementById("outputResp").style.display ="block";
-            document.getElementById("output-title").style.display ="block";
-
+<script type="text/javascript">
+    function mod() {
+        document.getElementById("exp").innerHTML="";
+        document.getElementById("exp1").innerHTML="";
+        document.getElementById("exp2").innerHTML="";
+        document.getElementById("exp3").innerHTML="";
+        const x = document.getElementById("a").value.split(",");
+        const h = document.getElementById("b").value.split(",");
+        const m = x.length;
+        const n = h.length;
+        const N = Math.max(m,n);
+        const N1 = m+n-1;
+        const xt = x.map((val) => parseFloat(val));
+        const ht = h.map((val) => parseFloat(val));
+        for(let a=0; a<N1-m; a++) {
+            xt.push(0);
         }
-    </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-</body>
-</html>
+        for(let b=0; b<N1-n; b++) {
+            ht.push(0);
+        }
+        const xk = dft(xt,N1);
+        const hk = dft(ht,N1);
+        const xk1 = dft(xt,m);
+        const hk1 = dft(ht,n);
+        function dft(a,N) {
+            const ak = [];
+            for(let k=0;k<N;k++) {
+                realSum = 0;
+                imgSum = 0;
+                for(let n=0;n<N;n++) {
+                    realSum += a[n]*Math.cos(2*Math.PI*k*n/N).toFixed(2);
+                    imgSum += -(a[n]*Math.sin(2*Math.PI*k*n/N).toFixed(2));
+                }
+                ak.push([realSum,imgSum]);
+            }
+            return ak;
+        }
+        function idft(dftSequence,N) {
+            const idftSequence = [];
+            for(let n=0; n<N; n++){
+                realSum = 0;
+                for(let k=0; k<N; k++) {
+                    mul = math.multiply(dftSequence[k],String(Math.cos(2*Math.PI*k*n/N)) + "+" + String(Math.sin(2*Math.PI*k*n/N)) + "i");
+                    realSum += Number(mul["re"]);
+                }
+                idftSequence.push(Math.round(realSum/N/N));
+            }
+            return idftSequence;
+        }
+        const z = [];
+        for(let i=0; i<N1; i++){
+                sum = 0;
+                for(let j=0; j<N1; j++){
+                    if(j <=i) {
+                        ac = math.complex(xk[j][0],xk[j][1]);
+                        bc = math.complex(hk[i-j][0],hk[i-j][1]);
+                        sum = math.add(math.multiply(ac,bc),sum);
+                    } else {
+                        ac = math.complex(xk[j][0],xk[j][1]);
+                        bc = math.complex(hk[N1+i-j][0],hk[N1+i-j][1]);
+                        sum = math.add(math.multiply(ac,bc),sum);
+                    }
+                }
+                z.push(sum);
+        }
+        const yt = idft(z,N1).slice(0,N);
+        const yk = dft(yt,N);
+        document.getElementById("resp").innerText = "The modulation output is: " + yt;
+        const xyInputValues = [];
+        for(let j=0; j<m; j++) {
+            xyInputValues.push({x:j,y:xt[j]});
+        }
+        new Chart("inputResp", {
+            type: "scatter",
+            data: {
+                datasets: [{
+                    pointRadius: 4,
+                    pointBackgroundColor: "rgb(0,0,255)",
+                    data: xyInputValues
+                }]
+            },
+            options: {
+                legend: {display: false}
+            }
+        });
+
+        const xyImpulseValues = [];
+        for(let j=0; j<n; j++) {
+            xyImpulseValues.push({x:j,y:ht[j]});
+        }
+        new Chart("impulseResp", {
+            type: "scatter",
+            data: {
+                datasets: [{
+                    pointRadius: 4,
+                    pointBackgroundColor: "rgb(0,0,255)",
+                    data: xyImpulseValues
+                }]
+            },
+            options: {
+                legend: {display: false}
+            }
+        });
+
+        const xyOutputValues = [];
+        for(let j=0; j<N; j++) {
+            xyOutputValues.push({x:j,y:yt[j]});
+        }
+        new Chart("outputResp", {
+            type: "scatter",
+            data: {
+                datasets: [{
+                    pointRadius: 4,
+                    pointBackgroundColor: "rgb(0,0,255)",
+                    data: xyOutputValues
+                }]
+            },
+            options: {
+                legend: {display: false}
+            }
+        });
+
+        var tr = document.createElement('tr');
+        var str ='';
+        for(let i=0;i<m;i++) {
+            str+=`<td> ${xt[i]}</td>`;
+            tr.innerHTML=str;
+        }
+        document.getElementById("exp").appendChild(tr);
+        var tr = document.createElement('tr');
+        var str ='';
+        for(let i=0;i<n;i++) {
+            str+=`<td> ${ht[i]}</td>`;
+            tr.innerHTML=str;
+        }
+        document.getElementById("exp").appendChild(tr);
+
+        var tr = document.createElement('tr');
+        var str ='';
+        for(let i=0;i<m;i++) {
+            if(Number(xk1[i][1])>0){
+                str+=`<td> ${xk1[i][0].toFixed(2) + "+" + xk1[i][1].toFixed(2) + "i"}</td>`;
+                tr.innerHTML=str;
+            } else if(Number(xk1[i][1])<0){
+                str+=`<td> ${String(xk1[i][0].toFixed(2)) + String(xk1[i][1].toFixed(2)) + "i"}</td>`;
+                tr.innerHTML=str;
+            } else {
+                str+=`<td> ${xk1[i][0].toFixed(2)}</td>`;
+                tr.innerHTML=str;
+            }
+        }
+        document.getElementById("exp1").appendChild(tr);
+        var tr = document.createElement('tr');
+        var str ='';
+        for(let i=0;i<n;i++) {
+            if(Number(hk1[i][1])>0){
+                str+=`<td> ${hk1[i][0].toFixed(2) + "+" + hk1[i][1].toFixed(2) + "i"}</td>`;
+                tr.innerHTML=str;
+            } else if(Number(hk1[i][1])<0){
+                str+=`<td> ${String(hk1[i][0].toFixed(2)) + String(hk1[i][1].toFixed(2)) + "i"}</td>`;
+                tr.innerHTML=str;
+            } else {
+                str+=`<td> ${hk1[i][0].toFixed(2)}</td>`;
+                tr.innerHTML=str;
+            }
+        }
+        document.getElementById("exp1").appendChild(tr);
+
+        var tr = document.createElement('tr');
+        var str ='';
+        for(let i=0;i<N;i++) {
+            if(Number(yk[i][1])>0){
+                str+=`<td> ${yk[i][0].toFixed(2) + "+" + yk[i][1].toFixed(2) + "i"}</td>`;
+                tr.innerHTML=str;
+            } else if(Number(yk[i][1])<0){
+                str+=`<td> ${String(yk[i][0].toFixed(2)) + String(yk[i][1].toFixed(2)) + "i"}</td>`;
+                tr.innerHTML=str;
+            } else {
+                str+=`<td> ${yk[i][0].toFixed(2)}</td>`;
+                tr.innerHTML=str;
+            }
+        }
+        document.getElementById("exp2").appendChild(tr);
+
+        var tr = document.createElement('tr');
+        var str ='';
+        for(let i=0;i<N;i++) {
+            str+=`<th> ${yt[i]}</th>`;
+            tr.innerHTML=str;
+        }
+        document.getElementById("exp3").appendChild(tr);
+
+        document.getElementById("inputResp").style.display ="block";
+        document.getElementById("input-title").style.display ="block";
+        document.getElementById("impulseResp").style.display ="block";
+        document.getElementById("impulse-title").style.display ="block";
+        document.getElementById("outputResp").style.display ="block";
+        document.getElementById("output-title").style.display ="block";
+    }
+</script>

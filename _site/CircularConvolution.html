@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Sharp">
+    <link rel="stylesheet" href="page.css">
+    <title>Circular Convolution</title>
+</head>
+<body>
+    <!-- <script src="https://pagecdn.io/lib/mathjs/10.5.3/math.min.js" crossorigin="anonymous"></script> -->
+    <script src="https://pagecdn.io/lib/mathjs/11.0.1/math.min.js" crossorigin="anonymous"  ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <div class="container">
+    <!-- <aside>
+    <div class="top">
+        <h2>DSP</h2>
+        <div class="close" id="close-btn">
+            <span class="material-symbols-sharp">close</span>
+        </div>
+    </div>
+    <div class="sidebar">
+        <a href="#" class="active">
+            <h3>Home Page</h3>
+        </a>
+        <a href="#" class="">
+            <h3>Basic Operations</h3>
+        </a>
+        <a href="CrossCorr.html" class="">
+            <h3>Cross Correlation</h3>
+        </a>
+        <a href="AutoCorr.html" class="">
+            <h3>Auto Correlation</h3>
+        </a>
+        <a href="LinearConvolution.html" class="">
+            <h3>Linear Convolution</h3>
+        </a>
+        <a href="CircularConvolution.html" class="">
+            <h3>Circular Convolution</h3>
+        </a>
+        <a href="DFT.html" class="">
+            <h3>Discrete Fourier Transform</h3>
+        </a>
+        <a href="IDFT.html" class="">
+            <h3>Inverse Discrete Fourier Transform</h3>
+        </a>
+        <a href="Properties.html" class="">
+            <h3>DFT & IDFT Properties</h3>
+        </a>
+        <a href="Linearity.html" class="">
+            <h3>Linearity Property</h3>
+        </a>
+        <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+            <h3>Linear Convolution Property</h3>
+        </a>
+        <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+            <h3>Circular Convolution Property</h3>
+        </a>
+        <a href="CircularTimeShift.html" class="">
+            <h3>Circular Timeshift Property</h3>
+        </a>
+        <a href="Modulation.html" class="">
+            <h3>Modulation Property</h3>
+        </a>
+    </div> -->
+    <!-- <div class="sidebar">
+        <ul>
+            <li class="list">
+                <a href="index.html">
+                    <h3>Home Page</h3>
+                </a>
+            </li>
+            <li class="list">
+        <a href="#">
+            <h3>Basic Operations</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="CrossCorr.html">
+            <h3>Cross Correlation</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="AutoCorr.html">
+            <h3>Auto Correlation</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="LinearConvolution.html">
+            <h3>Linear Convolution</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="CircularConvolution.html">
+            <h3>Circular Convolution</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="DFT.html">
+            <h3>Discrete Fourier Transform</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="IDFT.html">
+            <h3>Inverse Discrete Fourier Transform</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="Properties.html">
+            <h3>DFT & IDFT Properties</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="Linearity.html">
+            <h3>Linearity Property</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="LinearConvolutionUsingDFT&IDFT.html">
+            <h3>Linear Convolution Property</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="CircularConvolutionUsingDFT&IDFT.html">
+            <h3>Circular Convolution Property</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="CircularTimeShift.html">
+            <h3>Circular Timeshift Property</h3>
+        </a>
+            </li>
+            <li class="list">
+        <a href="Modulation.html">
+            <h3>Modulation Property</h3>
+        </a>
+            </li>
+        </ul>
+    </div> -->
+    <main>
+        <h2 style="text-align: center;"> Circular Convolution</h2><br>
+        <p><strong>Circular convolution</strong>, also known as <strong>cyclic convolution</strong>, is a special case of <strong>periodic convolution</strong>, which is the convolution of two periodic functions that have the same period. Periodic convolution arises, for example, in the context of the discrete-time Fourier transform (DTFT). In particular, the DTFT of the product of two discrete sequences is the periodic convolution of the DTFTs of the individual sequences. And each DTFT is a periodic summation of a continuous Fourier transform function (see DTFT § Definition). Although DTFTs are usually continuous functions of frequency, the concepts of periodic and circular convolution are also directly applicable to discrete sequences of data. In that context, circular convolution plays an important role in maximizing the efficiency of a certain kind of common filtering operation.</p>
+        <h4><strong>Circular convolution:</strong></h4>
+        <p>The periodic convolution of two T-periodic functions, h<sub>T</sub>(t) and x<sub>T</sub>(t) can be defined as:</p>
+        <img src="assets/circConvFormula-1.svg" alt="..." class="mx-auto d-block" style="background: white; width: 50%;"><br>
+        <p>where t<sub>o</sub> is an arbitrary parameter.  An alternative definition, in terms of the notation of normal linear or aperiodic convolution, follows from expressing  h<sub>T</sub>(t) and  x<sub>T</sub>(t) as periodic summations of aperiodic components h  and x, i.e.:</p>
+        <img src="assets/circConvFormula-2.svg" alt="..." class="mx-auto d-block" style="background: white; width: 75%;"><br>
+        <p>Then:</p>
+        <img src="assets/circConvFormula-3.svg" alt="..." class="mx-auto d-block" style="background: white;"><br>
+        <p><strong>Derivation for above equation:</strong></p>
+        <img src="assets/circConvFormula-4.svg" alt="..." class="mx-auto d-block" style="background: white;"><br>
+        <p>Both forms can be called periodic convolution. The term circular convolution arises from the important special case of constraining the non-zero portions of both h and x to the interval <strong>[0,T]</strong></p>
+        <p><Strong>For Discrete sequences:</Strong></p>
+        <p>Similarly, for discrete sequences, and a parameter <strong>N</strong>, we can write a <strong>circular convolution</strong> of aperiodic functions h and x as:</p>
+        <img src="assets/circConvFormula-5.svg" alt="..." class="mx-auto d-block" style="background: white; width: 80%;"><br>
+        <p>This function is <strong>N</strong>-periodic. It has at most <strong>N</strong> unique values. For the special case that the non-zero extent of both x and h are ≤ N, it is reducible to matrix multiplication where the kernel of the integral transform is a circulant matrix.</p><br><br>
+        <p>The step-by-step values for the provided input is shown below :</p>
+        <h4 class="plot-title" id="exp-part-1" style="color: black;">x(n) and h(n) :</h4>
+        <table id="exp">
+        </table><hr>
+        <h4 class="plot-title" id="exp-part-2" style="color: black;">Add the below sequences :</h4>
+        <table id="exp1">
+        </table><hr>
+        <h4 class="plot-title" id="exp-part-3" style="color: black;">Linear Convoluted output :</h4>
+        <table id="exp2">
+        </table><hr>
+        <h4 class="plot-title" id="exp-part-4" style="color: black;">Split and add the sequences as shown below :</h4>
+        <table id="exp3">
+        </table><hr>
+        <h4 class="plot-title" id="exp-part-5" style="color: black;">y<sub>c</sub>(n) :</h4>
+        <table id="exp4">
+        </table><hr><br><br>
+    </main>
+    <div class="right">
+        <div class="top">
+            <button id="menu-btn">
+                <span class="material-symbols-sharp">menu</span>
+            </button>
+            <div class="theme-toggler">
+                <span class="material-symbols-sharp active">light_mode</span>
+                <span class="material-symbols-sharp">dark_mode</span>
+            </div>
+        </div>
+        <div class="interface-section">
+            <br>
+            <h3>Enter the first sequence :</h3>
+            <input id="sequence1" placeholder="1,2,3,4..."/>
+            <br><br>
+            <h3>Enter the second sequence :</h3>
+            <input id="sequence2" placeholder="1,2,3,4..."/>
+            <br><br>
+            <button type="submit" class="btn btn-warning" onclick="circularConv()">Submit</button>
+            <br><br>
+            <h4 id="circularConvResponse"></h4>
+            <br><br>
+            <h4 class="plot-title" id="input-title">x(n) :</h4><br>
+            <!-- Input sequence plot is displayed -->
+            <canvas class="outputSequence" id="inputResp"></canvas>
+            <br><br>
+            <h4 class="plot-title" id="impulse-title">h(n) :</h4><br>
+            <!-- Impulse sequence plot is displayed -->
+            <canvas class="outputSequence" id="impulseResp"></canvas>
+            <br><br>
+            <h4 class="plot-title" id="output-title">Circular Convolution Ouput y(n) :</h4><br>
+            <!-- Output sequence plot is displayed -->
+            <canvas class="outputSequence" id="outputResp"></canvas><br><br>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function circularConv() {
+        // The explanatory tables are initiated with null
+        document.getElementById("exp").innerHTML="";
+        document.getElementById("exp1").innerHTML="";
+        document.getElementById("exp2").innerHTML="";
+        document.getElementById("exp3").innerHTML="";
+        document.getElementById("exp4").innerHTML="";
+        // Input sequences are taken
+        const x = document.getElementById("sequence1").value.split(",");
+        const h = document.getElementById("sequence2").value.split(",");
+        const m = x.length;
+        const n = h.length;
+        // N is the length to which convolution is performed
+        const N = Math.max(m,n);
+        const N1 = m+n-1;
+        // Values are iterated and converted to float
+        const xt = x.map((val) => parseFloat(val));
+        const ht = h.map((val) => parseFloat(val));
+
+        // Input sequences are displayed for dynamic part
+        if(m<n) {
+            var tr = document.createElement('tr');
+            var str ='';
+            for(let i=0;i<n-m;i++){
+                str+=`<td></td>`;
+                tr.innerHTML=str;
+            }
+            for(let i=0;i<m;i++) {
+                str+=`<td> ${xt[i]}</td>`;
+                tr.innerHTML=str;
+            }
+            document.getElementById("exp").appendChild(tr);
+            var tr = document.createElement('tr');
+            var str ='';
+            for(let i=0;i<n;i++) {
+                str+=`<td> ${ht[i]}</td>`;
+                tr.innerHTML=str;
+            }
+            document.getElementById("exp").appendChild(tr);
+        } else if(n<m) {
+            var tr = document.createElement('tr');
+            var str ='';
+            for(let i=0;i<m;i++) {
+                str+=`<td> ${xt[i]}</td>`;
+                tr.innerHTML=str;
+            }
+            document.getElementById("exp").appendChild(tr);
+            var tr = document.createElement('tr');
+            var str ='';
+            for(let i=0;i<m-n;i++){
+                str+=`<td></td>`;
+                tr.innerHTML=str;
+            }
+            for(let i=0;i<n;i++) {
+                str+=`<td> ${ht[i]}</td>`;
+                tr.innerHTML=str;
+            }
+            document.getElementById("exp").appendChild(tr);
+        } else {
+            var tr = document.createElement('tr');
+            var str ='';
+            for(let i=0;i<m;i++) {
+                str+=`<td> ${xt[i]}</td>`;
+                tr.innerHTML=str;
+            }
+            document.getElementById("exp").appendChild(tr);
+            var tr = document.createElement('tr');
+            var str ='';
+            for(let i=0;i<n;i++) {
+                str+=`<td> ${ht[i]}</td>`;
+                tr.innerHTML=str;
+            }
+            document.getElementById("exp").appendChild(tr);
+        }
+        
+        // step-by-step of convolution is displayed
+        for(let i=0;i<n;i++) {
+            var tr = document.createElement('tr');
+            var str ='';
+            for(let k=0;k<i;k++) {
+                str+=`<td></td>`;
+                tr.innerHTML=str;
+            }
+            for(let j=0;j<m;j++){
+                str+=`<td> ${ht[i]*xt[j]}</td>`;
+                tr.innerHTML=str;
+            }
+            document.getElementById("exp1").appendChild(tr);
+        }
+
+
+        for(let a=0; a<N1-m; a++) {
+            xt.push(0);
+        }
+        for(let b=0; b<N1-n; b++) {
+            ht.push(0);
+        }
+        const yt = [];
+        for(let i=0; i<N1; i++){
+            sum = 0;
+            for(let j=0; j<N1; j++){
+                if(j <=i) {
+                    sum += xt[j]*ht[i-j];
+                } else {
+                    sum += xt[j]*ht[N1+i-j];
+                }
+            }
+            yt.push(sum);
+        }
+
+
+        var tr = document.createElement('tr');
+        var str ='';
+        for(let i=0;i<yt.length;i++) {
+            str+=`<th> ${yt[i]}</th>`;
+            tr.innerHTML=str;
+        }
+        document.getElementById("exp2").appendChild(tr);
+
+
+        const z = yt.slice(N);
+
+        var tr = document.createElement('tr');
+        var str ='<td></td>';
+        for(let i=0;i<N;i++) {
+            str+=`<td> ${yt[i]}</td>`;
+            tr.innerHTML=str;
+        }
+        document.getElementById("exp3").appendChild(tr);
+
+        var tr = document.createElement('tr');
+        var str ='<td>+</td>';
+        for(let i=N;i<yt.length;i++) {
+            str+=`<td> ${yt[i]}</td>`;
+            tr.innerHTML=str;
+        }
+        document.getElementById("exp3").appendChild(tr);
+
+
+        for(let c=0; c<z.length; c++) {
+            yt[c] += z[c];
+        }
+        const yc = yt.slice(0,N);
+        // output response is displayed
+        document.getElementById("circularConvResponse").innerText = "The Circular Convolution output is: \n" + yc;
+
+        var tr = document.createElement('tr');
+        var str ='';
+        for(let i=0;i<yc.length;i++) {
+            str+=`<th> ${yc[i]}</th>`;
+            tr.innerHTML=str;
+        }
+        document.getElementById("exp4").appendChild(tr);
+
+        // input sequence will be plotted
+        const xyInputValues = [];
+        for(let j=0; j<m; j++) {
+            xyInputValues.push({x:j,y:xt[j]});
+        }
+        new Chart("inputResp", {
+            type: "scatter",
+            data: {
+                datasets: [{
+                    pointRadius: 4,
+                    pointBackgroundColor: "rgb(0,0,255)",
+                    data: xyInputValues
+                }]
+            },
+            options: {
+                legend: {display: false}
+            }
+        });
+
+        // impulse sequence will be plotted
+        const xyImpulseValues = [];
+        for(let j=0; j<n; j++) {
+            xyImpulseValues.push({x:j,y:ht[j]});
+        }
+        new Chart("impulseResp", {
+            type: "scatter",
+            data: {
+                datasets: [{
+                    pointRadius: 4,
+                    pointBackgroundColor: "rgb(0,0,255)",
+                    data: xyImpulseValues
+                }]
+            },
+            options: {
+                legend: {display: false}
+            }
+        });
+
+        // output sequence will be plotted
+        const xyOutputValues = [];
+        for(let j=0; j<N; j++) {
+            xyOutputValues.push({x:j,y:yc[j]});
+        }
+        new Chart("outputResp", {
+            type: "scatter",
+            data: {
+                datasets: [{
+                    pointRadius: 4,
+                    pointBackgroundColor: "rgb(0,0,255)",
+                    data: xyOutputValues
+                }]
+            },
+            options: {
+                legend: {display: false}
+            }
+        });
+
+        // specific texts are displayed
+        document.getElementById("inputResp").style.display ="block";
+        document.getElementById("input-title").style.display ="block";
+        document.getElementById("impulseResp").style.display ="block";
+        document.getElementById("impulse-title").style.display ="block";
+        document.getElementById("outputResp").style.display ="block";
+        document.getElementById("output-title").style.display ="block";
+        document.getElementById("exp-part-1").style.display ="block";
+        document.getElementById("exp-part-2").style.display ="block";
+        document.getElementById("exp-part-3").style.display ="block";
+        document.getElementById("exp-part-4").style.display ="block";
+        document.getElementById("exp-part-5").style.display ="block";
+    }
+</script>
+
+    <script src="responsive.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

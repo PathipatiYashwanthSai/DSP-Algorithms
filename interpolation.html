@@ -1,0 +1,207 @@
+---
+title: Interpolation
+layout: default
+---
+
+<div class="container">
+    <aside>
+        <div class="top">
+            <h2>DSP</h2>
+            <div class="close" id="close-btn">
+                <span class="material-symbols-sharp">close</span>
+            </div>
+        </div>
+        <div class="sidebar">
+            <a href="index.html" class="active">
+                <h3>Home Page</h3>
+            </a>
+            <a href="CrossCorr.html" class="">
+                <h3>Cross Correlation</h3>
+            </a>
+            <a href="AutoCorr.html" class="">
+                <h3>Auto Correlation</h3>
+            </a>
+            <a href="LinearConvolution.html" class="">
+                <h3>Linear Convolution</h3>
+            </a>
+            <a href="CircularConvolution.html" class="">
+                <h3>Circular Convolution</h3>
+            </a>
+            <a href="DFT.html" class="">
+                <h3>Discrete Fourier Transform</h3>
+            </a>
+            <a href="IDFT.html" class="">
+                <h3>Inverse Discrete Fourier Transform</h3>
+            </a>
+            <a href="Properties.html" class="">
+                <h3>DFT & IDFT Properties</h3>
+            </a>
+            <a href="Linearity.html" class="">
+                <h3>Linearity Property</h3>
+            </a>
+            <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Linear Convolution Property</h3>
+            </a>
+            <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Circular Convolution Property</h3>
+            </a>
+            <a href="CircularTimeShift.html" class="">
+                <h3>Circular Timeshift Property</h3>
+            </a>
+            <a href="Modulation.html" class="">
+                <h3>Modulation Property</h3>
+            </a>
+        </div>
+    </aside>
+    <div class="flex-container">
+        <main>
+            <h1 style = "text-align:center;">
+                Interpolation
+              </h1>
+              <br><br>
+              <p>
+                In the mathematical field of numerical analysis, interpolation is a type of estimation, a method of constructing (finding) new data points based on the range of a discrete set of known data points.
+  
+              </p>
+              In engineering and science, one often has a number of data points, obtained by sampling or experimentation, which represent the values of a function for a limited number of values of the independent variable. It is often required to interpolate; that is, estimate the value of that function for an intermediate value of the independent variable.
+              <p>
+              
+    A closely related problem is the approximation of a complicated function by a simple function. Suppose the formula for some given function is known, but too complicated to evaluate efficiently. A few data points from the original function can be interpolated to produce a simpler function which is still fairly close to the original. The resulting gain in simplicity may outweigh the loss from interpolation error and give better performance in calculation process.
+              </p>
+              <p>
+              Interpolation is the exact opposite of decimation. It is an information preserving operation, in that all samples of x[n] are present in the expanded signal y[n]. The mathematical definition of L-fold interpolation is defined by Equation given below andthe block diagram notation is depicted in Figure . Interpolation works by inserting (L–1) zero-valued samples for each input sample. The sampling rate therefore increases from Fs to LFs. With reference to Figure , the expansionprocess is followed by a unique digital low-pass filter called an anti-imaging filter. Although the expansion process does not cause aliasing in the interpolated signal, it does however yield undesirable replicas in the signal’s frequencyspectrum. We shall see how this special filter is necessary to remove these replicas from the frequency
+  
+    </p>
+    <p>The formula for the interpolation is given by </p>
+    <img src="./assets/Interpolation1.png" class="mx-auto d-block" style="width:px;height:px;">
+    <p>
+    where
+    </p>
+    <br><br>
+    <img src="./assets/Interpolation2.png" class="mx-auto d-block" style="width:px;height:px;">
+  
+    <br><br>
+    <p>
+      Now let us see discrete time signals of interpolation and decimation.
+    </p>
+  
+    <p>
+      a shows the interpolation of decimated signal b, like this we will sample average signals in between zeroes for interpolating the signal after upsample and c is the block diagram of interpolation which consists of upsample with interpolating filter.
+    </p>
+    <br><br>
+    <img src="./assets/Interpolation3.png" class="mx-auto d-block">
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-sharp active">light_mode</span>
+                    <span class="material-symbols-sharp">dark_mode</span>
+                </div>
+            </div>
+            <div class="interface-section">
+                <br><br>
+                <h3>Enter the input sequence :</h3>
+                <input id="input" placeholder="1,2,3,4"/>
+                <br><br>
+                <h3>Enter sampling factor :</h3>
+                <input id="samplingfactor" type="number" min="0"/>
+                <br><br>
+                <button type="submit" class="btn btn-warning" onclick="interpolation()">Submit</button>
+                <br><br>
+                <h4 id="response"></h4>
+                <br><br>
+                <h5 id = "response"></h5>
+                <h4 class="plot-title" id="input-title">Input sequence :</h4><br>
+                <canvas class="outputSequence" id="inputResponse"></canvas>
+                <br><br>
+                <h4 class="plot-title" id="upsample-title">signal after up sampling :</h4><br>
+                <canvas class="outputSequence" id="upsampleResponse"></canvas>
+                <br><br>
+                <h4 class="plot-title" id="output-title">Ouput sequence after filtering :</h4><br>
+                <canvas class="outputSequence" id="outputResponse"></canvas><br><br>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function interpolation() {
+        let input = document.getElementById("input").value.split(","); //emter the input sequence
+        let samplingfactor = document.getElementById("samplingfactor").value; //enter sampling factor
+        const output1 = []; //output after upsample
+        const output2= []; //output after filtering
+        for(let c = 0;c < input.length;c++){
+          output1.push(input[c])                   //by using for loop and modulus condition
+          output2.push(input[c])
+            for(let f = 0;f  < samplingfactor - 1;f++){
+              output1.push(parseFloat(((input[c + 1] - input[c])/samplingfactor)*(f + 1)) + parseInt(input[c]))
+              output2.push(0)
+            
+        }
+    }
+    for(let g = 0;g < samplingfactor-1;g++){
+      output1.pop()
+}
+     
+
+
+new Chart("inputResponse", {
+    type: "line",
+    data: {                                           //plotting the  discrete input sequence
+      labels: [...Array(input.length).keys()],
+      datasets: [{
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "rgba(0,0,255,0.1)",
+        data: input
+      }]
+    },
+    options: {
+      legend: {display: false},
+    }
+  }); 
+  new Chart("upsampleResponse", {
+    type: "line",                                     //plotting the sequence after upsample
+    data: {
+      labels: [...Array(output2.length).keys()],
+      datasets: [{
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "rgba(0,0,255,0.1)",
+        data: output2
+      }]
+    },
+    options: {
+      legend: {display: false},
+      }
+    }
+    );
+  new Chart("outputResponse", {                     //plotting the sequence after filtering and smoothing
+    type: "line",
+    data: {
+      labels: [...Array(output1.length).keys()],
+      datasets: [{
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "rgba(0,0,255,0.1)",
+        data: output1
+      }]
+    },
+    options: {
+      legend: {display: false},
+      }
+    }
+  );
+  document.getElementById("inputResponse").style.display = 'block';
+  document.getElementById("input-title").style.display = 'block';
+  document.getElementById("outputResponse").style.display = 'block';
+  document.getElementById("output-title").style.display = 'block';
+  document.getElementById("upsample-title").style.display = "block";
+  document.getElementById("upsampleResponse").style.display = "block";
+}
+</script>

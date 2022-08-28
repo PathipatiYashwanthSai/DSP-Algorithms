@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="p5.css">
+    <title>FIR directform</title>
+    <style>
+      h4{
+       border:2px solid red;
+       width:49px;
+       height:49px;
+       background-color: aquamarine;
+       position:relative;
+       overflow:hidden;
+    }
+    .pp{
+    margin-left: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="container">
+            <div class="theory" style=" overflow:visible;">
+                <h3>DIRECTFORM REALIZATION OF FIR SYSTEM:</h3>
+                <h3>THEORY:</h3>
+             <p>
+              For a FIR design, we have a couple of options such as the windowing method, the frequency sampling method, and more. Then, we need to choose a realization structure for the obtained system function. In other words, there are several structures which exhibit the same system function 
+              H(z)
+              . One consideration for choosing the appropriate structure is the sensitivity to coefficient quantization. Since a digital filter uses a finite number of bits to represent signals and coefficients, we need structures which can somehow retain the target filter specifications even after quantizing the coefficients. In addition, sometimes we observe that a particular structure can dramatically reduce the computational complexity of the system.
+             </p>
+             <img src="infofir.jpeg" style="width:100%;">
+            </div>
+        </div>
+        <div class="interface-section" style="width:1200px;height:1000px;overflow-y: scroll;">
+            <div class="container pt-2 input-block">
+                <div>
+                    <b>TRANSFER FUNCTION:</b><br>
+                    <font size="6">   a<SUB><SMALL>0</SMALL></SUB> +a<SUB><SMALL>2</SUB></SMALL>   Z<SUP><SMALL>-1</SMALL></SUP>+ a<SUB><SMALL>2</SUB></SMALL>   Z<SUP><SMALL>-2</SMALL></SUP> +a<SUB><SMALL>3</SUB></SMALL>    Z<SUP><SMALL>-3</SMALL></SUP></font>               
+                    <br><br>
+                    <h6>a0:  </h6><input type="number" id="0" onclick="fn0()"  value="0" step="1"  "> <br>
+                    <h6>a1:  </h6><input type="number" id="1" onchange="fn1()"  value="0" step="1" style="position:relative; "><br>
+                    <h6>a2:  </h6><input type="number" id="2" onchange="fn2()"  value="0" step="1" style="position:absolute;"> <br>
+                    <h6>a3:  </h6><input type="number" id="3" onchange="fn3()"  value="0" step="1" style="position:absolute; "><br>
+                </div>
+                <br>
+                <h2>REALIZATION OUTPUT:</h2>
+                <div>
+                <img src="firdirectform.jpeg" style="overflow: scroll; width:95%;right:10px;">
+                <h4 id="b1" style="position:absolute; top:522px;  right:399px;"></h4>
+                <h4 id="b2" style="position:absolute; top:522px;  right:302px;"></h4>
+                <h4 id="b3" style="position:absolute; top:522px;  right:204px;"></h4>
+                <h4 id="b4" style="position:absolute; top:522px;  right:108px;"></h4>
+                
+                </div>
+                <br><br><br><br><br><br>
+              </div>    
+      </div>
+    <script>
+        function fn0(){
+          const var_1=document.getElementById("0").value;
+          document.getElementById("b1").innerText=var_1;
+        }
+        function fn1(){
+          const var_2=document.getElementById("1").value;
+          document.getElementById("b2").innerText=var_2;
+        }
+        function fn2(){
+          const var_3=document.getElementById("2").value;
+          document.getElementById("b3").innerText=var_3;
+        }
+        function fn3(){
+          const var_4=document.getElementById("3").value;
+          document.getElementById("b4").innerText=var_4;
+        }
+        function fn4(){
+          const var_5=document.getElementById("4").value;
+          document.getElementById("b5").innerText=-var_5;
+        }
+        function fn5(){
+          const var_6=document.getElementById("5").value;
+          document.getElementById("b6").innerText=-var_6;
+        }
+        function fn6(){
+          const var_7=document.getElementById("6").value;
+          document.getElementById("b7").innerText=-var_7;
+        }
+          
+        </script>
+ 
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="page.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>table, th, td {
+        border:1px solid black;
+      }</style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container pt-2">
+    <h1 style="text-align:center;">Design OF FIR Filters using Windows</h1>
+    <p>The procedure for designing FIR filter using windows is:</p>
+    <ol>
+        <li>Choose the desired frequency response of the filter Hd(ω).
+        </li>
+        <li>Take inverse Fourier transform of Hd(ω ) to obtain the desired impulse response
+            hd(n).</li>
+        <li>
+            Choose a window sequence w(n) and multiply hd(n) by w(n) to convert the infinite 
+            duration impulse response to a finite duration impulse response h(n).
+        </li>
+        <li>The transfer function H(z) of the filter is obtained by taking Z-transform of h(n).</li>
+    </ol>
+    <h2>Rectangular Window</h2>
+    <p>The weighting function (window function) for an N-point rectangular window is given by,</p>
+    <p><img src="IMG_20220716_113813.JPG"></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;If we design a low-pass filter using rectangular window, we find that the frequency 
+        response differs from the desired frequency response in many ways. It does not follow quick 
+        transitions in the desired response. The desired response of a low-pass filter changes abruptly 
+        from pass band to stop band, but the actual frequency response changes slowly. This region 
+        of gradual change is called filter’s transition region, which is due to the convolution of the 
+        desired response with the window response’s main lobe. The width of the transition region 
+        depends on the width of the main lobe. As the filter length N increases, the main lobe 
+        becomes narrower decreasing the width of the transition region</p>
+    <h2>Triangular or Bartlett Window</h2>
+    <p>The triangular window has been chosen such that it has tapered sequences from the middle 
+        on either side. The window function wT (n) is defined as,</p>
+    <p><img src="IMG_20220716_113932.JPG" width="50%"></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;In magnitude response of triangular window, the side lobe level is smaller than that of 
+        the rectangular window being reduced from –13 dB to –25 dB. However, the main lobe 
+        width is now 8 /N or twice that of the rectangular window.</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;The triangular window produces a smooth magnitude response in both pass band and 
+        stop band, but it has the following disadvantages when compared to magnitude response obtained by using rectangular window:</p>
+    <ol>
+        <li>The transition region is more.
+        </li>
+        <li>The attenuation in stop band is less</li>
+    </ol>
+    <p>Because of these characteristics, the triangular window is not usually a good choice</p>
+    <h3>Raised Cosine Window</h3>
+    <p>The raised cosine window multiplies the central Fourier coefficients by approximately unity 
+        and smoothly truncates the Fourier coefficients toward the ends of the filter. The smoother 
+        ends and broader middle section produces less distortion of hd(n) around n = 0. It is also 
+        called generalized Hamming window.</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;The window sequence is of the form:</p>
+    <p><img src="IMG_20220716_113944.JPG" width="55%"></p>
+    <h3>Hanning window</h3>
+    <p>The Hanning window function is given by
+    </p>
+    <p><img src="IMG_20220716_114725.JPG" width="50%"></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;The width of main lobe is 8 /N, i.e., twice that of rectangular window which results in 
+        doubling of the transition region of the filter. The peak of the first side lobe is –32 dB 
+        relative to the maximum value. This results in smaller ripples in both pass band and stop 
+        band of the low-pass filter designed using Hanning window. The minimum stop band 
+        attenuation of the filter is 44 dB. At higher frequencies the stop band attenuation is even 
+        greater. When compared to triangular window, the main lobe width is same, but the 
+        magnitude of the side lobe is reduced, hence the Hanning window is preferable to triangular 
+        window.</p>
+    <h3>Hamming window</h3>
+    <p>The Hamming window function is given by</p>
+    <p><img src="IMG_20220716_114738.JPG" width="50%"></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;In the magnitude response for N = 31, the magnitude of the first side lobe is down about 41dB 
+        from the main lobe peak, an improvement of 10 dB relative to the Hanning window. But this 
+        improvement is achieved at the expense of the side lobe magnitudes at higher frequencies, 
+        which are almost constant with frequency. The width of the main lobe is 8 /N. In the magnitude 
+        response of low-pass filter designed using Hamming window, the first side lobe peak is –51 dB, 
+        which is –7 dB lesser with respect to the Hanning window filter. However, at higher 
+        frequencies, the stop band attenuation is low when compared to that of Hanning window. 
+        Because the Hamming window generates lesser oscillations in the side lobes than the Hanning 
+        window for the same main lobe width, the Hamming window is generally preferred.</p>
+    <h3>Blackmann window</h3>
+    <p>The Blackman window function is another type of cosine window and given by the equation,</p>
+    <p><img src="IMG_20220716_115139.JPG" width="50%"></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;In the magnitude response, the width of the main lobe is 12π /N, which is highest among 
+        windows. The peak of the first side lobe is at –58 dB and the side lobe magnitude decreases with
+        frequency. This desirable feature is achieved at the expense of increased main lobe width. 
+        However, the main lobe width can be reduced by increasing the value of N. The side lobe
+        attenuation of a low-pass filter using Blackman window is –78 dB.
+        </p>
+    <table>
+        <tr>
+            <th>Type of 
+                window</th>
+            <th>Approximate 
+                transition
+                width of main lobe</th>
+            <th>Minimum stop 
+                band attenuation 
+                (dB)</th>
+            <th>Peak of first 
+                side lobe 
+                (dB)</th>
+        </tr>
+        <tr>
+            <td>Rectangular</td>
+            <td>4π /N</td>
+            <td>-21</td>
+            <td>-13</td>
+        </tr>
+        <tr>
+            <td>Bartlett
+            </td>
+            <td>8π /N</td>
+            <td>-25</td>
+            <td>-25</td>
+        </tr>
+        <tr>
+        <td>Hanning</td>
+        <td>8π /N</td>
+        <td>-44</td>
+        <td>-31</td>
+            </tr>
+        <tr>
+            <td>Hamming</td>
+            <td>8π /N</td>
+            <td>-51</td>
+            <td>-41</td>
+        </tr>
+        <tr>
+            <td>Blackmann</td>
+            <td>12π /N</td>
+            <td>-78</td>
+            <td>-58</td>
+        </tr>
+    </table>
+    <h4>Example</h4>
+    <p>Design an ideal low-pass filter with N = 11 with a frequency response given by,</p>
+    <p><img src="IMG_20220716_120510.JPG" width="45%"></p>
+    <h4>Solution</h4>
+    <p>The filter coefficients are given by,</p>
+    <p><img src="IMG_20220716_120752.JPG" width="45%"></p>
+    <p>Assuming the window function,</p>
+    <p><img src="IMG_20220716_120904.JPG" width="45%"></p>
+    <p>Therefore, the designed filter coefficients are given as,</p>
+    <p><img src="IMG_20220716_121104.JPG" width="50%"></p>
+    <p>The above coefficients correspond to a non-causal filter which is not realizable.
+        The realizable digital filter transfer function H(z) is given by
+        </p>
+    <p><img src="IMG_20220716_121113.JPG" width="45%"></p>
+    <p>Therefore, the coefficients of the realizable digital filter are:
+    </p>
+    <p><img src="IMG_20220716_121123.JPG" width="50%"></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

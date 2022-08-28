@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Sharp">
+    <link rel="stylesheet" href="page.css">
+    <title>Fractional Sampling</title>
+</head>
+<body>
+    <!-- <script src="https://pagecdn.io/lib/mathjs/10.5.3/math.min.js" crossorigin="anonymous"></script> -->
+    <script src="https://pagecdn.io/lib/mathjs/11.0.1/math.min.js" crossorigin="anonymous"  ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <div class="container">
+    <aside>
+        <div class="top">
+            <h2>DSP</h2>
+            <div class="close" id="close-btn">
+                <span class="material-symbols-sharp">close</span>
+            </div>
+        </div>
+        <div class="sidebar">
+            <a href="index.html" class="active">
+                <h3>Home Page</h3>
+            </a>
+            <a href="CrossCorr.html" class="">
+                <h3>Cross Correlation</h3>
+            </a>
+            <a href="AutoCorr.html" class="">
+                <h3>Auto Correlation</h3>
+            </a>
+            <a href="LinearConvolution.html" class="">
+                <h3>Linear Convolution</h3>
+            </a>
+            <a href="CircularConvolution.html" class="">
+                <h3>Circular Convolution</h3>
+            </a>
+            <a href="DFT.html" class="">
+                <h3>Discrete Fourier Transform</h3>
+            </a>
+            <a href="IDFT.html" class="">
+                <h3>Inverse Discrete Fourier Transform</h3>
+            </a>
+            <a href="Properties.html" class="">
+                <h3>DFT & IDFT Properties</h3>
+            </a>
+            <a href="Linearity.html" class="">
+                <h3>Linearity Property</h3>
+            </a>
+            <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Linear Convolution Property</h3>
+            </a>
+            <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+                <h3>Circular Convolution Property</h3>
+            </a>
+            <a href="CircularTimeShift.html" class="">
+                <h3>Circular Timeshift Property</h3>
+            </a>
+            <a href="Modulation.html" class="">
+                <h3>Modulation Property</h3>
+            </a>
+        </div>
+    </aside>
+    <div class="flex-container">
+        <main>
+            <h1 style = "text-align:center;">
+                Fractional sampling rate alteration
+              </h1>
+              <br><br>
+              <p>Inorder to alter the sampling rate by any rational number M/L, first upsample the signal by L smoothen it by a filter with cut off frequency min (pi/M,pi/L) and then downsample by M</p>
+              <p>If Fsample or Fs is the original sampling rate,now if we want to reduce the sample rate by M/L. the new sample rate would be LFs/M</p>
+              <br><br>
+              <img src="./assets/fractionalsamplingratealteration.png" class="mx-auto d-block" style="width:px;height:px;">
+              <br><br>
+           <p>
+              The change of the sampling frequency by a rational factor L/M, sometimes called the fractional sampling rate alteration or resampling, can be achieved by increasing the sampling frequency by L first, and then decreasing by M. Hence, the sampling rate conversion by L/M is achieved by a cascading factor-of-L interpolator and a factor-of-M decimator as indicated in Figure . Here, factors L and M are positive relatively prime integers, i.e. there is no common integer between L and M. In the implementation scheme of Figure , the original signal {x[n]} is up-sampled-by-L and then filtered by the lowpass interpolation filter HI(z). The interpolated signal {w[r]} is filtered with the lowpass antialiasing filter HD(z), and then down-sampled-by-M. The sampling rate of the output signal {y[m]} is L/M times the sampling rate of the original signal {x[n]}. Since the interpolation filter HI(z) and the decimation filter HD(z) operate at the same sampling rate, they can be replaced by the single lowpass filter H(z) as indicated in Figure. The lowpass filter H(z) should be designed to eliminate imaging caused by the up-sampling, and to avoid aliasing produced in down-sampling. With the properly designed filter H(z), the fractional sampling rate conversion can be implemented by using the computationally efficient structure of Figure.
+           </p>
+           <img src="./assets/fractionalsamplingratealteration1.png" class="mx-auto d-block" style="width:px;height:px;">
+           <br><br>
+           <p>
+            The above picture has two blocks (a) and (b) shows the sampling rate alteration can also be done by interpolation and decimation which is just like upsample and ddownsample , but here we use anti aliasing filter and interpolating filter where (a) shows upsampling with filter , downsampling with filter and (b) shows the complete setup of interpolation and decimation
+           </p>
+           <p>
+            Even if we use interpolating method or upsampling method, the rate alteration remains same
+           </p>
+           <p>
+            An example of sampling-rate conversion would take place when data from is transferred . Here the sampling-rate is increased from 44.1 kHz to 48 kHz. To enable this process the non-integer factor has to be approximated by a rational number: 
+           </p>
+           <p>
+            L/M = 48/44.1 = 1.08844
+           </p>
+           <p>
+            Hence, the sampling-rate conversion is achieved by interpolating by L i.e. from 44.1 kHz to [44.1x160] = 7056 kHz. Then decimating by M i.e. from 7056 kHz to [7056/147] = 48 kHz. 
+  
+           </p>
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-sharp active">light_mode</span>
+                    <span class="material-symbols-sharp">dark_mode</span>
+                </div>
+            </div>
+            <div class="interface-section">
+                <br><br>
+                <h3>Enter the input sequence :</h3>
+                <input id="input" placeholder="1,2,3,4"/>
+                <br><br>
+                <h3>Enter upsample rate :</h3>
+                <input id="upsamplefactor" type="number" min="0"/>
+                <br><br>
+                <h4>Enter downsample rate :</h4>
+                <input id = "downsamplefactor" type = "number" min = "0"/>
+                <br><br>
+                <button type="submit" class="btn btn-warning" onclick="ratealteration()">Submit</button>
+                <br><br>
+                <h4 id="res"></h4>
+                <br><br>
+                <h5 id = "resp"></h5>
+                <h4 class="plot-title" id="input-title">Input sequence :</h4><br>
+                <canvas class="outputSequence" id="inputResp"></canvas>
+                <br><br>
+                <h4 class="plot-title" id="upsample-title">signal after upsampling and filtering :</h4><br>
+                <canvas class="outputSequence" id="upsampleResp"></canvas>
+                <br><br>
+                <h4 class="plot-title" id="output-title">Ouput sequence after downsampling :</h4><br>
+                <canvas class="outputSequence" id="outputResp"></canvas><br><br>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function ratealteration() {
+        let input = document.getElementById("input").value.split(",");            //enter input sequence
+        let upsamplefactor = document.getElementById("upsamplefactor").value;      //enter usample factor
+        let downsamplefactor = document.getElementById("downsamplefactor").value;   //enter dwnsample factor
+        const output1 = [];           
+        const output2 = [];           //output after interpolating
+        const output3 = [];           //output after downsampling the interpolating signal
+        for(let j = 0; j< input.length;j++){
+          output1.push(input[j])               
+          output2.push(input[j])
+            for(let f = 0;f  < upsamplefactor - 1;f++){
+              output1.push(parseFloat(((input[j + 1] - input[downsamplefactor])/upsamplefactor)*(f + 1)) + parseInt(input[downsamplefactor]))
+                output2.push(0)
+            
+        }
+    }
+    for(let g = 0;g < upsamplefactor-1;g++){
+      output1.pop()
+    
+}
+for(let m = 0;m < output1.length;m++){
+    if(m % downsamplefactor == 0){
+      output3.push(output1[m])
+    }
+}
+
+     
+
+
+new Chart("inputResp", {
+    type: "line",
+    data: {
+      labels: [...Array(input.length).keys()],         //ploting the input sequence
+      datasets: [{                  
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "rgba(0,0,255,0.1)",
+        data: input
+      }]
+    },
+    options: {
+      legend: {display: false},
+    }
+  });
+  new Chart("upsampleResp", {
+    type: "line",
+    data: {
+      labels: [...Array(output2.length).keys()],       //ploting after upsampling
+      datasets: [{
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "rgba(0,0,255,0.1)",
+        data: output1
+      }]
+    },
+    options: {
+      legend: {display: false},
+      }
+    }
+    );
+  new Chart("outputResp", {        
+    type: "line",
+    data: {
+      labels: [...Array(output1.length).keys()],          //plotting after downsamling
+      datasets: [{
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "rgba(0,0,255,0.1)",
+        data: output3
+      }]
+    },
+    options: {
+      legend: {display: false},
+      }
+    }
+  );
+  document.getElementById("inputResp").style.display = 'block';
+  document.getElementById("input-title").style.display = 'block';
+  document.getElementById("outputResp").style.display = 'block';
+  document.getElementById("output-title").style.display = 'block';
+  document.getElementById("upsample-title").style.display = "block";
+  document.getElementById("upsampleResp").style.display = "block";
+  }
+</script>
+    <script src="responsive.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
