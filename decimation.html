@@ -113,6 +113,9 @@ layout: default
             <a href="chebyshev.html" class="">
                 <h3>Chebyshev Filters</h3>
             </a>
+            <a href="aboutus.html" class="">
+                <h3>About Us</h3>
+            </a>
         </div>
     </aside>
     <div class="flex-container">
@@ -134,13 +137,15 @@ layout: default
             <p>
             Decimation can be regarded as the discrete-time counterpart of sampling. Whereas in sampling we start with a continuous-time signal x(t) and convert it into a sequence of samples x[n], in decimation we start with a discrete-time signal x[n] and convert it into another discrete-time signal y[n], which consists of sub-samples of x[n]. Thus, the formal definition of M-fold decimation, or down-sampling, is defined by Equation . In decimation, the sampling rate is reduced from Fs to Fs/M by discarding M - 1 samples for every M samples in the original sequence. 
             </p>
-            <img src="./assets/decimation2.jpeg.png" class="mx-auto d-block" style="width:px;height:px;">
+            <img src="./assets/decimation2.jpeg.png" class="mx-auto d-block" style="width:50%;height:8%;">
             <br><br>
-            <img src="./assets/decimation3.png" class="mx-auto d-block" style="width:px;height:px;">
-            <p>The block diagram notation of the decimation process is depicted in Figure 9.1. An anti-aliasing digital filter precedes the down-sampler to prevent aliasing from occurring, due to the lower sampling rate. here we will discuss the concept of 3-fold decimation i.e. M = 3. Here, the samples of x[n] corresponding to n = …, -2, 1, 4,… and n = …, -1, 2, 5,… are lost in the decimation process. In general, the samples of x[n] corresponding to n ≠ kM, where k is an integer, are discarded in M-fold decimation. In Figure 9.2 (b), it shows samples of the decimated signal y[n] spaced three times wider than the samples of x[n]. This is not a coincidence. In real time, the decimated signal appears at a slower rate than that of the original signal by a factor of M. If the sampling frequency of x[n] is Fs, then that of y[n] is Fs/M.</p>
+            <img src="./assets/decimation3.png" class="mx-auto d-block" style="width:90%;height:20%;">
+            <br><br>
+            <p>The block diagram notation of the decimation process is depicted in Figure 9.1. An anti-aliasing digital filter precedes the down-sampler to prevent aliasing from occurring, due to the lower sampling rate. here we will discuss the concept of 3-fold decimation i.e. M = 3. Here, the samples of x[n] corresponding to n = …, -2, 1, 4,… and n = …, -1, 2, 5,… are lost in the decimation process. In general, the samples of x[n] corresponding to n ≠ kM, where k is an integer, are discarded in M-fold decimation. In Figure , it shows samples of the decimated signal y[n] spaced three times wider than the samples of x[n]. This is not a coincidence. In real time, the decimated signal appears at a slower rate than that of the original signal by a factor of M. If the sampling frequency of x[n] is Fs, then that of y[n] is Fs/M.</p>
+
             <p>Let us consider the following example of decimation with anti aliasing filter and a frequency of 6khz with a down sampe of 3 is shown below.and let us consider, the input is x(n) and after passing through anti-aliaing filter,The output is w(n) and after downsampling with m = 3 the output is y(m).</p>
-            <br></br>
-            <img src="./assets/decimation.jpeg" class="mx-auto d-block" style="width:440px;height:102px;"><br><br>
+            <br><br>
+            <img src="./assets/decimation.jpeg" class="mx-auto d-block" style="width:80%;height:102px;"><br><br>
         </main>
         <div class="right">
             <div class="top">

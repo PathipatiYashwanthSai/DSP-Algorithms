@@ -114,13 +114,17 @@ layout: default
         <a href="chebyshev.html" class="">
             <h3>Chebyshev Filters</h3>
         </a>
+        <a href="aboutus.html" class="">
+            <h3>About Us</h3>
+        </a>
         </div>
     </aside>
     <div class="flex-container">
         <main>
-            <h3 style = "text-align:center;;">
+            <h1 style = "text-align:center;;">
                 Down sample
-              </h3>
+              </h1>
+              <br><br>
                 
               
               <div>
@@ -147,7 +151,7 @@ layout: default
     Step 2 alone allows high-frequency signal components to be misinterpreted by subsequent users of the data, which is a form of distortion called aliasing. Step 1, when necessary, suppresses aliasing to an acceptable level. In this application, the filter is called an anti-aliasing filter, and its design is discussed below. Also see undersampling for information about decimating bandpass functions and signals.
     When the anti-aliasing filter is an IIR design, it relies on feedback from output to input, prior to the second step. With FIR filtering, it is an easy matter to compute only every Mth output. The calculation performed by a decimating FIR filter for the nth output sample is a dot product.
               </p>
-              <img src="./assets/Downsample1.svg" class="mx-auto d-block" style="width:250px;height:102px;"> 
+              <img src="./assets/Downsample1.svg" class="mx-auto d-block" width=10% height=5% style="background:white;"> 
               <p>
                 where the h[k] sequence is the impulse response, and K is its length.  x[n] represents the input sequence being downsampled. In a general purpose processor, after computing y[n], the easiest way to compute y[n+1] is to advance the starting index in the x[n] array by M, and recompute the dot product. In the case M=2, h[k] can be designed as a half-band filter, where almost half of the coefficients are zero and need not be included in the dot products.
               </p>

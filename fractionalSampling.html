@@ -114,6 +114,9 @@ layout: default
         <a href="chebyshev.html" class="">
             <h3>Chebyshev Filters</h3>
         </a>
+        <a href="aboutus.html" class="">
+            <h3>About Us</h3>
+        </a>
         </div>
     </aside>
     <div class="flex-container">
@@ -125,12 +128,12 @@ layout: default
               <p>Inorder to alter the sampling rate by any rational number M/L, first upsample the signal by L smoothen it by a filter with cut off frequency min (pi/M,pi/L) and then downsample by M</p>
               <p>If Fsample or Fs is the original sampling rate,now if we want to reduce the sample rate by M/L. the new sample rate would be LFs/M</p>
               <br><br>
-              <img src="./assets/fractionalsamplingratealteration.png" class="mx-auto d-block" style="width:px;height:px;">
+              <img src="./assets/fractionalsamplingratealteration.png" class="mx-auto d-block" style="width:90%;height:px;">
               <br><br>
            <p>
               The change of the sampling frequency by a rational factor L/M, sometimes called the fractional sampling rate alteration or resampling, can be achieved by increasing the sampling frequency by L first, and then decreasing by M. Hence, the sampling rate conversion by L/M is achieved by a cascading factor-of-L interpolator and a factor-of-M decimator as indicated in Figure . Here, factors L and M are positive relatively prime integers, i.e. there is no common integer between L and M. In the implementation scheme of Figure , the original signal {x[n]} is up-sampled-by-L and then filtered by the lowpass interpolation filter HI(z). The interpolated signal {w[r]} is filtered with the lowpass antialiasing filter HD(z), and then down-sampled-by-M. The sampling rate of the output signal {y[m]} is L/M times the sampling rate of the original signal {x[n]}. Since the interpolation filter HI(z) and the decimation filter HD(z) operate at the same sampling rate, they can be replaced by the single lowpass filter H(z) as indicated in Figure. The lowpass filter H(z) should be designed to eliminate imaging caused by the up-sampling, and to avoid aliasing produced in down-sampling. With the properly designed filter H(z), the fractional sampling rate conversion can be implemented by using the computationally efficient structure of Figure.
            </p>
-           <img src="./assets/fractionalsamplingratealteration1.png" class="mx-auto d-block" style="width:px;height:px;">
+           <img src="./assets/fractionalsamplingratealteration1.png" class="mx-auto d-block" style="width:90%;height:px;">
            <br><br>
            <p>
             The above picture has two blocks (a) and (b) shows the sampling rate alteration can also be done by interpolation and decimation which is just like upsample and ddownsample , but here we use anti aliasing filter and interpolating filter where (a) shows upsampling with filter , downsampling with filter and (b) shows the complete setup of interpolation and decimation

@@ -114,6 +114,9 @@ layout: default
             <a href="chebyshev.html" class="">
                 <h3>Chebyshev Filters</h3>
             </a>
+            <a href="aboutus.html" class="">
+              <h3>About Us</h3>
+          </a>
         </div>
     </aside>
     <div class="flex-container">
@@ -142,6 +145,88 @@ layout: default
               structure. However, the higher the order of the systems, the better would be its advantages. It<br>
               has no advantage for a direct form-I structure.<br>
              </p>
+             <br><br><br>
+             <h3>TRANSFER FUNCTION H(Z):</h3>
+                  
+                  <div>
+                    <img src="assets/tranferfunction.jpg" style="width:70%;right:5px"><br><br><br><br><br>
+                  
+                  <table>
+                    <tr>
+                      <td>
+                        <h6>d1:  </h6>
+                      </td>
+                      <td>
+                        <input type="text" id="0" onchange="fn0()"  value="0" >
+                      </td>
+                    
+                    </tr>
+                    <tr>
+                      <td>
+                        <h6>d2:  </h6>
+                      </td>
+                      <td>
+                        <input type="text" id="1" onchange="fn1()"  value="0">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h6>d3:  </h6>
+                      </td>
+                      <td>
+                        <input type="text" id="2" onchange="fn2()"  value="0" > 
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h6>p0:  </h6>
+                      </td>
+                      <td>
+                        <input type="text" id="3" onchange="fn3()"  value="0" >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h6>p1:  </h6>
+                      </td><td>
+                        <input type="text" id="4" onchange="fn4()"  value="0" >
+                      </td>
+    
+                    </tr>
+                    <tr>
+                      <td>
+                        <h6>p2:  </h6>
+                      </td>
+                      <td>
+                        <input type="text" id="5" onchange="fn5()"  value="0" >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h6>p3:  </h6>
+                      </td>
+                      <td>
+                        <input type="text" id="6" onchange="fn6()"  value="0" > 
+                      </td>
+                    </tr>
+                  </table>
+
+                </div>
+                <br><br>
+                <h2>REALIZATION OUTPUT:</h2>
+                <div>
+                <img src="assets/transposed.jpeg" style=" width:95%;right:10px;">
+                <h3>values of constants(-a1,-a2,-a3,b0,b1,b2,b3)<br> after realising are:
+                </h3>
+                <h4 id="b1" style=" top:600px;  right:279px;"></h4>
+                <h4 id="b2" style=" top:670px;  right:279px;"></h4>
+                <h4 id="b3" style=" top:740px;  right:279px;"></h4>
+                <h4 id="b4" style=" top:526px;  right:169px;"></h4>
+                <h4 id="b5" style=" top:600px;  right:169px;"></h4>
+                <h4 id="b6" style=" top:670px;  right:169px;"></h4>
+                <h4 id="b7" style=" top:740px;  right:169px;"></h4>
+                </div>
+                <br><br><br><br><br><br>
         </main>
         <div class="right">
             <div class="top">
@@ -156,3 +241,34 @@ layout: default
         </div>
     </div>
 </div>
+<script>
+    function fn0(){
+      const var_1=document.getElementById("0").value;
+      document.getElementById("b1").innerText=-var_1;
+    }
+    function fn1(){
+      const var_2=document.getElementById("1").value;
+      document.getElementById("b2").innerText=-var_2;
+    }
+    function fn2(){
+      const var_3=document.getElementById("2").value;
+      document.getElementById("b3").innerText=-var_3;
+    }
+    function fn3(){
+      const var_4=document.getElementById("3").value;
+      document.getElementById("b4").innerText=var_4;
+    }
+    function fn4(){
+      const var_5=document.getElementById("4").value;
+      document.getElementById("b5").innerText=var_5;
+    }
+    function fn5(){
+      const var_6=document.getElementById("5").value;
+      document.getElementById("b6").innerText=var_6;
+    }
+    function fn6(){
+      const var_7=document.getElementById("6").value;
+      document.getElementById("b7").innerText=var_7;
+    }
+      
+</script>
