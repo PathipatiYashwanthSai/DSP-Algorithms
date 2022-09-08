@@ -328,6 +328,8 @@ main {
     }
     .right{
         display:flex;
+        width: 100vw;
+        justify-content: center;
     }
     .right .top {
         position: fixed;
@@ -376,8 +378,8 @@ main {
 
     .right .interface-section {
         position: relative;
-        width: 100vw;
-        margin-left:13%;
+        width: 75vw;
+        overflow: auto;
     }
 }
 
@@ -508,18 +510,21 @@ main {
     color: var(--color-dark);
 }
 
+table {
+    width: max-content;
+}
+
 table, td {
     border: 1px solid rgb(90, 84, 84);
     text-align: center;
-    margin:0 auto;
-    min-width: 50%;
-    overflow: auto;
+    /* margin:0 auto; */
+    /* min-width: 50%; */
+    /* overflow: auto; */
 }
 th{
     border: 1px solid rgb(90, 84, 84);
     text-align: center;
-    min-width: 50%;
-    overflow: auto;
-    /* background-color: rgb(250, 235, 215); */
+    /* min-width: 50%;
+    overflow: auto; */
     background: var(--color-light);
 }
