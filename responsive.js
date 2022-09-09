@@ -2,6 +2,8 @@ const sideMenu = document.querySelector("aside");
 const menuBtn = document.querySelector("#menu-btn");
 const closeBtn = document.querySelector("#close-btn");
 const themeToggler = document.querySelector(".theme-toggler");
+let darkMode = localStorage.getItem('darkMode');
+
 
 // view sidebar
 menuBtn.addEventListener('click', () => {
@@ -14,20 +16,29 @@ closeBtn.addEventListener('click', () => {
 })
 
 // change theme
-themeToggler.addEventListener('click', () => {
+const enableDarkMode = () => {
+    document.body.classList.toggle('dark-theme-variables');
+    themeToggler.querySelector('span:nth-child(2)').classList.toggle("active");
+    themeToggler.querySelector('span:nth-child(1)').classList.remove("active");
+    localStorage.setItem('darkMode', 'enabled');
+};
+
+const disableDarkMode = () => {
     document.body.classList.toggle('dark-theme-variables');
     themeToggler.querySelector('span:nth-child(1)').classList.toggle("active");
-    themeToggler.querySelector('span:nth-child(2)').classList.toggle("active");
-})
+    themeToggler.querySelector('span:nth-child(2)').classList.remove("active");
+    localStorage.setItem('darkMode', null);
+};
 
-// Sidebar activation
-// let navLinks = document.querySelectorAll(".list");
-// for (let i = 0; i < navLinks.length; i++) {
-//     navLinks[i].onclick = function() {
-//         let j =0;
-//         while(j < navLinks.length) {
-//             navLinks[j++].className = 'list';
-//         }
-//         navLinks[i].className = 'list active';
-//     }
-// }
+if (darkMode === 'enabled') {
+    enableDarkMode();
+}
+
+themeToggler.addEventListener('click', () => {
+    darkMode = localStorage.getItem('darkMode');
+    if (darkMode !== 'enabled') {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
+});
