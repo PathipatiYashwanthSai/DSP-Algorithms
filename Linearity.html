@@ -118,70 +118,70 @@ layout: default
             </a>
         </div>
     </aside>
-    <div class="flex-container">
-        <main>
-            <h2 style="text-align: center;">Linearity Property</h2><br>
-            <p><h4><strong>Statement:</strong></h4> The DFT of the linear combination of two or more signals is the sum of the linear combination of DFT of individual signals.</p>
-            <p><h4><strong>Proof:</strong></h4> We will be proving the property</p>
-            <p>a<sub>1</sub>x<sub>1</sub>(n) + a<sub>2</sub>x<sub>2</sub>(n) ==> DFT[a<sub>1</sub>x<sub>1</sub>(n) + a<sub>2</sub>x<sub>2</sub>(n)] = a<sub>1</sub>X<sub>1</sub>[k] + a<sub>2</sub>X<sub>2</sub>[k] </p>
-            <pre><h6>We have the formula to calculate DFT:
-    
-                X(k) =   ∑<sub>n=0</sub><sup>N-1</sup> x(n)W<sub>N</sub><sup>nk</sup> where k = 0, 1, 2, … N-1.
-    
-                Here x(n) = a<sub>1</sub>x<sub>1</sub>(n) + a<sub>2</sub>x<sub>2</sub>(n)
-    
-                Therefore,
-    
-                X(k) =  ∑<sub>n=0</sub><sup>N-1</sup> a<sub>1</sub>x<sub>1</sub>(n) + a<sub>2</sub>x<sub>2</sub>(n)W<sub>N</sub><sup>nk</sup>
-    
-                =  ∑<sub>n=0</sub><sup>N-1</sup> a<sub>1</sub>x<sub>1</sub>(n)W<sub>N</sub><sup>nk</sup> +  ∑<sub>n=0</sub><sup>N-1</sup> a<sub>2</sub>x<sub>2</sub>(n)W<sub>N</sub><sup>nk</sup>
-    
-                a1 and a2 are constants and can be separated, therefore,
-    
-                = a<sub>1</sub> ∑<sub>n=0</sub><sup>N-1</sup> x<sub>1</sub>(n)W<sub>N</sub><sup>nk</sup> + a<sub>2</sub> ∑<sub>n=0</sub><sup>N-1</sup> x<sub>2</sub>(n)W<sub>N</sub><sup>nk</sup>
-    
-                = a<sub>1</sub>X<sub>1</sub>[k] + a<sub>2</sub>X<sub>2</sub>[k]
-    
-                Hence, proved.</h6></pre><br>
-            <p>The step-by-step values for the provided input is shown below :</p>
-            <table id="exp">
-            </table><hr>
-            <table id="exp1">
-            </table><hr>
-            <table id="exp2">
-            </table><hr>
-            <table id="exp3">
-            </table><br><br>
-        </main>
-        <div class="right">
-            <div class="top">
-                <button id="menu-btn">
-                    <span class="material-symbols-sharp">menu</span>
-                </button>
-                <div class="theme-toggler">
-                    <span class="material-symbols-sharp active">light_mode</span>
-                    <span class="material-symbols-sharp">dark_mode</span>
+    <div class="heyMain">
+        <div class="flex-container">
+            <main>
+                <h2 style="text-align: center;">Linearity Property</h2><br>
+                <p><h4><strong>Statement:</strong></h4> The DFT of the linear combination of two or more signals is the sum of the linear combination of DFT of individual signals.</p>
+                <p><h4><strong>Proof:</strong></h4> We will be proving the property</p>
+                <p>a<sub>1</sub>x<sub>1</sub>(n) + a<sub>2</sub>x<sub>2</sub>(n) ==> DFT[a<sub>1</sub>x<sub>1</sub>(n) + a<sub>2</sub>x<sub>2</sub>(n)] = a<sub>1</sub>X<sub>1</sub>[k] + a<sub>2</sub>X<sub>2</sub>[k] </p>
+                <h6 style="overflow-y: hidden;">We have the formula to calculate DFT:</h6>
+        
+                    <h6 style="overflow-y: hidden;">X(k) =   ∑<sub>n=0</sub><sup>N-1</sup> x(n)W<sub>N</sub><sup>nk</sup> where k = 0, 1, 2, … N-1.</h6>
+        
+                    <h6 style="overflow-y: hidden;">Here x(n) = a<sub>1</sub>x<sub>1</sub>(n) + a<sub>2</sub>x<sub>2</sub>(n)</h6>
+        
+                    <h6 style="overflow-y: hidden;">Therefore,</h6>
+        
+                    <h6 style="overflow-y: hidden;">X(k) =  ∑<sub>n=0</sub><sup>N-1</sup> a<sub>1</sub>x<sub>1</sub>(n) + a<sub>2</sub>x<sub>2</sub>(n)W<sub>N</sub><sup>nk</sup></h6>
+        
+                    <h6 style="overflow-y: hidden;">=  ∑<sub>n=0</sub><sup>N-1</sup> a<sub>1</sub>x<sub>1</sub>(n)W<sub>N</sub><sup>nk</sup> +  ∑<sub>n=0</sub><sup>N-1</sup> a<sub>2</sub>x<sub>2</sub>(n)W<sub>N</sub><sup>nk</sup></h6>
+        
+                    <h6 style="overflow-y: hidden;">a1 and a2 are constants and can be separated, therefore,</h6>
+        
+                    <h6 style="overflow-y: hidden;">= a<sub>1</sub> ∑<sub>n=0</sub><sup>N-1</sup> x<sub>1</sub>(n)W<sub>N</sub><sup>nk</sup> + a<sub>2</sub> ∑<sub>n=0</sub><sup>N-1</sup> x<sub>2</sub>(n)W<sub>N</sub><sup>nk</sup></h6>
+        
+                    <h6 style="overflow-y: hidden;">= a<sub>1</sub>X<sub>1</sub>[k] + a<sub>2</sub>X<sub>2</sub>[k]</h6>
+        
+                    <h6 style="overflow-y: hidden;">Hence, proved.</h6><br>
+                <p>
+                    The step-by-step values for the provided input is shown at the bottom of the page:
+                </p>
+            </main>
+            <div class="right">
+                <div class="top">
+                    <button id="menu-btn">
+                        <span class="material-symbols-sharp">menu</span>
+                    </button>
+                    <div class="theme-toggler">
+                        <span class="material-symbols-sharp active">light_mode</span>
+                        <span class="material-symbols-sharp">dark_mode</span>
+                    </div>
+                </div>
+                <div class="interface-section">
+                    <br>
+                    <h3>Enter the constant a1: </h3>
+                    <input id="a1" type="number"/>
+                    <br><br>
+                    <h3 style="overflow-y: hidden;">Enter x<sub>1</sub>(n) sequence:</h3>
+                    <input id="a" placeholder="1,2,3,4..."/>
+                    <br><br>
+                    <h3>Enter the constant a2: </h3>
+                    <input id="a2" type="number"/>
+                    <br><br>
+                    <h3 style="overflow-y: hidden;">Enter x<sub>2</sub>(n) sequence :</h3>
+                    <input id="b" placeholder="1,2,3,4..."/>
+                    <br><br>
+                    <button type="submit" class="btn btn-warning" onclick="lin()">Submit</button>
+                    <br><br>
+                    <h5 id="resp"></h5><br><br>
                 </div>
             </div>
-            <div class="interface-section">
-                <br>
-                <h3>Enter the constant a1: </h3>
-                <input id="a1" type="number"/>
-                <br><br>
-                <h3>Enter x<sub>1</sub>(n) sequence:</h3>
-                <input id="a" placeholder="1,2,3,4..."/>
-                <br><br>
-                <h3>Enter the constant a2: </h3>
-                <input id="a2" type="number"/>
-                <br><br>
-                <h3>Enter x<sub>2</sub>(n) sequence :</h3>
-                <input id="b" placeholder="1,2,3,4..."/>
-                <br><br>
-                <button type="submit" class="btn btn-warning" onclick="lin()">Submit</button>
-                <br><br>
-                <h4 id="resp"></h4><br><br>
-            </div>
         </div>
+        <table id="exp"></table><br>
+        <table id="exp1"></table><br>
+        <table id="exp2"></table><br>
+        <table id="exp3"></table><br><br>
     </div>
 </div>
 

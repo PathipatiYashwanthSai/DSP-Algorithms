@@ -118,69 +118,69 @@ layout: default
             </a>
         </div>
     </aside>
-    <div class="flex-container">
-        <main>
-            <h2 style="text-align: center;"> Circular Time Shift</h2><br>
-            <p><h4><strong>Statement:</strong></h4> Shifting the sequence in time domain by ‘l’ samples is equivalent to multiplying the sequence in frequency domain by the twiddle factor.</p>
-            <p><h4><strong>Proof:</strong></h4> We will be proving the property</p>
-            <p>x((n-l))N = x(n-l) ==> DFT[x(n-l)] = X(k)e<sup>-2πjlk/N</sup>
-            or X(k)W<sup>kl</sup><sub>N</sub></p> where W is the twiddle factor.
-            <pre><h6>According to DFT,
-    
-                DFT [x(n)] =   ∑<sub>n=0</sub><sup>N-1</sup> x(n) e<sup>-2πjkn/N</sup>
-                
-                DFT [x(n-l)] =  ∑<sub>n=0</sub><sup>N-1</sup> x(n-l) e<sup>-2πjkn/N</sup>
-                
-                Let n-l=p
-                
-                n=p+l
-                
-                DFT [x(p)] =  ∑<sub>p=0</sub><sup>N-1</sup> x(p) e<sup>-2πjk(p+l)/N</sup>
-                
-                = e<sup>-2πjkl/N</sup> ∑<sub>p=0</sub><sup>N-1</sup> x(p) e<sup>-2πjkp/N</sup>
-                
-                = X(k)e<sup>-2πjkl/N</sup>
-                
-                Hence, proved.</h6></pre>
-            <p>The step-by-step values for the provided input is shown below :</p>
-            <table id="exp">
-            </table><hr>
-            <table id="exp1">
-            </table><hr>
-            <table id="exp2">
-            </table><hr>
-            <table id="exp3">
-            </table><br><br>
-        </main>
-        <div class="right">
-            <div class="top">
-                <button id="menu-btn">
-                    <span class="material-symbols-sharp">menu</span>
-                </button>
-                <div class="theme-toggler">
-                    <span class="material-symbols-sharp active">light_mode</span>
-                    <span class="material-symbols-sharp">dark_mode</span>
+    <div class="heyMain">
+        <div class="flex-container">
+            <main>
+                <h2 style="text-align: center;"> Circular Time Shift</h2><br>
+                <p><h4><strong>Statement:</strong></h4> Shifting the sequence in time domain by ‘l’ samples is equivalent to multiplying the sequence in frequency domain by the twiddle factor.</p>
+                <p><h4><strong>Proof:</strong></h4> We will be proving the property</p>
+                <p>x((n-l))N = x(n-l) ==> DFT[x(n-l)] = X(k)e<sup>-2πjlk/N</sup>
+                or X(k)W<sup>kl</sup><sub>N</sub></p> where W is the twiddle factor.
+                <h6 style="overflow-y: hidden;">According to DFT,</h6>
+        
+                    <h6 style="overflow-y: hidden;">DFT [x(n)] =   ∑<sub>n=0</sub><sup>N-1</sup> x(n) e<sup>-2πjkn/N</sup></h6>
+                    
+                    <h6 style="overflow-y: hidden;">DFT [x(n-l)] =  ∑<sub>n=0</sub><sup>N-1</sup> x(n-l) e<sup>-2πjkn/N</sup></h6>
+                    
+                    <h6 style="overflow-y: hidden;">Let n-l=p</h6>
+                    
+                    <h6 style="overflow-y: hidden;">n=p+l</h6>
+                    
+                    <h6 style="overflow-y: hidden;">DFT [x(p)] =  ∑<sub>p=0</sub><sup>N-1</sup> x(p) e<sup>-2πjk(p+l)/N</sup></h6>
+                    
+                    <h6 style="overflow-y: hidden;">= e<sup>-2πjkl/N</sup> ∑<sub>p=0</sub><sup>N-1</sup> x(p) e<sup>-2πjkp/N</sup></h6>
+                    
+                    <h6 style="overflow-y: hidden;">= X(k)e<sup>-2πjkl/N</sup></h6>
+                    
+                    <h6 style="overflow-y: hidden;">Hence, proved.</h6><br>
+                <p>
+                    The step-by-step values for the provided input is shown at the bottom of the page:
+                </p>
+            </main>
+            <div class="right">
+                <div class="top">
+                    <button id="menu-btn">
+                        <span class="material-symbols-sharp">menu</span>
+                    </button>
+                    <div class="theme-toggler">
+                        <span class="material-symbols-sharp active">light_mode</span>
+                        <span class="material-symbols-sharp">dark_mode</span>
+                    </div>
+                </div>
+                <div class="interface-section">
+                    <br>
+                    <h3>Enter the sequence :</h3>
+                    <input id="a" placeholder="1,2,3,4..."/>
+                    <br><br>
+                    <h3>Enter the time-shifting factor :</h3>
+                    <input id="b" type="number"/>
+                    <br><br>
+                    <button type="submit" class="btn btn-warning" onclick="cts()">Submit</button>
+                    <br><br>
+                    <h5 id="resp"></h5>
+                    <br><br>
+                    <h4 class="plot-title" id="input-title">Input sequence :</h4><br>
+                    <canvas class="outputSequence" id="inputResp"></canvas>
+                    <br><br>
+                    <h4 class="plot-title" id="impulse-title">Time-Shifted sequence :</h4><br>
+                    <canvas class="outputSequence" id="impulseResp" style="margin-bottom: 100px;"></canvas>
                 </div>
             </div>
-            <div class="interface-section">
-                <br>
-                <h3>Enter the sequence :</h3>
-                <input id="a" placeholder="1,2,3,4..."/>
-                <br><br>
-                <h3>Enter the time-shifting factor :</h3>
-                <input id="b" type="number"/>
-                <br><br>
-                <button type="submit" class="btn btn-warning" onclick="cts()">Submit</button>
-                <br><br>
-                <h4 id="resp"></h4>
-                <br><br>
-                <h4 class="plot-title" id="input-title">Input sequence :</h4><br>
-                <canvas class="outputSequence" id="inputResp"></canvas>
-                <br><br>
-                <h4 class="plot-title" id="impulse-title">Time-Shifted sequence :</h4><br>
-                <canvas class="outputSequence" id="impulseResp"></canvas><br><br>
-            </div>
         </div>
+        <table id="exp"></table><br>
+        <table id="exp1"></table><br>
+        <table id="exp2"></table><br>
+        <table id="exp3"></table><br><br>
     </div>
 </div>
 

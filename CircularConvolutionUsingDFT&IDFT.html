@@ -118,59 +118,60 @@ layout: default
             </a>
         </div>
     </aside>
-    <div class="flex-container">
-        <main>
-            <h2 style="text-align: center;"> Circular Convolution Using DFT and IDFT</h2><br>
-            <p>The convolution theorem for the discrete-time Fourier transform (DTFT) indicates that a convolution of two sequences can be obtained as the inverse transform of the product of the individual transforms. An important simplification occurs when one of sequences is N-periodic, denoted here by y<sub>N</sub> because DTFT{y<sub>N</sub>} is non-zero at only discrete frequencies, and therefore so is its product with the continuous function DTFT{x}  That leads to a considerable simplification of the inverse transform.</p>
-            <img src="assets/ccdi-1.svg" alt="..." class="mx-auto d-block"><br>
-            <p>Then the convolution can be written as:</p>
-            <img src="assets/ccdi-2.svg" alt="..." class="mx-auto d-block" style="width: 75%;"><br>
-            <p>The step-by-step values for the provided input is shown below :</p>
-            <h4 class="plot-title" id="exp-part-1">x(n) and h(n) :</h4>
-            <table id="exp">
-            </table><hr>
-            <h4 class="plot-title" id="exp-part-2">Multiply the below sequences :</h4>
-            <table id="exp1">
-            </table><hr>
-            <h4 class="plot-title" id="exp-part-3">y(n) :</h4>
-            <table id="exp2">
-            </table><br><br>
-        </main>
-        <div class="right">
-            <div class="top">
-                <button id="menu-btn">
-                    <span class="material-symbols-sharp">menu</span>
-                </button>
-                <div class="theme-toggler">
-                    <span class="material-symbols-sharp active">light_mode</span>
-                    <span class="material-symbols-sharp">dark_mode</span>
+    <div class="heyMain">
+        <div class="flex-container">
+            <main>
+                <h2 style="text-align: center;"> Circular Convolution Using DFT and IDFT</h2><br>
+                <p>The convolution theorem for the discrete-time Fourier transform (DTFT) indicates that a convolution of two sequences can be obtained as the inverse transform of the product of the individual transforms. An important simplification occurs when one of sequences is N-periodic, denoted here by y<sub>N</sub> because DTFT{y<sub>N</sub>} is non-zero at only discrete frequencies, and therefore so is its product with the continuous function DTFT{x}  That leads to a considerable simplification of the inverse transform.</p>
+                <img src="assets/ccdi-1.svg" alt="..." class="mx-auto d-block" style="width: 75%; background: white;"><br>
+                <p>Then the convolution can be written as:</p>
+                <img src="assets/ccdi-2.svg" alt="..." class="mx-auto d-block" style="width: 75%; background: white;"><br>
+                <p>
+                    The step-by-step values for the provided input is shown at the bottom of the page:
+                </p>
+            </main>
+            <div class="right">
+                <div class="top">
+                    <button id="menu-btn">
+                        <span class="material-symbols-sharp">menu</span>
+                    </button>
+                    <div class="theme-toggler">
+                        <span class="material-symbols-sharp active">light_mode</span>
+                        <span class="material-symbols-sharp">dark_mode</span>
+                    </div>
+                </div>
+                <div class="interface-section">
+                    <br>
+                    <h3>Enter the first sequence :</h3>
+                    <input id="a" placeholder="1,2,3,4..."/>
+                    <br><br>
+                    <h3>Enter the second sequence :</h3>
+                    <input id="b" placeholder="1,2,3,4..."/>
+                    <br><br>
+                    <button type="submit" class="btn btn-warning" onclick="ccdi()">Submit</button>
+                    <br><br>
+                    <h5 id="resp"></h5>
+                    <br><br>
+                    <h4 class="plot-title" id="input-title">Input sequence :</h4><br>
+                    <!-- Input sequence plot is displayed -->
+                    <canvas class="outputSequence" id="inputResp"></canvas>
+                    <br><br>
+                    <h4 class="plot-title" id="impulse-title">Impulse sequence :</h4><br>
+                    <!-- Impulse sequence plot is displayed -->
+                    <canvas class="outputSequence" id="impulseResp"></canvas>
+                    <br><br>
+                    <h4 class="plot-title" id="output-title">Ouput sequence :</h4><br>
+                    <!-- Output sequence plot is displayed -->
+                    <canvas class="outputSequence" id="outputResp" style="margin-bottom: 100px;"></canvas>
                 </div>
             </div>
-            <div class="interface-section">
-                <br>
-                <h3>Enter the first sequence :</h3>
-                <input id="a" placeholder="1,2,3,4..."/>
-                <br><br>
-                <h3>Enter the second sequence :</h3>
-                <input id="b" placeholder="1,2,3,4..."/>
-                <br><br>
-                <button type="submit" class="btn btn-warning" onclick="ccdi()">Submit</button>
-                <br><br>
-                <h4 id="resp"></h4>
-                <br><br>
-                <h4 class="plot-title" id="input-title">Input sequence :</h4><br>
-                <!-- Input sequence plot is displayed -->
-                <canvas class="outputSequence" id="inputResp"></canvas>
-                <br><br>
-                <h4 class="plot-title" id="impulse-title">Impulse sequence :</h4><br>
-                <!-- Impulse sequence plot is displayed -->
-                <canvas class="outputSequence" id="impulseResp"></canvas>
-                <br><br>
-                <h4 class="plot-title" id="output-title">Ouput sequence :</h4><br>
-                <!-- Output sequence plot is displayed -->
-                <canvas class="outputSequence" id="outputResp"></canvas><br><br>
-            </div>
         </div>
+        <h4 class="plot-title" id="exp-part-1">x(n) and h(n) :</h4>
+        <table id="exp"></table><br>
+        <h4 class="plot-title" id="exp-part-2">Multiply the below sequences :</h4>
+        <table id="exp1"></table><br>
+        <h4 class="plot-title" id="exp-part-3">y(n) :</h4>
+        <table id="exp2"></table><br><br>
     </div>
 </div>
 

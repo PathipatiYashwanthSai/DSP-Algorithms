@@ -118,49 +118,50 @@ layout: default
             </a>
         </div>
     </aside>
-    <div class="flex-container">
-        <main>
-            <h2 style="text-align: center;"> Auto Correlation</h2><br>
-            <p>Autocorrelation is a mathematical representation of the degree of similarity between a given time series and a lagged version of itself over successive time intervals. It's conceptually similar to the correlation between two different time series, but autocorrelation uses the same time series twice: once in its original form and once lagged one or more time periods.</p>
-            <p>Consider an finite length sequence, say x(n). Then the auto correlation of x(n) can be obtained by simply performing convolution between x(n) and x(-n) i.e</p>
-            <h5 style="text-align: center;">R<sub>xx</sub>(n) = x(n)*x(-n)</h5><br><br>
-            <p>The step-by-step values for the provided input is shown below :</p>
-            <h4 class="plot-title" id="exp-part-1">x(n) :</h4>
-            <table id="exp">
-            </table><hr>
-            <h4 class="plot-title" id="exp-part-2">Add the below sequences :</h4>
-            <table id="exp1">
-            </table><hr>
-            <h4 class="plot-title" id="exp-part-3">R<sub>xx</sub>(n) :</h4>
-            <table id="exp2">
-            </table><br><br>
-        </main>
-        <div class="right">
-            <div class="top">
-                <button id="menu-btn">
-                    <span class="material-symbols-sharp">menu</span>
-                </button>
-                <div class="theme-toggler">
-                    <span class="material-symbols-sharp active">light_mode</span>
-                    <span class="material-symbols-sharp">dark_mode</span>
+    <div class="heyMain">
+        <div class="flex-container">
+            <main>
+                <h2 style="text-align: center;"> Auto Correlation</h2><br>
+                <p>Autocorrelation is a mathematical representation of the degree of similarity between a given time series and a lagged version of itself over successive time intervals. It's conceptually similar to the correlation between two different time series, but autocorrelation uses the same time series twice: once in its original form and once lagged one or more time periods.</p>
+                <p>Consider an finite length sequence, say x(n). Then the auto correlation of x(n) can be obtained by simply performing convolution between x(n) and x(-n) i.e</p>
+                <h5 style="text-align: center; overflow-y: hidden;">R<sub>xx</sub>(n) = x(n)*x(-n)</h5><br><br>
+                <p>
+                    The step-by-step values for the provided input is shown at the bottom of the page:
+                </p>
+            </main>
+            <div class="right">
+                <div class="top">
+                    <button id="menu-btn">
+                        <span class="material-symbols-sharp">menu</span>
+                    </button>
+                    <div class="theme-toggler">
+                        <span class="material-symbols-sharp active">light_mode</span>
+                        <span class="material-symbols-sharp">dark_mode</span>
+                    </div>
+                </div>
+                <div class="interface-section">
+                    <br>
+                    <h3>Enter the first sequence :</h3>
+                    <input id="sequence" placeholder="1,2,3,4..." onchange="autoCorr()"/>
+                    <br><br>
+                    <h5 id="autoCorrResponse"></h5>
+                    <br><br>
+                    <h4 class="plot-title" id="input-title" style="overflow-y: hidden;">x(n) :</h4><br>
+                    <!-- Input sequence plot is displayed -->
+                    <canvas class="outputSequence" id="inputResp"></canvas>
+                    <br><br>
+                    <h4 class="plot-title" id="output-title" style="overflow-y: hidden;">R<sub>xx</sub>(n) :</h4><br>
+                    <!-- Output sequence plot is displayed -->
+                    <canvas class="outputSequence" id="outputResp" style="margin-bottom: 100px;"></canvas>
                 </div>
             </div>
-            <div class="interface-section">
-                <br>
-                <h3>Enter the first sequence :</h3>
-                <input id="sequence" placeholder="1,2,3,4..." onchange="autoCorr()"/>
-                <br><br>
-                <h4 id="autoCorrResponse"></h4>
-                <br><br>
-                <h4 class="plot-title" id="input-title">x(n) :</h4><br>
-                <!-- Input sequence plot is displayed -->
-                <canvas class="outputSequence" id="inputResp"></canvas>
-                <br><br>
-                <h4 class="plot-title" id="output-title">R<sub>xx</sub>(n) :</h4><br>
-                <!-- Output sequence plot is displayed -->
-                <canvas class="outputSequence" id="outputResp"></canvas><br><br>
-            </div>
         </div>
+        <h4 class="plot-title" id="exp-part-1">x(n) :</h4>
+        <table id="exp"></table><br>
+        <h4 class="plot-title" id="exp-part-2">Add the below sequences :</h4>
+        <table id="exp1"></table><br>
+        <h4 class="plot-title" id="exp-part-3">R<sub>xx</sub>(n) :</h4>
+        <table id="exp2"></table><br><br>
     </div>
 </div>
 

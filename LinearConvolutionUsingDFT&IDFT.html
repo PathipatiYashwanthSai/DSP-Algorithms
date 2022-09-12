@@ -118,64 +118,65 @@ layout: default
             </a>
         </div>
     </aside>
-    <div class="flex-container">
-        <main>
-            <h2 style="text-align: center;"> Linear Convolution Using DFT and IDFT</h2><br>
-            <p>Using simple words it is said that the linear convolution of two sequences can be obtained as the inverse transform of the product of the individual transforms.</p>
-            <h4><strong>Explanation:</strong></h4>
-            <ul>
-                <li>Take the input signal and impulse response as two separate single-row matrices.</li>
-                <li>Identify the DFT of the input signal.</li>
-                <li>Identify the DFT of the impulse response.</li>
-                <li>Obtain the product of the DFT transforms of input signal and impulse response.</li>
-                <li>The output convoluted sequence can be then obtained by performing inverse DFT to the product.</li>
-            </ul><br>
-            <p>The step-by-step values for the provided input is shown below :</p>
-            <h4 class="plot-title" id="exp-part-1" style="color: black;">x(n) and h(n) :</h4>
-            <table id="exp">
-            </table><hr>
-            <h4 class="plot-title" id="exp-part-2" style="color: black;">Multiply the below sequences :</h4>
-            <table id="exp1">
-            </table><hr>
-            <h4 class="plot-title" id="exp-part-3" style="color: black;">y(n) :</h4>
-            <table id="exp2">
-            </table><br><br>
-        </main>
-        <div class="right">
-            <div class="top">
-                <button id="menu-btn">
-                    <span class="material-symbols-sharp">menu</span>
-                </button>
-                <div class="theme-toggler">
-                    <span class="material-symbols-sharp active">light_mode</span>
-                    <span class="material-symbols-sharp">dark_mode</span>
+    <div class="heyMain">
+        <div class="flex-container">
+            <main>
+                <h2 style="text-align: center;"> Linear Convolution Using DFT and IDFT</h2><br>
+                <p>Using simple words it is said that the linear convolution of two sequences can be obtained as the inverse transform of the product of the individual transforms.</p>
+                <h4><strong>Explanation:</strong></h4>
+                <ul>
+                    <li>Take the input signal and impulse response as two separate single-row matrices.</li>
+                    <li>Identify the DFT of the input signal.</li>
+                    <li>Identify the DFT of the impulse response.</li>
+                    <li>Obtain the product of the DFT transforms of input signal and impulse response.</li>
+                    <li>The output convoluted sequence can be then obtained by performing inverse DFT to the product.</li>
+                </ul><br>
+                <p>
+                    The step-by-step values for the provided input is shown at the bottom of the page:
+                </p>
+            </main>
+            <div class="right">
+                <div class="top">
+                    <button id="menu-btn">
+                        <span class="material-symbols-sharp">menu</span>
+                    </button>
+                    <div class="theme-toggler">
+                        <span class="material-symbols-sharp active">light_mode</span>
+                        <span class="material-symbols-sharp">dark_mode</span>
+                    </div>
+                </div>
+                <div class="interface-section">
+                    <br>
+                    <h3>Enter the first sequence :</h3>
+                    <input id="sequence1" placeholder="1,2,3,4..."/>
+                    <br><br>
+                    <h3>Enter the second sequence :</h3>
+                    <input id="sequence2" placeholder="1,2,3,4..."/>
+                    <br><br>
+                    <button type="submit" class="btn btn-warning" onclick="lcdi()">Submit</button>
+                    <br><br>
+                    <h5 id="convolutionResponse"></h5>
+                    <br><br>
+                    <h4 class="plot-title" id="input-title">x(n) :</h4><br>
+                    <!-- Input sequence plot is displayed -->
+                    <canvas class="outputSequence" id="inputResp"></canvas>
+                    <br><br>
+                    <h4 class="plot-title" id="impulse-title">h(n) :</h4><br>
+                    <!-- Impulse sequence plot is displayed -->
+                    <canvas class="outputSequence" id="impulseResp"></canvas>
+                    <br><br>
+                    <h4 class="plot-title" id="output-title">y(n) :</h4><br>
+                    <!-- Output sequence plot is displayed -->
+                    <canvas class="outputSequence" id="outputResp" style="margin-bottom: 100px;"></canvas>
                 </div>
             </div>
-            <div class="interface-section">
-                <br>
-                <h3>Enter the first sequence :</h3>
-                <input id="sequence1" placeholder="1,2,3,4..."/>
-                <br><br>
-                <h3>Enter the second sequence :</h3>
-                <input id="sequence2" placeholder="1,2,3,4..."/>
-                <br><br>
-                <button type="submit" class="btn btn-warning" onclick="lcdi()">Submit</button>
-                <br><br>
-                <h4 id="convolutionResponse"></h4>
-                <br><br>
-                <h4 class="plot-title" id="input-title">x(n) :</h4><br>
-                <!-- Input sequence plot is displayed -->
-                <canvas class="outputSequence" id="inputResp"></canvas>
-                <br><br>
-                <h4 class="plot-title" id="impulse-title">h(n) :</h4><br>
-                <!-- Impulse sequence plot is displayed -->
-                <canvas class="outputSequence" id="impulseResp"></canvas>
-                <br><br>
-                <h4 class="plot-title" id="output-title">y(n) :</h4><br>
-                <!-- Output sequence plot is displayed -->
-                <canvas class="outputSequence" id="outputResp"></canvas><br><br>
-            </div>
         </div>
+        <h4 class="plot-title" id="exp-part-1">x(n) and h(n) :</h4>
+        <table id="exp"></table><br>
+        <h4 class="plot-title" id="exp-part-2">Multiply the below sequences :</h4>
+        <table id="exp1"></table><br>
+        <h4 class="plot-title" id="exp-part-3">y(n) :</h4>
+        <table id="exp2"></table><br><br>
     </div>
 </div>
 
