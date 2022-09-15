@@ -51,6 +51,21 @@ layout: default
             <a href="Modulation.html" class="">
                 <h3>Modulation Property</h3>
             </a>
+            <a href="FFTTHEORY.html" class="">
+                <h3>FFT Algorithm</h3>
+              </a>
+              <a href="DITFFT.html" class="">
+                <h3>DFT using DITFFT</h3>
+              </a>
+              <a href="IDFTDITFFT.html" class="">
+                <h3>IDFT using DITFFT</h3>
+              </a>
+              <a href="DIFFFT.html" class="">
+                <h3>DFT using DIFFFT</h3>
+              </a>
+              <a href="IDFTDIFFFT.html" class="">
+                <h3>IDFT using DIFFFT</h3>
+              </a>
             <a href="differences(FIR&IIR).html" class="">
               <h3>IIR and FIR differences</h3>
           </a>
@@ -121,42 +136,23 @@ layout: default
     </aside>
     <div class="flex-container">
         <main>
-            <h2 style = "text-align:center;">
-                Interpolation
-              </h2>
-              <br><br>
-              <p>
-                In the mathematical field of numerical analysis, interpolation is a type of estimation, a method of constructing (finding) new data points based on the range of a discrete set of known data points.
-  
-              </p>
-              In engineering and science, one often has a number of data points, obtained by sampling or experimentation, which represent the values of a function for a limited number of values of the independent variable. It is often required to interpolate; that is, estimate the value of that function for an intermediate value of the independent variable.
-              <p>
-              
-    A closely related problem is the approximation of a complicated function by a simple function. Suppose the formula for some given function is known, but too complicated to evaluate efficiently. A few data points from the original function can be interpolated to produce a simpler function which is still fairly close to the original. The resulting gain in simplicity may outweigh the loss from interpolation error and give better performance in calculation process.
-              </p>
-              <p>
-              Interpolation is the exact opposite of decimation. It is an information preserving operation, in that all samples of x[n] are present in the expanded signal y[n]. The mathematical definition of L-fold interpolation is defined by Equation given below andthe block diagram notation is depicted in Figure . Interpolation works by inserting (L–1) zero-valued samples for each input sample. The sampling rate therefore increases from Fs to LFs. With reference to Figure , the expansionprocess is followed by a unique digital low-pass filter called an anti-imaging filter. Although the expansion process does not cause aliasing in the interpolated signal, it does however yield undesirable replicas in the signal’s frequencyspectrum. We shall see how this special filter is necessary to remove these replicas from the frequency
-  
-    </p>
-    <p>The formula for the interpolation is given by </p>
-    <img src="./assets/Interpolation1.png" class="mx-auto d-block" style="width:50%;height:4%;">
-    <br><br>
-    <p>
-    where polyphase implementation of interpolation filter is
-    </p>
-    <br><br>
-    <img src="./assets/Interpolation5.png" class="mx-auto d-block" style="width:80% ;height:10%">
-  
-    <br><br>
-    <p>
-      Now let us see discrete time signals of interpolation and decimation.
-    </p>
-  
-    <p>
-      a shows the interpolation of decimated signal b, like this we will sample average signals in between zeroes for interpolating the signal after upsample and c is the block diagram of interpolation which consists of upsample with interpolating filter.
-    </p>
-    <br><br>
-    <img src="./assets/Interpolation3.png" class="mx-auto d-block">
+            <h2 style = "text-align:center;">Interpolation</h2>
+            <br><br>
+            <p>In the mathematical field of numerical analysis, interpolation is a type of estimation, a method of constructing (finding) new data points based on the range of a discrete set of known data points.</p>
+            <p>In engineering and science, one often has a number of data points, obtained by sampling or experimentation, which represent the values of a function for a limited number of values of the independent variable. It is often required to interpolate; that is, estimate the value of that function for an intermediate value of the independent variable.</p>
+            <p>A closely related problem is the approximation of a complicated function by a simple function. Suppose the formula for some given function is known, but too complicated to evaluate efficiently. A few data points from the original function can be interpolated to produce a simpler function which is still fairly close to the original. The resulting gain in simplicity may outweigh the loss from interpolation error and give better performance in calculation process.</p>
+            <p>Interpolation is the exact opposite of decimation. It is an information preserving operation, in that all samples of x[n] are present in the expanded signal y[n]. The mathematical definition of L-fold interpolation is defined by Equation given below and the block diagram notation is depicted in Figure.</p>
+            <p>Interpolation works by inserting (L–1) zero-valued samples for each input sample. The sampling rate therefore increases from Fs to LFs. With reference to Figure , the expansionprocess is followed by a unique digital low-pass filter called an anti-imaging filter. Although the expansion process does not cause aliasing in the interpolated signal, it does however yield undesirable replicas in the signal’s frequencyspectrum. We shall see how this special filter is necessary to remove these replicas from the frequency</p>
+            <p>The formula for the interpolation is given by </p>
+            <h4 style="text-align: center; overflow-y: hidden;">y[n] = L ∑<sub>k=-∞</sub><sup>∞</sup> h[k]w[n-k]</h4>
+            <!-- <img src="./assets/Interpolation1.png" class="mx-auto d-block" style="width:75%;height:4%;"><br><br> -->
+            <p>where polyphase implementation of interpolation filter is</p>
+            <br><br>
+            <img src="./assets/Interpolation5.png" class="mx-auto d-block" style="width:90% ;height:10%"><br><br>
+            <p>Now let us see discrete time signals of interpolation and decimation.</p>
+            <p>a shows the interpolation of decimated signal b, like this we will sample average signals in between zeroes for interpolating the signal after upsample and c is the block diagram of interpolation which consists of upsample with interpolating filter.</p>
+            <br><br>
+            <img src="./assets/Interpolation3.png" class="mx-auto d-block">
         </main>
         <div class="right">
             <div class="top">

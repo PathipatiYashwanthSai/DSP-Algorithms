@@ -51,6 +51,21 @@ layout: default
             <a href="Modulation.html" class="">
                 <h3>Modulation Property</h3>
             </a>
+            <a href="FFTTHEORY.html" class="">
+                <h3>FFT Algorithm</h3>
+              </a>
+              <a href="DITFFT.html" class="">
+                <h3>DFT using DITFFT</h3>
+              </a>
+              <a href="IDFTDITFFT.html" class="">
+                <h3>IDFT using DITFFT</h3>
+              </a>
+              <a href="DIFFFT.html" class="">
+                <h3>DFT using DIFFFT</h3>
+              </a>
+              <a href="IDFTDIFFFT.html" class="">
+                <h3>IDFT using DIFFFT</h3>
+              </a>
             <a href="differences(FIR&IIR).html" class="">
               <h3>IIR and FIR differences</h3>
           </a>
@@ -121,38 +136,28 @@ layout: default
     </aside>
     <div class="flex-container">
         <main>
-            <h2 style = "text-align:center;">
-                Upsampling
-              </h2>
-              <br><br>
-              <p>In digital signal processing, upsampling, expansion, and interpolation are terms associated with the process of resampling in a multi-rate digital signal processing system. Upsampling can be synonymous with expansion, or it can describe an entire process of expansion and filtering (interpolation).When upsampling is performed on a sequence of samples of a signal or other continuous function, it produces an approximation of the sequence that would have been obtained by sampling the signal at a higher rate (or density, as in the case of a photograph). For example, if compact disc audio at 44,100 samples/second is upsampled by a factor of 5/4, the resulting sample-rate is 55,125.
-              </p>
-              <b>
-                Upsampling by an integer factor
-              </b>
-              <p>
-                Rate increase by an integer factor L can be explained as a 2-step process, with an equivalent implementation that is more efficient.Expansion: Create a sequence Xl[n] comprising the original samples,x[n] separated by L − 1 zeros.  A notation for this operation is: Xl[n] = X[n] + L Interpolation: Smooth out the discontinuities with a lowpass filter, which replaces the zeros.In this application, the filter is called an interpolation filter, and its design is discussed below. When the interpolation filter is an FIR type, its efficiency can be improved, because the zeros contribute nothing to its dot product calculations. It is an easy matter to omit them from both the data stream and the calculations. The calculation performed by a multirate interpolating FIR filter for each output sample is a dot product.
-              </p>
-              <img src="./assets/upsampling2.png" class="mx-auto d-block" width = 90%> 
-              <p>
-                where the h[•] sequence is the impulse response of the interpolation filter, and K is the largest value of k for which h[j + kL] is non-zero. In the case L = 2, h[•] can be designed as a half-band filter, where almost half of the coefficients are zero and need not be included in the dot products. Impulse response coefficients taken at intervals of L form a subsequence, and there are L such subsequences (called phases) multiplexed together. Each of L phases of the impulse response is filtering the same sequential values of the x[•] data stream and producing one of L sequential output values. In some multi-processor architectures, these dot products are performed simultaneously, in which case it is called a polyphase filter. For completeness, we now mention that a possible, but unlikely, implementation of each phase is to replace the coefficients of the other phases with zeros in a copy of the h[•] array, and process the sequence at L times faster than the original input rate. Then L-1 of every L outputs are zero. The desired y[•] sequence is the sum of the phases, where L-1 terms of the each sum are identically zero.  Computing L-1 zeros between the useful outputs of a phase and adding them to a sum is effectively decimation. It's the same result as not computing them at all. That equivalence is known as the second Noble identity. It is sometimes used in derivations of the polyphase method.
-              </p>
-              <b>
-                Upsampling by a fractional factor
-              </b>
-              <p>
-                Let L/M denote the upsampling factor, where L > M.
-              </p>
-  
-              <p style = "text-align:center;">1.Upsample by a factor of L</p>
-              <p style = "text-align:center;">2.Downsample by a factor of M</p>
-              <p>
-    Upsampling requires a lowpass filter after increasing the data rate, and downsampling requires a lowpass filter before decimation. Therefore, both operations can be accomplished by a single filter with the lower of the two cutoff frequencies. For the L > M case, the interpolation filter cutoff,cycles per intermediate sample, is the lower frequency.</p>
-    <p>
-      The first and third graphs depict the discrete-time Fourier transforms of a sampled function and the same function sampled 3 times faster. The second graph shows the transform of a sequence derived from the low-rate samples by inserting 2 zeros in-between each pair of real samples. It is identical to the first graph, except the numeral 3 is replaced by symbol L. A lowpass filter with bandwidth 0.5/T is also depicted. When applied to the zero-inserted sequence, its spectral output resembles the third graph, which is the desired result of interpolation. The maximum filter bandwidth is tabulated in the frequency units used by the common filter design applications.
-    </p>
-    <br><br>
-              <img src="./assets/upsample3.png" style = "background:white;"mx-auto d-block> <br><br>
+            <h2 style = "text-align:center;">Upsampling</h2>
+            <br><br>
+            <p>In digital signal processing, upsampling, expansion, and interpolation are terms associated with the process of resampling in a multi-rate digital signal processing system. Upsampling can be synonymous with expansion, or it can describe an entire process of expansion and filtering (interpolation).</p>
+            <p>When upsampling is performed on a sequence of samples of a signal or other continuous function, it produces an approximation of the sequence that would have been obtained by sampling the signal at a higher rate (or density, as in the case of a photograph). For example, if compact disc audio at 44,100 samples/second is upsampled by a factor of 5/4, the resulting sample-rate is 55,125.</p>
+            <b>Upsampling by an integer factor</b>
+            <p>Rate increase by an integer factor L can be explained as a 2-step process, with an equivalent implementation that is more efficient.</p>
+            <p>Expansion: Create a sequence Xl[n] comprising the original samples,x[n] separated by L − 1 zeros.  A notation for this operation is: Xl[n] = X[n] + L</p>
+            <p>Interpolation: Smooth out the discontinuities with a lowpass filter, which replaces the zeros.In this application, the filter is called an interpolation filter, and its design is discussed below.</p>
+            <p>When the interpolation filter is an FIR type, its efficiency can be improved, because the zeros contribute nothing to its dot product calculations. It is an easy matter to omit them from both the data stream and the calculations. The calculation performed by a multirate interpolating FIR filter for each output sample is a dot product.</p>
+            <img src="./assets/upsampling2.png" class="mx-auto d-block" style="width: 75%;"> 
+            <p>where the h[•] sequence is the impulse response of the interpolation filter, and K is the largest value of k for which h[j + kL] is non-zero. In the case L = 2, h[•] can be designed as a half-band filter, where almost half of the coefficients are zero and need not be included in the dot products.</p>
+            <p>Impulse response coefficients taken at intervals of L form a subsequence, and there are L such subsequences (called phases) multiplexed together. Each of L phases of the impulse response is filtering the same sequential values of the x[•] data stream and producing one of L sequential output values.</p>
+            <p>In some multi-processor architectures, these dot products are performed simultaneously, in which case it is called a polyphase filter. For completeness, we now mention that a possible, but unlikely, implementation of each phase is to replace the coefficients of the other phases with zeros in a copy of the h[•] array, and process the sequence at L times faster than the original input rate. Then L - 1 of every L outputs are zero.</p>
+            <p>The desired y[•] sequence is the sum of the phases, where L - 1 terms of the each sum are identically zero. Computing L - 1 zeros between the useful outputs of a phase and adding them to a sum is effectively decimation. It's the same result as not computing them at all. That equivalence is known as the second Noble identity. It is sometimes used in derivations of the polyphase method.</p>
+            <b>Upsampling by a fractional factor</b>
+            <p>Let L/M denote the upsampling factor, where L > M.</p>
+            <p style = "text-align:center;">1.Upsample by a factor of L</p>
+            <p style = "text-align:center;">2.Downsample by a factor of M</p>
+            <p>Upsampling requires a lowpass filter after increasing the data rate, and downsampling requires a lowpass filter before decimation. Therefore, both operations can be accomplished by a single filter with the lower of the two cutoff frequencies. For the L > M case, the interpolation filter cutoff,cycles per intermediate sample, is the lower frequency.</p>
+            <p>The first and third graphs depict the discrete-time Fourier transforms of a sampled function and the same function sampled 3 times faster. The second graph shows the transform of a sequence derived from the low-rate samples by inserting 2 zeros in-between each pair of real samples. It is identical to the first graph, except the numeral 3 is replaced by symbol L. A lowpass filter with bandwidth 0.5/T is also depicted. When applied to the zero-inserted sequence, its spectral output resembles the third graph, which is the desired result of interpolation. The maximum filter bandwidth is tabulated in the frequency units used by the common filter design applications.</p>
+            <br><br>
+            <img src="./assets/upsample3.png" class="mx-auto d-block" style = "background:white;"><br><br>
         </main>
         <div class="right">
             <div class="top">

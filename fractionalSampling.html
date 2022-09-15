@@ -51,6 +51,21 @@ layout: default
             <a href="Modulation.html" class="">
                 <h3>Modulation Property</h3>
             </a>
+            <a href="FFTTHEORY.html" class="">
+                <h3>FFT Algorithm</h3>
+              </a>
+              <a href="DITFFT.html" class="">
+                <h3>DFT using DITFFT</h3>
+              </a>
+              <a href="IDFTDITFFT.html" class="">
+                <h3>IDFT using DITFFT</h3>
+              </a>
+              <a href="DIFFFT.html" class="">
+                <h3>DFT using DIFFFT</h3>
+              </a>
+              <a href="IDFTDIFFFT.html" class="">
+                <h3>IDFT using DIFFFT</h3>
+              </a>
             <a href="differences(FIR&IIR).html" class="">
               <h3>IIR and FIR differences</h3>
           </a>
@@ -121,36 +136,23 @@ layout: default
     </aside>
     <div class="flex-container">
         <main>
-            <h2 style = "text-align:center;">
-                Fractional sampling rate alteration
-              </h2>
-              <br><br>
-              <p>Inorder to alter the sampling rate by any rational number M/L, first upsample the signal by L smoothen it by a filter with cut off frequency min (pi/M,pi/L) and then downsample by M</p>
-              <p>If Fsample or Fs is the original sampling rate,now if we want to reduce the sample rate by M/L. the new sample rate would be LFs/M</p>
-              <br><br>
-              <img src="./assets/fractionalsamplingratealteration.png" class="mx-auto d-block" style="width:90%;height:px;">
-              <br><br>
-           <p>
-              The change of the sampling frequency by a rational factor L/M, sometimes called the fractional sampling rate alteration or resampling, can be achieved by increasing the sampling frequency by L first, and then decreasing by M. Hence, the sampling rate conversion by L/M is achieved by a cascading factor-of-L interpolator and a factor-of-M decimator as indicated in Figure . Here, factors L and M are positive relatively prime integers, i.e. there is no common integer between L and M. In the implementation scheme of Figure , the original signal {x[n]} is up-sampled-by-L and then filtered by the lowpass interpolation filter HI(z). The interpolated signal {w[r]} is filtered with the lowpass antialiasing filter HD(z), and then down-sampled-by-M. The sampling rate of the output signal {y[m]} is L/M times the sampling rate of the original signal {x[n]}. Since the interpolation filter HI(z) and the decimation filter HD(z) operate at the same sampling rate, they can be replaced by the single lowpass filter H(z) as indicated in Figure. The lowpass filter H(z) should be designed to eliminate imaging caused by the up-sampling, and to avoid aliasing produced in down-sampling. With the properly designed filter H(z), the fractional sampling rate conversion can be implemented by using the computationally efficient structure of Figure.
-           </p>
-           <img src="./assets/fractionalsamplingratealteration1.png" class="mx-auto d-block" style="width:90%;height:px;">
-           <br><br>
-           <p>
-            The above picture has two blocks (a) and (b) shows the sampling rate alteration can also be done by interpolation and decimation which is just like upsample and ddownsample , but here we use anti aliasing filter and interpolating filter where (a) shows upsampling with filter , downsampling with filter and (b) shows the complete setup of interpolation and decimation
-           </p>
-           <p>
-            Even if we use interpolating method or upsampling method, the rate alteration remains same
-           </p>
-           <p>
-            An example of sampling-rate conversion would take place when data from is transferred . Here the sampling-rate is increased from 44.1 kHz to 48 kHz. To enable this process the non-integer factor has to be approximated by a rational number: 
-           </p>
-           <p>
-            L/M = 48/44.1 = 1.08844
-           </p>
-           <p>
-            Hence, the sampling-rate conversion is achieved by interpolating by L i.e. from 44.1 kHz to [44.1x160] = 7056 kHz. Then decimating by M i.e. from 7056 kHz to [7056/147] = 48 kHz. 
-  
-           </p>
+            <h2 style = "text-align:center;">Fractional sampling rate alteration</h2>
+            <br><br>
+            <p>Inorder to alter the sampling rate by any rational number M/L, first upsample the signal by L smoothen it by a filter with cut off frequency min (pi/M,pi/L) and then downsample by M</p>
+            <p>If Fsample or Fs is the original sampling rate,now if we want to reduce the sample rate by M/L. the new sample rate would be LFs/M</p>
+            <br><br>
+            <img src="./assets/fractionalsamplingratealteration.png" class="mx-auto d-block" style="width:90%;height:px;">
+            <br><br>
+            <p>The change of the sampling frequency by a rational factor L/M, sometimes called the fractional sampling rate alteration or resampling, can be achieved by increasing the sampling frequency by L first, and then decreasing by M. Hence, the sampling rate conversion by L/M is achieved by a cascading factor-of-L interpolator and a factor-of-M decimator as indicated in Figure. Here, factors L and M are positive relatively prime integers, i.e. there is no common integer between L and M.</p>
+            <p>In the implementation scheme of Figure , the original signal {x[n]} is up-sampled-by-L and then filtered by the lowpass interpolation filter HI(z). The interpolated signal {w[r]} is filtered with the lowpass antialiasing filter HD(z), and then down-sampled-by-M. The sampling rate of the output signal {y[m]} is L/M times the sampling rate of the original signal {x[n]}. Since the interpolation filter HI(z) and the decimation filter HD(z) operate at the same sampling rate, they can be replaced by the single lowpass filter H(z) as indicated in Figure.</p>
+            <p>The lowpass filter H(z) should be designed to eliminate imaging caused by the up-sampling, and to avoid aliasing produced in down-sampling. With the properly designed filter H(z), the fractional sampling rate conversion can be implemented by using the computationally efficient structure of Figure.</p>
+            <img src="./assets/fractionalsamplingratealteration1.png" class="mx-auto d-block" style="width:90%;height:px;">
+            <br><br>
+            <p>The above picture has two blocks (a) and (b) shows the sampling rate alteration can also be done by interpolation and decimation which is just like upsample and ddownsample , but here we use anti aliasing filter and interpolating filter where (a) shows upsampling with filter , downsampling with filter and (b) shows the complete setup of interpolation and decimation</p>
+            <p>Even if we use interpolating method or upsampling method, the rate alteration remains same</p>
+            <p>An example of sampling-rate conversion would take place when data from is transferred . Here the sampling-rate is increased from 44.1 kHz to 48 kHz. To enable this process the non-integer factor has to be approximated by a rational number: </p>
+            <p>L/M = 48/44.1 = 1.08844</p>
+            <p>Hence, the sampling-rate conversion is achieved by interpolating by L i.e. from 44.1 kHz to [44.1x160] = 7056 kHz. Then decimating by M i.e. from 7056 kHz to [7056/147] = 48 kHz.</p>
         </main>
         <div class="right">
             <div class="top">

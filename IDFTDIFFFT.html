@@ -1,0 +1,306 @@
+---
+title: IDFT using DIFFFT
+layout: default
+---
+    <div class="container">
+        <aside>
+            <div class="top">
+                <h2>DSP</h2>
+                <div class="close" id="close-btn">
+                    <span class="material-symbols-sharp">close</span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="index.html" class="">
+                    <h3>Home Page</h3>
+                </a>
+                <a href="CrossCorr.html" class="">
+                    <h3>Cross Correlation</h3>
+                </a>
+                <a href="AutoCorr.html" class="">
+                    <h3>Auto Correlation</h3>
+                </a>
+                <a href="LinearConvolution.html" class="">
+                    <h3>Linear Convolution</h3>
+                </a>
+                <a href="CircularConvolution.html" class="">
+                    <h3>Circular Convolution</h3>
+                </a>
+                <a href="DFT.html" class="">
+                    <h3>Discrete Fourier Transform</h3>
+                </a>
+                <a href="IDFT.html" class="">
+                    <h3>Inverse Discrete Fourier Transform</h3>
+                </a>
+                <a href="Properties.html" class="">
+                    <h3>DFT & IDFT Properties</h3>
+                </a>
+                <a href="Linearity.html" class="">
+                    <h3>Linearity Property</h3>
+                </a>
+                <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+                    <h3>Linear Convolution Property</h3>
+                </a>
+                <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+                    <h3>Circular Convolution Property</h3>
+                </a>
+                <a href="CircularTimeShift.html" class="">
+                    <h3>Circular Timeshift Property</h3>
+                </a>
+                <a href="Modulation.html" class="">
+                    <h3>Modulation Property</h3>
+                </a>
+                <a href="FFTTHEORY.html" class="">
+                    <h3>FFT Algorithm</h3>
+                </a>
+                <a href="DITFFT.html" class="">
+                    <h3>DFT using DITFFT</h3>
+                </a>
+                <a href="IDFTDITFFT.html" class="">
+                    <h3>IDFT using DITFFT</h3>
+                </a>
+                <a href="DIFFFT.html" class="">
+                    <h3>DFT using DIFFFT</h3>
+                </a>
+                <a href="IDFTDIFFFT.html" class="active">
+                    <h3>IDFT using DIFFFT</h3>
+                </a>
+                <a href="differences(FIR&IIR).html" class="">
+                    <h3>IIR and FIR differences</h3>
+                </a>
+                <a href="directform-1.html" class="">
+                    <h3>IIR Direct Form-I</h3>
+                </a>
+                <a href="directForm-2.html" class="">
+                    <h3>IIR Direct Form-II</h3>
+                </a>
+                <a href="transposedform.html" class="">
+                    <h3>Transposed Form</h3>
+                </a>
+                <a href="cascadeform.html" class="">
+                    <h3>IIR Cascade Form</h3>
+                </a>
+                <a href="parallelform(IIR).html" class="">
+                    <h3>IIR Parallel Form</h3>
+                </a>
+                <a href="firdirectform.html" class="">
+                    <h3>FIR Direct Form</h3>
+                </a>
+                <a href="ladder(IIR).html" class="">
+                    <h3>IIR Ladder Structure</h3>
+                </a>
+                <a href="latticeStructure.html" class="">
+                    <h3>Lattice Structure</h3>
+                </a>
+                <a href="upsample.html" class="">
+                    <h3>Upsample</h3>
+                </a>
+                <a href="downsample.html" class="">
+                    <h3>Downsample</h3>
+                </a>
+                <a href="interpolation.html" class="">
+                    <h3>Interpolation</h3>
+                </a>
+                <a href="decimation.html" class="">
+                    <h3>Decimation</h3>
+                </a>
+                <a href="fractionalSampling.html" class="">
+                    <h3>Fractional Sampling Rate</h3>
+                </a>
+                <a href="bilinear.html" class="">
+                    <h3>Bilinear Transformation</h3>
+                </a>
+                <a href="impulseinvariant.html" class="">
+                    <h3>Impulse Invariant</h3>
+                </a>
+                <a href="FIR.html" class="">
+                    <h3>FIR</h3>
+                </a>
+                <a href="aprderivatives.html" class="">
+                    <h3>Approximation of Derivatives</h3>
+                </a>
+                <a href="windows.html" class="">
+                    <h3>Window Techniques</h3>
+                </a>
+                <a href="butterworth.html" class="">
+                    <h3>Butterworth Filters</h3>
+                </a>
+                <a href="chebyshev.html" class="">
+                    <h3>Chebyshev Filters</h3>
+                </a>
+                <a href="aboutus.html" class="">
+                    <h3>About Us</h3>
+                </a>
+            </div>
+        </aside>
+        <div class="flex-container">
+            <main>
+                <h2 style="text-align: center;">
+                    IDFT of DIFFFT
+                </h2>
+                <br><br>
+                In this topic we will discuss about 8 point and 4 point IDFT of DIFFFT in FFT.
+               <br><br>
+               <h3>
+                8 point IDFT of DIFFFT
+               </h3>
+               <p>
+                IDFT of DIFFFT structures takes input as bit reversed order and output as normal order.These structures can be obtained or solved by using butterfly diagram and its formulas.First we will break 8 point DFT into 4 points and then to 2 points DFT.the formula of DIFFFT's IDFT 8 point is
+               </p>
+            <h4 style="text-align: center; overflow-y: hidden;">
+                X<sub>m-1(p)</sub> = 1/2[X<sub>m(p)</sub> + W<sub>n</sub><sup>-r</sup> * X<sub>m(q)</sub>]
+            </h4>
+            <h4 style="text-align: center; overflow-y: hidden;">
+                X<sub>m-1(q)</sub> = 1/2[X<sub>m(p)</sub> -  X<sub>m(q)</sub> * W<sub>n</sub><sup>-r</sup>]
+            </h4>
+            <br><br>
+               <img src="./assets/8 ifft.png" class="mx-auto d-block" style="width:80%;height:px;">
+            <div>
+                <br><br>
+                <h3>Enter the input sequence :</h3>
+                <input type="text" id="8bitinputidft"/>
+                <br><br>
+                <button type="submit" class="btn btn-warning" onclick= idftdiffft8()>Submit idft diffft 8 point</button>
+                <br><br>
+                <h4 id = "bitreversal"></h4>
+                <h4 id = "outputseq"></h4>
+            </div>
+            <br><br>
+            <h3>
+                4 point IDFT of DIFFFT
+            </h3>
+            <div>
+                <p>
+                This 4 point IDFT of DIFFFT is same as 8 point, but here we will just break 4 point IDFT into 2 points IDFT by using the same butterfly diagram and the above formulas.
+                </p>
+                <br><br>
+            <img  src="./assets/Length-4-DIT-radix-2-FFT.png" class="mx-auto d-block" style="width:80%;height:px;">
+            <br><br>
+            <br><br>
+                <h3>Enter the input sequence :</h3>
+                <input type="text" id="4bitinputidft"/>
+                <br><br>
+                <button type="submit" class="btn btn-warning" onclick=idftdiffft4()>Submit idft diffft 4 point</button>
+                <br><br>
+                <h4 id = "bitreversalofifft4"></h4>
+                <h4 id = "outputseqofifft4"></h4>
+            </div>
+            </main>
+            <div class="right">
+                <div class="top">
+                    <button id="menu-btn">
+                        <span class="material-symbols-sharp">menu</span>
+                    </button>
+                    <div class="theme-toggler">
+                        <span class="material-symbols-sharp active">light_mode</span>
+                        <span class="material-symbols-sharp">dark_mode</span>
+                    </div>
+                </div>
+                <div class="interface-section">
+                    <br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function idftdiffft8(){
+            document.getElementById("bitreversal").innerText = "The bit reversal sequence:"
+            document.getElementById("outputseq").innerText = "The output sequence is:"
+        class Complex{
+            constructor(r,i){
+                this.r=r;
+                this.i=i;
+            }
+        }
+        
+        const n= 8
+        let x= document.getElementById("8bitinputidft").value.split(",");
+        const xt = x.map(Number);
+        
+        
+        let y=[];
+        z=[0,4,2,6,1,5,3,7];
+        for(var i=0;i<n;i++)
+            y[i]=xt[z[i]];
+            document.getElementById("bitreversal").innerText += y;
+        let a=[];
+        for (var i=0;i<n;i+=2){
+            a[i]=(y[i]+y[i+1])/2;
+            a[i+1]=(y[i]-y[i+1])/2;
+        }
+        
+        let b=[];
+        for(var i=0;i<n;i+=4){
+            b[i]=new Complex((a[i]+a[i+2])/2,0);
+            b[i+2]=new Complex((a[i]-a[i+2])/2,0);
+            b[i+1]=new Complex(a[i+1]/2,a[i+3]/2);
+            b[i+3]=new Complex(a[i+1]/2,-a[i+3]/2);
+        }
+        output = []
+        for(let i=0;i<n;i++){
+        console.log(b[i].r+"+"+b[i].i+"j");
+        
+        output[i] = math.round(b[i].r,2)+"+"+math.round(b[i].i,2)+"j"
+
+      
+    }
+    document.getElementById("outputseq").innerText += output
+}
+
+
+        function idftdiffft4(){
+            document.getElementById("bitreversalofifft4").innerText = "The bit reversal sequence is: "
+            document.getElementById("outputseqofifft4").innerText = "The output sequence is: "
+            class Complex{
+                constructor(r,i){
+                    this.r=r;
+                    this.i=i;
+                }
+            }
+            
+            const n=4;
+            let x= document.getElementById("4bitinputidft").value.split(",");
+            const xt = x.map(Number);
+        
+            
+            
+            let y=[];
+            z=[0,2,1,3];
+            for(var i=0;i<n;i++){
+                y[i]=xt[z[i]];
+            }
+
+            document.getElementById("bitreversalofifft4").innerText += y;
+                    
+            let a=[];
+            for (var i=0;i<n;i+=2){
+                a[i]=(y[i]+y[i+1])/2;
+                a[i+1]=(y[i]-y[i+1])/2;
+            }
+            
+            let b=[];
+            for(var i=0;i<n;i+=4){
+                b[i]=new Complex((a[i]+a[i+2])/2,0);
+                b[i+2]=new Complex((a[i]-a[i+2])/2,0);
+                b[i+1]=new Complex(a[i+1]/2,a[i+3]/2);
+                b[i+3]=new Complex(a[i+1]/2,-a[i+3]/2);
+            }
+            output = []
+            for(let i=0;i<n;i++){
+             //console.log(b[i].r+"+"+b[i].i+"j");
+            k = String(i);
+            //document.getElementById(k).innerText = b[i].r+"+"+b[i].i+"j";
+            output[i] = math.round(b[i].r,2)+"+"+math.round(b[i].i,2)+"j"
+            }
+            document.getElementById("outputseqofifft4").innerText += output
+        }
+            
+        
+           
+ 
+    </script>
+    <script src="responsive.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

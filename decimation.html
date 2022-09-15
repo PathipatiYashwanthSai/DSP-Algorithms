@@ -50,6 +50,21 @@ layout: default
             <a href="Modulation.html" class="">
                 <h3>Modulation Property</h3>
             </a>
+            <a href="FFTTHEORY.html" class="">
+                <h3>FFT Algorithm</h3>
+            </a>
+            <a href="DITFFT.html" class="">
+                <h3>DFT using DITFFT</h3>
+            </a>
+            <a href="IDFTDITFFT.html" class="">
+                <h3>IDFT using DITFFT</h3>
+            </a>
+            <a href="DIFFFT.html" class="">
+                <h3>DFT using DIFFFT</h3>
+            </a>
+            <a href="IDFTDIFFFT.html" class="">
+                <h3>IDFT using DIFFFT</h3>
+            </a>
             <a href="differences(FIR&IIR).html" class="">
                 <h3>IIR and FIR differences</h3>
             </a>
@@ -122,24 +137,20 @@ layout: default
         <main>
             <h2 style = "text-align:center;">Decimation</h2>
             <p>Let us assume that the signal with spectrum X(n) is to be downsampled by an integer factor D. The spectrum
-            X(w) is assumed to be nonzero in the frequency interval 0
-            <= w <=pi or equivalently. |F|=Fx/2. We know that if we reduce the sampling rate simply by selecting every Dth value of x(n), the resulting signal will be an aliased version of x(n), with a folding frequency of Fx/2D.To avoid aliasing. we must first reduce the bandwidth of x(n) to Fmax=Fx/2D or equivalently, to wmax=pi/D.Then we may downsample by D and thus avoid aliasing Hence in the decimation process. The input sequence x(n) is passed through a low pass filter, characterized by the impulse response h(n) and a frequency response Hd(w), which ideally satisfies the condition
-            </p>
-            <p style = "text-align:center;">
-            Hd(w) = 1 , |w| = pi/D
-            </p>
-            <p style = "margin-left: 47%;">
-            = 0 , otherwise
-            </p>
+            X(w) is assumed to be nonzero in the frequency interval 0<= w <=pi or equivalently. |F|=Fx/2. We know that if we reduce the sampling rate simply by selecting every Dth value of x(n), the resulting signal will be an aliased version of x(n), with a folding frequency of Fx/2D.</p>
+            <p>To avoid aliasing. we must first reduce the bandwidth of x(n) to F<sub>max</sub> =Fx/2D or equivalently, to w<sub>max</sub>=pi/D.Then we may downsample by D and thus avoid aliasing Hence in the decimation process. The input sequence x(n) is passed through a low pass filter, characterized by the impulse response h(n) and a frequency response Hd(w), which ideally satisfies the condition</p>
+            <p style = "text-align:center;">Hd(w) = 1 , |w| = pi/D</p>
+            <p style = "margin-left: 47%;">= 0 , otherwise</p>
             <p>
             Thus the filter eliminates the spectrum of X(w) in the range pi/D < w < pi. Of course, the implication is that only the frequency components of x(n) in the range |w| <= pi/D are of interest in further processing of the signal.
             </p>
             <p>
             Decimation can be regarded as the discrete-time counterpart of sampling. Whereas in sampling we start with a continuous-time signal x(t) and convert it into a sequence of samples x[n], in decimation we start with a discrete-time signal x[n] and convert it into another discrete-time signal y[n], which consists of sub-samples of x[n]. Thus, the formal definition of M-fold decimation, or down-sampling, is defined by Equation . In decimation, the sampling rate is reduced from Fs to Fs/M by discarding M - 1 samples for every M samples in the original sequence. 
             </p>
-            <img src="./assets/decimation2.jpeg.png" class="mx-auto d-block" style="width:80%;height:8%;">
+            <h4 style="text-align: center; overflow-y: hidden;">y[n] = v[nM] = ∑<sub>k=-∞</sub><sup>∞</sup> h[k]x[nM-k]</h4>
+            <!-- <img src="./assets/decimation2.jpeg.png" class="mx-auto d-block" style="width:80%;height:8%;"> -->
             <br><br>
-            <img src="./assets/decimation3.png" class="mx-auto d-block" style="width:92%;height:14%;">
+            <img src="./assets/decimation1.jpeg" class="mx-auto d-block" style="width:90%;height:15%;">
             <br><br>
             <p>The block diagram notation of the decimation process is depicted in Figure 9.1. An anti-aliasing digital filter precedes the down-sampler to prevent aliasing from occurring, due to the lower sampling rate. here we will discuss the concept of 3-fold decimation i.e. M = 3. Here, the samples of x[n] corresponding to n = …, -2, 1, 4,… and n = …, -1, 2, 5,… are lost in the decimation process. In general, the samples of x[n] corresponding to n ≠ kM, where k is an integer, are discarded in M-fold decimation. In Figure , it shows samples of the decimated signal y[n] spaced three times wider than the samples of x[n]. This is not a coincidence. In real time, the decimated signal appears at a slower rate than that of the original signal by a factor of M. If the sampling frequency of x[n] is Fs, then that of y[n] is Fs/M.</p>
 

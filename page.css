@@ -157,6 +157,7 @@ aside .sidebar a.active {
   background: var(--color-light);
   color: var(--color-primary);
   margin-left: 0;
+  width: 80%;
 }
 
 aside .sidebar a.active::before {

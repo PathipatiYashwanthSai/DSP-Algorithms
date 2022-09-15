@@ -1,0 +1,208 @@
+---
+title: FFT
+layout: default
+---
+    <div class="container">
+        <aside>
+            <div class="top">
+                <h2>DSP</h2>
+                <div class="close" id="close-btn">
+                    <span class="material-symbols-sharp">close</span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="index.html" class="">
+                    <h3>Home Page</h3>
+                </a>
+                <a href="CrossCorr.html" class="">
+                    <h3>Cross Correlation</h3>
+                </a>
+                <a href="AutoCorr.html" class="">
+                    <h3>Auto Correlation</h3>
+                </a>
+                <a href="LinearConvolution.html" class="">
+                    <h3>Linear Convolution</h3>
+                </a>
+                <a href="CircularConvolution.html" class="">
+                    <h3>Circular Convolution</h3>
+                </a>
+                <a href="DFT.html" class="">
+                    <h3>Discrete Fourier Transform</h3>
+                </a>
+                <a href="IDFT.html" class="">
+                    <h3>Inverse Discrete Fourier Transform</h3>
+                </a>
+                <a href="Properties.html" class="">
+                    <h3>DFT & IDFT Properties</h3>
+                </a>
+                <a href="Linearity.html" class="">
+                    <h3>Linearity Property</h3>
+                </a>
+                <a href="LinearConvolutionUsingDFT&IDFT.html" class="">
+                    <h3>Linear Convolution Property</h3>
+                </a>
+                <a href="CircularConvolutionUsingDFT&IDFT.html" class="">
+                    <h3>Circular Convolution Property</h3>
+                </a>
+                <a href="CircularTimeShift.html" class="">
+                    <h3>Circular Timeshift Property</h3>
+                </a>
+                <a href="Modulation.html" class="">
+                    <h3>Modulation Property</h3>
+                </a>
+                <a href="FFTTHEORY.html" class="active">
+                    <h3>FFT Algorithm</h3>
+                </a>
+                <a href="DITFFT.html" class="">
+                    <h3>DFT using DITFFT</h3>
+                </a>
+                <a href="IDFTDITFFT.html" class="">
+                    <h3>IDFT using DITFFT</h3>
+                </a>
+                <a href="DIFFFT.html" class="">
+                    <h3>DFT using DIFFFT</h3>
+                </a>
+                <a href="IDFTDIFFFT.html" class="">
+                    <h3>IDFT using DIFFFT</h3>
+                </a>
+                <a href="differences(FIR&IIR).html" class="">
+                    <h3>IIR and FIR differences</h3>
+                </a>
+                <a href="directform-1.html" class="">
+                    <h3>IIR Direct Form-I</h3>
+                </a>
+                <a href="directForm-2.html" class="">
+                    <h3>IIR Direct Form-II</h3>
+                </a>
+                <a href="transposedform.html" class="">
+                    <h3>Transposed Form</h3>
+                </a>
+                <a href="cascadeform.html" class="">
+                    <h3>IIR Cascade Form</h3>
+                </a>
+                <a href="parallelform(IIR).html" class="">
+                    <h3>IIR Parallel Form</h3>
+                </a>
+                <a href="firdirectform.html" class="">
+                    <h3>FIR Direct Form</h3>
+                </a>
+                <a href="ladder(IIR).html" class="">
+                    <h3>IIR Ladder Structure</h3>
+                </a>
+                <a href="latticeStructure.html" class="">
+                    <h3>Lattice Structure</h3>
+                </a>
+                <a href="upsample.html" class="">
+                    <h3>Upsample</h3>
+                </a>
+                <a href="downsample.html" class="">
+                    <h3>Downsample</h3>
+                </a>
+                <a href="interpolation.html" class="">
+                    <h3>Interpolation</h3>
+                </a>
+                <a href="decimation.html" class="">
+                    <h3>Decimation</h3>
+                </a>
+                <a href="fractionalSampling.html" class="">
+                    <h3>Fractional Sampling Rate</h3>
+                </a>
+                <a href="bilinear.html" class="">
+                    <h3>Bilinear Transformation</h3>
+                </a>
+                <a href="impulseinvariant.html" class="">
+                    <h3>Impulse Invariant</h3>
+                </a>
+                <a href="FIR.html" class="">
+                    <h3>FIR</h3>
+                </a>
+                <a href="aprderivatives.html" class="">
+                    <h3>Approximation of Derivatives</h3>
+                </a>
+                <a href="windows.html" class="">
+                    <h3>Window Techniques</h3>
+                </a>
+                <a href="butterworth.html" class="">
+                    <h3>Butterworth Filters</h3>
+                </a>
+                <a href="chebyshev.html" class="">
+                    <h3>Chebyshev Filters</h3>
+                </a>
+                <a href="aboutus.html" class="">
+                    <h3>About Us</h3>
+                </a>
+            </div>
+        </aside>
+        <div class="flex-container">
+            <main>
+                <h2 style= "text-align: center;">
+                    Fast Fourier Transform
+                </h2>
+                <br><br>
+                <p>
+                    The FFT is a <b>Fast Fourier algorithm </b> computing the DFT. If we take the 2-point DFT and 4-point DFT and generalize them to 8-point, 16-point, ..., 2r -point, we get the FFT algorithm. To compute the DFT of an N-point sequence ,it would take N<sup>2</sup> multiplies and adds. The FFT algorithm computes the DFT using N*log N multiplies and adds.</p>
+                <p>There are many variants of the FFT algorithm. We’ll discuss one of them, the “decimation in-time” and "decimation in-frequency" FFT algorithm for sequences whose length is a power of two (N = 2r for some integer r). Below is a diagram of an 8-point FFT, where W = W<sub>8</sub> = e<sup>−iπ/4</sup> = (1 − i)/√2 
+                </p>
+                <br><br>
+                <img src = "./assets/Signal-Flow-Graph-of-an-8-point-DIT-FFT.ppm"  class="mx-auto d-block" style="height:25%; width:100%">
+                <br><br>
+            <b>
+                The above structue is an example of 8 point DFT of decimation in time(DIT) FFT.
+            </b>
+            <br><br>
+            <p>
+                <b>Butterflies and Bit-Reversal :-</b> FFT algorithm decomposes the DFT into log<sub>2</sub>N stages, each of which consists of N/2 butterfly computations. Each butterfly takes two complex numbers p and q and computes from them two other numbers, p + αq and p − αq, where α is a complex number. Below is a diagram of a butterfly operation.
+            </p>
+            <img src = "./assets/Screenshot 2022-09-15 151532.png"  class="mx-auto d-block" style="height:15%; width:75%">
+            <br><br>
+            <p>
+                In the diagram of the 8-point FFT above, note that the inputs aren’t in normal order, they’re in the bizarre order,like bit reversed order.</p>
+            <!-- <p>To know Why this sequence? Below is a table of j and the index of the jth input sample, n j:
+            </p>
+            <img src = "./assets/Screenshot .png"  class="mx-auto d-block" style="height:10%; width:100%">
+            <br><br>
+            <p>
+                The pattern is obvious if j and n <sub>j</sub> are written in binary (last two rows of the table). Observe that each n <sub>j</sub>  is the bit-reversal of j. The sequence is also related to breadth-first traversal of a binary tree. It turns out that this FFT algorithm is simplest if the input array is rearranged to be in bit-reversed order. The re-ordering can be done in one pass through the array a:
+            </p>
+            <div style = "text-align: center;">
+            <p>
+                for j = 0 to N-1
+            </p>
+            <p >
+                n<sub>j</sub> = bit_reverse(j)
+            </p>
+            <p>
+                if (j < n<sub>j</sub>) swap a[j] and a[n<sub>j</sub>]
+            </p>
+            </div>
+            <p>
+                Hence because of the above mentioned conditions in FFT structures ,some are bit reversed and some are normal. we will see examples in coming modules.
+            </p> -->
+            <p>
+                <b>General FFT and IFFT Algorithm </b> N = 2r. The previously diagrammed algorithm for the 8-point FFT is easily generalized to any power of two. The input array is bit-reversed,and the butterfly coefficients can be seen to have exponents in arithmetic sequence moduloN.</p>
+            <p>For example, for N = 8, the butterfly coefficients on the last stage in the diagram are W<sup>0</sup>, W<sup>1</sup>, W<sup>2</sup>, W<sup>3</sup>, W<sup>4</sup>, W<sup>5</sup>, W<sup>6</sup>, W<sup>7</sup>. That is, powers of W in sequence. The coefficients in the previous stage have exponents 0,2,4,6,0,2,4,6, which is equivalent to the sequence 0,2,4,6,8,10,12,14 modulo 8. And the exponents in the first stage are 1,-1,1,-1,1,-1,1,-1, which is equivalent to W raised to the powers 0,4,0,4,0,4,0,4, and this is equivalent to the exponent sequence 0,4,8,12,16,20,24,28 when taken modulo 8.</p>
+            <p>The width of the butterflies (the height of the ”X’s” in the diagram) can be seen to be 1, 2, 4, ... in successive stages, and the butterflies are seen to be isolated in the first stage (groups of 1), then clustered into overlapping groups of 2 in the second stage, groups of 4 in the 3rd stage, etc. The generalization to other powers of two should be evident from the diagrams for N = 4 and N = 8.
+            </p>
+            <p>
+                The inverse FFT (IFFT) is identical to the FFT, except one exchanges the roles of a and A, the signs of all the exponents of W are negated, and there’s a division by N at the end. Note that the fast way to compute mod(j, N)in the C programming language, for N a power of two, is with bit-wise AND: “j&(N-1)”. This is faster than “j%N”, and it works for positive or negative j, while the latter does not.
+            </p>
+
+            
+
+            </main>
+            <div class="right">
+                <div class="top">
+                    <button id="menu-btn">
+                        <span class="material-symbols-sharp">menu</span>
+                    </button>
+                    <div class="theme-toggler">
+                        <span class="material-symbols-sharp active">light_mode</span>
+                        <span class="material-symbols-sharp">dark_mode</span>
+                    </div>
+                </div>
+                <div class="interface-section">
+                    <br><br>
+                </div>
+            </div>
+        </div>
+    </div>

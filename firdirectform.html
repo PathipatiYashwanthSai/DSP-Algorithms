@@ -51,6 +51,21 @@ layout: default
             <a href="Modulation.html" class="">
                 <h3>Modulation Property</h3>
             </a>
+            <a href="FFTTHEORY.html" class="">
+                <h3>FFT Algorithm</h3>
+              </a>
+              <a href="DITFFT.html" class="">
+                <h3>DFT using DITFFT</h3>
+              </a>
+              <a href="IDFTDITFFT.html" class="">
+                <h3>IDFT using DITFFT</h3>
+              </a>
+              <a href="DIFFFT.html" class="">
+                <h3>DFT using DIFFFT</h3>
+              </a>
+              <a href="IDFTDIFFFT.html" class="">
+                <h3>IDFT using DIFFFT</h3>
+              </a>
             <a href="differences(FIR&IIR).html" class="">
                 <h3>IIR and FIR differences</h3>
             </a>
@@ -125,9 +140,10 @@ layout: default
                 <h3>THEORY:</h3>
              <p>
               For a FIR design, we have a couple of options such as the windowing method, the frequency sampling method, and more. Then, we need to choose a realization structure for the obtained system function. In other words, there are several structures which exhibit the same system function 
-              H(z)
-              . One consideration for choosing the appropriate structure is the sensitivity to coefficient quantization. Since a digital filter uses a finite number of bits to represent signals and coefficients, we need structures which can somehow retain the target filter specifications even after quantizing the coefficients. In addition, sometimes we observe that a particular structure can dramatically reduce the computational complexity of the system.
-             </p>
+              H(z). One consideration for choosing the appropriate structure is the sensitivity to coefficient quantization.
+            </p>
+            <p>Since a digital filter uses a finite number of bits to represent signals and coefficients, we need structures which can somehow retain the target filter specifications even after quantizing the coefficients.</p>
+            <p>In addition, sometimes we observe that a particular structure can dramatically reduce the computational complexity of the system.</p>
              <img src="assets/infofir.jpeg" style="width:100%;">
              <br><br>
              <div>

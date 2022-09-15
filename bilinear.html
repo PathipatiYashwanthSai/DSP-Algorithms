@@ -51,6 +51,21 @@ layout: default
             <a href="Modulation.html" class="">
                 <h3>Modulation Property</h3>
             </a>
+            <a href="FFTTHEORY.html" class="">
+                <h3>FFT Algorithm</h3>
+            </a>
+            <a href="DITFFT.html" class="">
+                <h3>DFT using DITFFT</h3>
+            </a>
+            <a href="IDFTDITFFT.html" class="">
+                <h3>IDFT using DITFFT</h3>
+            </a>
+            <a href="DIFFFT.html" class="">
+                <h3>DFT using DIFFFT</h3>
+            </a>
+            <a href="IDFTDIFFFT.html" class="">
+                <h3>IDFT using DIFFFT</h3>
+            </a>
             <a href="differences(FIR&IIR).html" class="">
                 <h3>IIR and FIR differences</h3>
             </a>
@@ -122,63 +137,63 @@ layout: default
     <div class="flex-container">
         <main>
             <h2 style="text-align:center;">DESIGN OF IIR FILTERS USING BILINEAR TRANSFORMATION</h2>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IIR filter can be designed using (a) approximation of derivatives method and (b) Impulse 
-        invariant transformation method. However the IIR filter design using these methods is 
-        appropriate only for the design of low-pass filters and band pass filters whose resonant 
-        frequencies are small. These techniques are not suitable for high-pass or band rejects filters. The 
-        limitation is overcome in the mapping technique called the bilinear transformation. This 
-        transformation is a one-to-one mapping from the s-domain to the z-domain. That is, the bilinear 
-        transformation is a conformal mapping that transforms the imaginary axis of s-plane into the unit 
-        circle in the z-plane only once, thus avoiding aliasing of frequency components. In this mapping, 
-        all points in the left half of s-plane are mapped inside the unit circle in the z-plane, and all points 
-        in the right half of s-plane are mapped outside the unit circle in the z-plane. So the 
-        transformation of a stable analog filter results in stable digital filter. The bilinear transformation 
-        can be obtained by using the trapezoidal formula for the numerical integration.</p>
-        <p>The differential equation describing the above analog filter can be obtained as:</p>
-        <p><img src="assets/IMG_20220716_130402.JPG" width="30%"></p>
-        <p>Taking inverse Laplace transform on both sides and applying z transform, we get</p>
-        <p><img src="assets/IMG_20220716_130438.JPG" width="35%"></p>
-        <p>Comparing this with the analog filter system function Ha(s) we get</p>
-        <p><img src="assets/IMG_20220716_130451.JPG" width="20%"></p>
-        <p> The general characteristic of the mapping z = e
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IIR filter can be designed using (a) approximation of derivatives method and (b) Impulse 
+                invariant transformation method. However the IIR filter design using these methods is 
+                appropriate only for the design of low-pass filters and band pass filters whose resonant 
+                frequencies are small. These techniques are not suitable for high-pass or band rejects filters.</p>
+            <p>The limitation is overcome in the mapping technique called the bilinear transformation. This 
+                transformation is a one-to-one mapping from the s-domain to the z-domain. That is, the bilinear 
+                transformation is a conformal mapping that transforms the imaginary axis of s-plane into the unit 
+                circle in the z-plane only once, thus avoiding aliasing of frequency components.</p>
+            <p>In this mapping, all points in the left half of s-plane are mapped inside the unit circle in the z-plane, and all points 
+                in the right half of s-plane are mapped outside the unit circle in the z-plane. So the 
+                transformation of a stable analog filter results in stable digital filter. The bilinear transformation 
+                can be obtained by using the trapezoidal formula for the numerical integration.</p>
+            <p>The differential equation describing the above analog filter can be obtained as:</p>
+            <p><img src="assets/IMG_20220716_130402.JPG" width="30%"></p>
+            <p>Taking inverse Laplace transform on both sides and applying z transform, we get</p>
+            <p><img src="assets/IMG_20220716_130438.JPG" width="35%"></p>
+            <p>Comparing this with the analog filter system function Ha(s) we get</p>
+            <p><img src="assets/IMG_20220716_130451.JPG" width="20%"></p>
+            <p> The general characteristic of the mapping z = e
             sT may be obtained by</p>
-        <p><img src="assets/IMG_20220716_131139.JPG" width="50%"></p>
-        <p><img src="assets/IMG_20220716_131152.JPG" width="50%"></p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;From the above equation for , we observe that if r < 1 then σ < 0 and if r > 1, then σ > 
+            <p><img src="assets/IMG_20220716_131139.JPG" width="50%"></p>
+            <p><img src="assets/IMG_20220716_131152.JPG" width="50%"></p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;From the above equation for , we observe that if r < 1 then σ < 0 and if r > 1, then σ > 
             0, and if r = 1, then σ = 0. Hence the left half of the s-plane maps into points inside
             the unit circle in the z-plane, the right half of the s-plane maps into points outside the unit 
             circle in the z-plane and the imaginary axis of s-plane maps into the unit circle in the z-plane. 
             This transformation results in a stable digital system.
             </p>
-    <h3>Relation between analog and digital frequencies</h3>
-    <p><img src="assets/IMG_20220716_003149.JPG" width="55%"></p>
-    <p>The relaton between analog and digital frequencies is given by,</p>
-    <p><img src="assets/IMG_20220716_003209.JPG" width="55%"></p>
-    <p>Mapping between analog and digital frequencies in bilinear transformation is given by</p>
-    <p><img src="assets/IMG_20220716_003227.JPG"></p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;The effect of warping on the magnitude response can be explained by considering an 
-        analog filter with a number of passbands as shown in Figure 2(a). The corresponding digital 
-        filter will have same number of passbands, but with disproportionate bandwidth</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;In designing digital filter using bilinear transformation, the effect of warping on 
-        amplitude response can be eliminated by prewarping the analog filter. In this method, the 
-        specified digital frequencies are converted to analog equivalent using the equation
-        These analog frequencies are called prewarp frequencies. Using the prewarp
-        frequencies, the analog filter transfer function is designed, and then it is transformed to digital 
-        filter transfer function.
-        This effect of warping on the phase response can be explained by considering an analog 
-        filter with linear phase response as shown in Figure 2(b). The phase response of corresponding
-        digital filter will be nonlinear</p>
-    <p><img src="assets/IMG_20220716_131211.JPG"></p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;It can be stated that the bilinear transformation preserves the magnitude response of an 
-        analog filter only if the specification requires piecewise constant magnitude, but the phase 
-        response of the analog filter is not preserved. Therefore, the bilinear transformation can be used 
-        only to design digital filters with prescribed magnitude response with piecewise constant 
-        values. A linear phase analog filter cannot be transformed into a linear phase digital filter 
-    using bilinear transformation.</p>
-    <h4>EXAMPLE 1:</h4>
-    <p><img src="assets/IMG_20220716_131858.JPG"></p>
-    <p><img src="assets/IMG_20220716_131938.JPG"></p>
-    <p><img src="assets/IMG_20220716_132008.JPG" width="50%"></p>
+            <h3>Relation between analog and digital frequencies</h3>
+            <p><img src="assets/IMG_20220716_003149.JPG" width="55%"></p>
+            <p>The relaton between analog and digital frequencies is given by,</p>
+            <p><img src="assets/IMG_20220716_003209.JPG" width="55%"></p>
+            <p>Mapping between analog and digital frequencies in bilinear transformation is given by</p>
+            <p><img src="assets/IMG_20220716_003227.JPG"></p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;The effect of warping on the magnitude response can be explained by considering an 
+            analog filter with a number of passbands as shown in Figure 2(a). The corresponding digital 
+            filter will have same number of passbands, but with disproportionate bandwidth</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;In designing digital filter using bilinear transformation, the effect of warping on 
+            amplitude response can be eliminated by prewarping the analog filter. In this method, the 
+            specified digital frequencies are converted to analog equivalent using the equation
+            These analog frequencies are called prewarp frequencies. Using the prewarp
+            frequencies, the analog filter transfer function is designed, and then it is transformed to digital 
+            filter transfer function.
+            This effect of warping on the phase response can be explained by considering an analog 
+            filter with linear phase response as shown in Figure 2(b). The phase response of corresponding
+            digital filter will be nonlinear</p>
+            <p><img src="assets/IMG_20220716_131211.JPG"></p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;It can be stated that the bilinear transformation preserves the magnitude response of an 
+            analog filter only if the specification requires piecewise constant magnitude, but the phase 
+            response of the analog filter is not preserved. Therefore, the bilinear transformation can be used 
+            only to design digital filters with prescribed magnitude response with piecewise constant 
+            values. A linear phase analog filter cannot be transformed into a linear phase digital filter 
+            using bilinear transformation.</p>
+            <h4>EXAMPLE 1:</h4>
+            <p><img src="assets/IMG_20220716_131858.JPG"></p>
+            <p><img src="assets/IMG_20220716_131938.JPG"></p>
+            <p><img src="assets/IMG_20220716_132008.JPG" width="50%"></p>
         </main>
         <div class="right">
             <div class="top">
