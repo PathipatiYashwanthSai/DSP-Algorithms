@@ -160,11 +160,13 @@ layout: default
             <div>
                 <br><br>
                 <h3>Enter the input sequence :</h3>
-                <input type="text" id="8bitinput"/>
+                <input type="text" id="8bitinput" placeholder="1,2,3,4,5,6,7,8"/>
                 <br><br>
                 <button type="submit" class="btn btn-warning" onclick="dfft8()">Submit for ditfft 8 point</button>
                 <br><br>
                 <h4 id = "bitreversal"></h4>
+                <h4 id="stage1seqoffft8"></h4>
+                <h4 id="stage2seqoffft8"></h4>
                 <h4 id = "outputseq"></h4>
             </div>
             <div>
@@ -179,11 +181,12 @@ layout: default
             <br><br>
             <br><br>
                 <h3>Enter the input sequence :</h3>
-                <input type="text" id="4bitinput"/>
+                <input type="text" id="4bitinput" placeholder="1,2,3,4"/>
                 <br><br>
                 <button type="submit" class="btn btn-warning" onclick="fft4()">Submit for ditfft 4 point</button>
                 <br><br>
                 <h4 id = "bitreversaloffft4"></h4>
+                <h4 id="stage1seqoffft4"></h4>
                 <h4 id = "outputseqoffft4"></h4>
             </div>
             </main>
@@ -205,111 +208,119 @@ layout: default
     </div>
     <script type="text/javascript">
         function dfft8(){
-            document.getElementById("bitreversal").innerText = "Bit reversal sequence is: "
-            document.getElementById("outputseq").innerText = "The output sequence is: "
-          // document.getElementById("thefirststagevalues").innerText = "The First stage values"
+            document.getElementById("bitreversal").innerText = "Bit reversal sequence is: ";
+            document.getElementById("stage1seqoffft8").innerText = "Sequence after 2-point DFT: ";
+            document.getElementById("stage2seqoffft8").innerText = "Sequence after 4-point DFT: ";
+            document.getElementById("outputseq").innerText = "The output sequence is: ";
             class Complex{
               constructor(r,i){
                   this.r=r;
                   this.i=i;
               }
-          }
+            }
           
-          const n= 8
-          let x= document.getElementById("8bitinput").value.split(",");
+            const n= 8
+            let x= document.getElementById("8bitinput").value.split(",");
             const xt = x.map(Number);
             
           
-          // for 8 point dft using dit fft
-          let y=[];
-          z=[0,4,2,6,1,5,3,7];
-          for(var i=0;i<n;i++)
+            // for 8 point dft using dit fft
+            let y=[];
+            z=[0,4,2,6,1,5,3,7];
+            for(var i=0;i<n;i++)
               y[i]=xt[z[i]];
-          //for (let i=0;i<n;i++) {
-            //document.getElementById(String(z[i])).innerText = xt[i]
-           //document.write(xt[i])
-             // }  
             document.getElementById("bitreversal").innerText += y;
-          let a=[];
-          for (var i=0;i<n;i+=2){
+            let a=[];
+            for (var i=0;i<n;i+=2){
               a[i]=y[i]+y[i+1];
               a[i+1]=y[i]-y[i+1];
-          }
-          
-          let b=[];
-          for(var i=0;i<n;i+=4){
+            }
+            document.getElementById("stage1seqoffft8").innerText += a;
+            let b=[];
+            for(var i=0;i<n;i+=4){
               b[i]=new Complex(a[i]+a[i+2],0);
               b[i+2]=new Complex(a[i]-a[i+2],0);
               b[i+1]=new Complex(a[i+1],-a[i+3]);
               b[i+3]=new Complex(a[i+1],a[i+3]);
-          }
-          //document.getElementById("thefirststagevalues").innerText += b
-          let res=[];
-          for(let i=0;i<n/2;i++){
+            }
+            const stage2 = [];
+            for(let i=0;i<n;i++){
+                if (math.round(b[i].i,2) < 0) {
+                    stage2[i] =String(math.round( b[i].r,2))+math.round(b[i].i,2)+"j";
+                } else if (math.round(b[i].i,2) == 0) {
+                    stage2[i] =math.round( b[i].r,2);
+                } else {
+                    stage2[i] =math.round( b[i].r,2)+ "+" +math.round(b[i].i,2)+"j";
+                }
+            }
+            document.getElementById("stage2seqoffft8").innerText += stage2;
+            let res=[];
+            for(let i=0;i<n/2;i++){
               phi=(2*Math.PI*i)/n;
               res[i]=new Complex(b[i].r+Math.cos(phi)*b[i+4].r+Math.sin(phi)*b[i+4].i,b[i].i+Math.cos(phi)*b[i+4].i-Math.sin(phi)*b[i+4].r);
               res[i+4]=new Complex(b[i].r-Math.cos(phi)*b[i+4].r-Math.sin(phi)*b[i+4].i,b[i].i-Math.cos(phi)*b[i+4].i+Math.sin(phi)*b[i+4].r);
-          }
-          const output = []
-          for(let i=0;i<n;i++){
-          k = String(i);
-         // console.log(res[i].r+"+"+res[i].i+"j");
-          //document.getElementById(k).innerText = b[i].r+"+"+b[i].i+"j";
-        //document.getElementById(k).innerText = res[i].r+"+"+res[i].i+"j";
-          
-          output[i] =math.round( res[i].r,2)+"+"+math.round(res[i].i,2)+"j"
-          }
-          document.getElementById("outputseq").innerText += output;
+            }
+            
+            const output = [];
+            for(let i=0;i<n;i++){
+                if (math.round(res[i].i,2) < 0) {
+                    output[i] =String(math.round( res[i].r,2))+math.round(res[i].i,2)+"j";
+                } else if(math.round(res[i].i,2) == 0) {
+                    output[i] =math.round( res[i].r,2);
+                } else {
+                    output[i] =math.round( res[i].r,2)+"+"+math.round(res[i].i,2)+"j";
+                }
+            }
+            document.getElementById("outputseq").innerText += output;
         }
-
-
 
     function fft4() {
         document.getElementById("bitreversaloffft4").innerText = "Bit reversal sequence is: "
         document.getElementById("outputseqoffft4").innerText = "The output sequence is: "
+        document.getElementById("stage1seqoffft4").innerText = "Sequence after 2-point DFT: "
         class Complex{
           constructor(r,i){
               this.r=r;
               this.i=i;
-          }
-      }
-      
-      // const n=parseInt(prompt("Enter n"));
-      const n =4
-      let x= document.getElementById("4bitinput").value.split(",");
-      const xt = x.map(Number);
-      //for(var i=0;i<4;i++)
-        //  x[i]=parseInt(prompt("enter values")); 
-      // for 8 point dft using dit fft
-      let y=[];
-      z =[0,2,1,3];
-      for(var i=0;i<n;i++){
+            }
+        }
+
+        const n =4
+        let x= document.getElementById("4bitinput").value.split(",");
+        const xt = x.map(Number);
+
+        let y=[];
+        z =[0,2,1,3];
+        for(var i=0;i<n;i++){
           y[i]=xt[z[i]];
-      }
-      document.getElementById("bitreversaloffft4").innerText += y;
+        }
+        document.getElementById("bitreversaloffft4").innerText += y;
       
-      let a=[];
-      for (var i=0;i<n;i+=2){
+        let a=[];
+        for (var i=0;i<n;i+=2){
           a[i]=y[i]+y[i+1];
           a[i+1]=y[i]-y[i+1];
-      }
-      let b=[];
-      for(var i=0;i<n;i+=4){
+        }
+        document.getElementById("stage1seqoffft4").innerText += a;
+
+        let b=[];
+        for(var i=0;i<n;i+=4){
           b[i]=new Complex(a[i]+a[i+2],0);
           b[i+2]=new Complex(a[i]-a[i+2],0);
           b[i+1]=new Complex(a[i+1],-a[i+3]);
           b[i+3]=new Complex(a[i+1],a[i+3]);
-      }
-      const output = []
-      for(let i=0;i<n;i++) {
-        k = String(i);
-        //console.log(b[i].r+"+"+b[i].i+"j");
-       // document.getElementById(k).innerText = b[i].r+"+"+b[i].i+"j";
-       output[i] =math.round( b[i].r,2)+"+"+math.round(b[i].i,2)+"j"
+        }
+      
+        const output = []
+        for(let i=0;i<n;i++) {
+            if(math.round(b[i].i,2) < 0) {
+                output[i] = String(math.round( b[i].r,2))+math.round(b[i].i,2)+"j"
+            } else if(math.round(b[i].i,2) == 0) {
+                output[i] =math.round( b[i].r,2);
+            } else {
+                output[i] =math.round( b[i].r,2)+"+"+math.round(b[i].i,2)+"j";
+            }
+        }
+        document.getElementById("outputseqoffft4").innerText += output;
     }
-    document.getElementById("outputseqoffft4").innerText += output;
-
-  }
-
- 
     </script>

@@ -163,6 +163,8 @@ layout: default
                 <button type="submit" class="btn btn-warning" onclick= idftdiffft8()>Submit idft diffft 8 point</button>
                 <br><br>
                 <h4 id = "bitreversal"></h4>
+                <h4 id="stage1seqoffft8"></h4>
+                <h4 id="stage2seqoffft8"></h4>
                 <h4 id = "outputseq"></h4>
             </div>
             <br><br>
@@ -183,6 +185,7 @@ layout: default
                 <button type="submit" class="btn btn-warning" onclick=idftdiffft4()>Submit idft diffft 4 point</button>
                 <br><br>
                 <h4 id = "bitreversalofifft4"></h4>
+                <h4 id="stage1seqoffft4"></h4>
                 <h4 id = "outputseqofifft4"></h4>
             </div>
             </main>
@@ -205,102 +208,127 @@ layout: default
     <script type="text/javascript">
         function idftdiffft8(){
             document.getElementById("bitreversal").innerText = "The bit reversal sequence:"
+            document.getElementById("stage1seqoffft8").innerText = "Sequence after 2-point IDFT: ";
+            document.getElementById("stage2seqoffft8").innerText = "Sequence after 4-point IDFT: ";
             document.getElementById("outputseq").innerText = "The output sequence is:"
-        class Complex{
-            constructor(r,i){
-                this.r=r;
-                this.i=i;
+            const n= 8
+            let x= document.getElementById("8bitinputidft").value.split(",");
+            const xt = [];
+            for(let i=0; i<n; i++) {
+                xt.push(math.complex(x[i]));
             }
-        }
-        
-        const n= 8
-        let x= document.getElementById("8bitinputidft").value.split(",");
-        const xt = x.map(Number);
-        
-        
-        let y=[];
-        z=[0,4,2,6,1,5,3,7];
-        for(var i=0;i<n;i++)
-            y[i]=xt[z[i]];
+            let y=[];
+            z=[0,4,2,6,1,5,3,7];
+            for(var i=0;i<n;i++)
+                y[i]=xt[z[i]];
             document.getElementById("bitreversal").innerText += y;
-        let a=[];
-        for (var i=0;i<n;i+=2){
-            a[i]=(y[i]+y[i+1])/2;
-            a[i+1]=(y[i]-y[i+1])/2;
-        }
+            let a=[];
+            for (var i=0;i<n;i+=2){
+                a[i] = math.multiply(math.add(y[i],y[i+1]),String(0.5));
+                a[i+1] = math.multiply(math.add(y[i],math.multiply(y[i+1], String(-1))),String(0.5));
+            }
+            const stage1 = [];
+            for(let i=0;i<n;i++){
+                if(Number(a[i]['im'].toFixed(2))<0) {
+                    stage1.push(a[i]["re"].toFixed(2) + a[i]['im'].toFixed(2) + "i");
+                } else if(Number(a[i]['im'].toFixed(2))>0) {
+                    stage1.push(a[i]["re"].toFixed(2) + "+" + a[i]['im'].toFixed(2) + "i");
+                } else {
+                    stage1.push(a[i]["re"].toFixed(2));
+                }
+            }
+            document.getElementById("stage1seqoffft8").innerText += stage1;
         
-        let b=[];
-        for(var i=0;i<n;i+=4){
-            b[i]=new Complex((a[i]+a[i+2])/2,0);
-            b[i+2]=new Complex((a[i]-a[i+2])/2,0);
-            b[i+1]=new Complex(a[i+1]/2,a[i+3]/2);
-            b[i+3]=new Complex(a[i+1]/2,-a[i+3]/2);
+            let b=[];
+            for(var i=0;i<n;i+=4){
+                b[i] = math.multiply(math.add(a[i],a[i+2]), String(0.5));
+                b[i+2] = math.multiply(math.add(a[i],math.multiply(a[i+2], String(-1))), String(0.5));
+                b[i+1] = math.multiply(math.add(a[i+1],math.multiply(a[i+3],String(Math.cos(Math.PI/2)) + "+" + String(Math.sin(Math.PI/2)) + "i")), String(0.5));
+                b[i+3] = math.multiply(math.add(a[i+1],math.multiply(math.multiply(a[i+3],String(Math.cos(Math.PI/2)) + "+" + String(Math.sin(Math.PI/2)) + "i"), String(-1))), String(0.5));
+            }
+            const stage2 = [];
+            for(let i=0;i<n;i++){
+                if(Number(b[i]['im'].toFixed(2))<0) {
+                    stage2.push(b[i]["re"].toFixed(2) + b[i]['im'].toFixed(2) + "i");
+                } else if(Number(b[i]['im'].toFixed(2))>0) {
+                    stage2.push(b[i]["re"].toFixed(2) + "+" + b[i]['im'].toFixed(2) + "i");
+                } else {
+                    stage2.push(b[i]["re"].toFixed(2));
+                }
+            }
+            document.getElementById("stage2seqoffft8").innerText += stage2;
+            const res = []
+            for(let i=0; i<n; i++){
+                realSum = 0;
+                for(let j=0; j<n; j++) {
+                    mul = math.multiply(xt[j],String(Math.cos(2*Math.PI*j*i/n)) + "+" + String(Math.sin(2*Math.PI*j*i/n)) + "i");
+                    realSum = math.add(mul,realSum)
+                }
+                res.push(math.multiply(realSum,String(1/n)));
+            }
+            const output=[]
+            for(let i=0; i<n; i++) {
+                if(Number(res[i]['im'].toFixed(2))<0) {
+                    output.push(res[i]["re"].toFixed(2) + res[i]['im'].toFixed(2) + "i");
+                } else if(Number(res[i]['im'].toFixed(2))>0) {
+                    output.push(res[i]["re"].toFixed(2) + "+" + res[i]['im'].toFixed(2) + "i");
+                } else {
+                    output.push(res[i]["re"].toFixed(2));
+                }
+            }
+            document.getElementById("outputseq").innerText += output
         }
-        output = []
-        for(let i=0;i<n;i++){
-        console.log(b[i].r+"+"+b[i].i+"j");
-        
-        output[i] = math.round(b[i].r,2)+"+"+math.round(b[i].i,2)+"j"
-
-      
-    }
-    document.getElementById("outputseq").innerText += output
-}
 
 
         function idftdiffft4(){
             document.getElementById("bitreversalofifft4").innerText = "The bit reversal sequence is: "
             document.getElementById("outputseqofifft4").innerText = "The output sequence is: "
-            class Complex{
-                constructor(r,i){
-                    this.r=r;
-                    this.i=i;
-                }
-            }
-            
+            document.getElementById("stage1seqoffft4").innerText = "Sequence after 2-point DFT: "
             const n=4;
             let x= document.getElementById("4bitinputidft").value.split(",");
-            const xt = x.map(Number);
-        
-            
-            
+            const xt = [];
+            for(let i=0; i<n; i++) {
+                xt.push(math.complex(x[i]));
+            }
             let y=[];
             z=[0,2,1,3];
             for(var i=0;i<n;i++){
                 y[i]=xt[z[i]];
             }
-
             document.getElementById("bitreversalofifft4").innerText += y;
-                    
             let a=[];
             for (var i=0;i<n;i+=2){
-                a[i]=(y[i]+y[i+1])/2;
-                a[i+1]=(y[i]-y[i+1])/2;
+                a[i] = math.multiply(math.add(y[i],y[i+1]),String(0.5));
+                a[i+1] = math.multiply(math.add(y[i],math.multiply(y[i+1], String(-1))),String(0.5));
             }
-            
+            const stage1 = [];
+            for(let i=0;i<n;i++){
+                if(Number(a[i]['im'].toFixed(2))<0) {
+                    stage1.push(a[i]["re"].toFixed(2) + a[i]['im'].toFixed(2) + "i");
+                } else if(Number(a[i]['im'].toFixed(2))>0) {
+                    stage1.push(a[i]["re"].toFixed(2) + "+" + a[i]['im'].toFixed(2) + "i");
+                } else {
+                    stage1.push(a[i]["re"].toFixed(2));
+                }
+            }
+            document.getElementById("stage1seqoffft4").innerText += stage1;
             let b=[];
             for(var i=0;i<n;i+=4){
-                b[i]=new Complex((a[i]+a[i+2])/2,0);
-                b[i+2]=new Complex((a[i]-a[i+2])/2,0);
-                b[i+1]=new Complex(a[i+1]/2,a[i+3]/2);
-                b[i+3]=new Complex(a[i+1]/2,-a[i+3]/2);
+                b[i] = math.multiply(math.add(a[i],a[i+2]), String(0.5));
+                b[i+2] = math.multiply(math.add(a[i],math.multiply(a[i+2], String(-1))), String(0.5));
+                b[i+1] = math.multiply(math.add(a[i+1],math.multiply(a[i+3],String(Math.cos(Math.PI/2)) + "+" + String(Math.sin(Math.PI/2)) + "i")), String(0.5));
+                b[i+3] = math.multiply(math.add(a[i+1],math.multiply(math.multiply(a[i+3],String(Math.cos(Math.PI/2)) + "+" + String(Math.sin(Math.PI/2)) + "i"), String(-1))), String(0.5));
             }
-            output = []
+            const stage2 = [];
             for(let i=0;i<n;i++){
-             //console.log(b[i].r+"+"+b[i].i+"j");
-            k = String(i);
-            //document.getElementById(k).innerText = b[i].r+"+"+b[i].i+"j";
-            output[i] = math.round(b[i].r,2)+"+"+math.round(b[i].i,2)+"j"
+                if(Number(b[i]['im'].toFixed(2))<0) {
+                    stage2.push(b[i]["re"].toFixed(2) + b[i]['im'].toFixed(2) + "i");
+                } else if(Number(b[i]['im'].toFixed(2))>0) {
+                    stage2.push(b[i]["re"].toFixed(2) + "+" + b[i]['im'].toFixed(2) + "i");
+                } else {
+                    stage2.push(b[i]["re"].toFixed(2));
+                }
             }
-            document.getElementById("outputseqofifft4").innerText += output
+            document.getElementById("outputseqofifft4").innerText += stage2;
         }
-            
-        
-           
- 
     </script>
-    <script src="responsive.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-</body>
-</html>

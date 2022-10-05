@@ -164,6 +164,8 @@ layout: default
                 <br><br>
                 <button type="submit" class="btn btn-warning" onclick="idftditfft8()">Submit for idft ditfft 8 point</button>
                 <br><br>
+                <h4 id="stage1seqoffft8"></h4>
+                <h4 id="stage2seqoffft8"></h4>
                 <h4 id = "bitreversal"></h4>
                 <h4 id = "outputseq"></h4>
             </div>
@@ -183,8 +185,10 @@ layout: default
                 <br><br>
                 <button type="submit" class="btn btn-warning" onclick="fft45()">Submit for idft ditfft 4 point</button>
                 <br><br>
+                <h4 id="stage1seqoffft4"></h4>
                 <h4 id = "bitreversaloffft4"></h4>
                 <h4 id = "outputseqoffft4"></h4>
+                
             </div>
             </main>
             <div class="right">
@@ -205,58 +209,88 @@ layout: default
     </div>
     <script type="text/javascript">
         function idftditfft8(){
-            document.getElementById("bitreversal").innerText = "The Bit reversal output sequence is: "
-            document.getElementById("outputseq").innerText = "The output sequence is: "
-          // document.getElementById("thefirststagevalues").innerText = "The First stage values"
-          class Complex{
-            constructor(r,i){
-                this.r=r;
-                this.i=i;
-            }
-        }
-        
+            document.getElementById("bitreversal").innerText = "The Bit reversal output sequence is: ";
+            document.getElementById("outputseq").innerText = "The output sequence is: ";
+            document.getElementById("stage1seqoffft8").innerText = "Sequence after 8-point IDFT: ";
+            document.getElementById("stage2seqoffft8").innerText = "Sequence after 4-point IDFT: ";
         const n= 8;
         let x= document.getElementById("8bitinputidft").value.split(",");
-            const xt = x.map(Number);
-            //document.getElementById("bitreversal").innerText += xt[i];
+        const xt = [];
+        for(let i=0; i<n; i++) {
+            xt.push(math.complex(x[i]));
+        }
             let a=[];
             for(let i=0;i<n/2;i++){
                 phi=(2*Math.PI*i)/n;
-                a[i]=new Complex((xt[i]+xt[i+4])/2,0);
-                a[i+4]= new Complex((xt[i]-xt[i+4])*Math.cos(phi) /2,(xt[i]-xt[i+4])*Math.sin(phi)/2);
+                a[i] = math.multiply(math.add(xt[i],xt[i+4]),String(0.5));
+                a[i+4] = math.multiply(math.add(xt[i],math.multiply(xt[i+4],String(-1))),String(Math.cos(phi)*0.5) + "+" + String(Math.sin(phi)*0.5) + "i");
             }
+            const stage1 = [];
+            for(let i=0;i<n;i++){
+                if(Number(a[i]['im'].toFixed(2))<0) {
+                    stage1.push(a[i]["re"].toFixed(2) + a[i]['im'].toFixed(2) + "i");
+                } else if(Number(a[i]['im'].toFixed(2))>0) {
+                    stage1.push(a[i]["re"].toFixed(2) + "+" + a[i]['im'].toFixed(2) + "i");
+                } else {
+                    stage1.push(a[i]["re"].toFixed(2));
+                }
+            }
+            document.getElementById("stage1seqoffft8").innerText += stage1;
             
             let b=[];
             for(var i=0;i<n;i+=4){
-                b[i]=new Complex((a[i].r+a[i+2].r)/2,(a[i].i+a[i+2].i)/2);
-                b[i+2]=new Complex((a[i].r-a[i+2].r)/2,(a[i].i-a[i+2].i)/2);
-                b[i+1]=new Complex((a[i+1].r+a[i+3].r)/2,(a[i+1].i+a[i+3].i)/2);
-                b[i+3]=new Complex((a[i+1].i-a[i+3].i)/2,(-a[i+3].r+a[i+1].r)/2);
+                b[i] = math.multiply(math.add(a[i],a[i+2]), String(0.5));
+                b[i+2] = math.multiply(math.add(a[i],math.multiply(a[i+2], String(-1))), String(0.5));
+                b[i+1] = math.multiply(math.add(a[i+1],a[i+3]), String(0.5));
+                b[i+3] = math.multiply(math.add(a[i+1],math.multiply(a[i+3], String(-1))), String(Math.cos(Math.PI/2)*0.5) + "+" + String(Math.sin(Math.PI/2)*0.5) + "i");
             }
+            const stage2 = [];
+            for(let i=0;i<n;i++){
+                if(Number(b[i]['im'].toFixed(2))<0) {
+                    stage2.push(b[i]["re"].toFixed(2) + b[i]['im'].toFixed(2) + "i");
+                } else if(Number(b[i]['im'].toFixed(2))>0) {
+                    stage2.push(b[i]["re"].toFixed(2) + "+" + b[i]['im'].toFixed(2) + "i");
+                } else {
+                    stage2.push(b[i]["re"].toFixed(2));
+                }
+            }
+            document.getElementById("stage2seqoffft8").innerText += stage2;
             
             let res=[]
             for (var i=0;i<n;i+=2){
-                res[i]=new Complex((b[i].r+b[i+1].r)/2,(b[i].i+b[i+1].i)/2);
-                res[i+1]=new Complex((b[i].r-b[i+1].r)/2,(b[i].i-b[i+1].i)/2);
+                res[i] = math.multiply(math.add(b[i],b[i+1]),String(0.5));
+                res[i+1] = math.multiply(math.add(b[i], math.multiply(b[i+1], String(-1))), String(0.5));
             }
             bitrev = []
             output = []
             z=[0,4,2,6,1,5,3,7];
-            for(let i=0;i<n;i++){
-              k = String(i);
-            // console.log(res[z[i]].r+"+"+res[z[i]].i+"j"); 
-            // document.getElementById(k).innerText = res[z[i]].r+"+"+res[z[i]].i+"j";
-            bitrev[i] =math.round(res[z[i]].r,2)+"+"+math.round(res[z[i]].i,2)+"j"
-            output[i] =math.round(res[z[i]].r,2)+"+"+math.round(res[z[i]].i,2)+"j"
-          }
-          document.getElementById("bitreversal").innerText += bitrev;
-          document.getElementById("outputseq").innerText += output;
+            for(let i=0;i<n;i++){           
+                if(Number(res[z[i]]['im'].toFixed(2))<0) {
+                    bitrev.push(res[z[i]]["re"].toFixed(2) + res[z[i]]['im'].toFixed(2) + "i");
+                } else if(Number(res[z[i]]['im'].toFixed(2))>0) {
+                    bitrev.push(res[z[i]]["re"].toFixed(2) + "+" + res[z[i]]['im'].toFixed(2) + "i");
+                } else {
+                    bitrev.push(res[z[i]]["re"].toFixed(2));
+                }
+
+                if(Number(res[i]['im'].toFixed(2))<0) {
+                    output.push(res[i]["re"].toFixed(2) + res[i]['im'].toFixed(2) + "i");
+                } else if(Number(res[i]['im'].toFixed(2))>0) {
+                    output.push(res[i]["re"].toFixed(2) + "+" + res[i]['im'].toFixed(2) + "i");
+                } else {
+                    output.push(res[i]["re"].toFixed(2));
+                }
+            }
+            document.getElementById("bitreversal").innerText += output;
+            document.getElementById("outputseq").innerText += bitrev;
         }
+        
 
         function fft45(){
             document.getElementById("bitreversaloffft4").innerText = "The bit reversal sequence of output is: "
             document.getElementById("outputseqoffft4").innerText = "The output sequence is: "
-    
+            document.getElementById("stage1seqoffft4").innerText = "Sequence after 4-point IDFT: "
+            
             class Complex{
               constructor(r,i){
                   this.r=r;
@@ -264,40 +298,56 @@ layout: default
               }
             }
           
+            const n=4
+            let x= document.getElementById("4bitinputidft").value.split(",");
+            const xt = [];
+            for(let i=0; i<n; i++) {
+                xt.push(math.complex(x[i]));
+            }
+            let a=[];
+            for(let i=0;i<n/2;i++){
+                phi=(2*Math.PI*i)/n;
+                a[i] = math.multiply(math.add(xt[i],xt[i+2]),String(0.5));
+                a[i+2] = math.multiply(math.add(xt[i],math.multiply(xt[i+2],String(-1))),String(Math.cos(phi)*0.5) + "+" + String(Math.sin(phi)*0.5) + "i");
+            }
+            const stage1 = [];
+            for(let i=0;i<n;i++){
+                if(Number(a[i]['im'].toFixed(2))<0) {
+                    stage1.push(a[i]["re"].toFixed(2) + a[i]['im'].toFixed(2) + "i");
+                } else if(Number(a[i]['im'].toFixed(2))>0) {
+                    stage1.push(a[i]["re"].toFixed(2) + "+" + a[i]['im'].toFixed(2) + "i");
+                } else {
+                    stage1.push(a[i]["re"].toFixed(2));
+                }
+            }
+            document.getElementById("stage1seqoffft4").innerText += stage1;
           
-          const n=4
-          let x= document.getElementById("4bitinputidft").value.split(",");
-          const xt = x.map(Number);
-          
-          let a=[];
-          for(let i=0;i<n/2;i++){
-              phi=(2*Math.PI*i)/n;
-              a[i]=new Complex((xt[i]+xt[i+2])/2,0);
-              a[i+2]= new Complex((xt[i]-xt[i+2])*Math.cos(phi)/2,(xt[i]-xt[i+2])*Math.sin(phi)/2);
-          }
-          
-          let res=[]
-          for (var i=0;i<n;i+=2){
-              res[i]=new Complex((a[i].r+a[i+1].r)/2,(a[i].i+a[i+1].i)/2);
-              res[i+1]=new Complex((a[i].r-a[i+1].r)/2,(a[i].i-a[i+1].i)/2);
-      
-          }
-         let  bitrev = []
-         let  output = []
-          z=[0,2,1,3];
-          for(let i=0;i<n;i++){
-            k = String(i);
-           console.log(res[z[i]].r+"+"+res[z[i]].i+"j");
-           //document.getElementById(k).innerText = res[z[i]].r+"+"+res[z[i]].i+"j";
-        
-        bitrev[i] = math.round(res[z[i]].r,2)+"+"+math.round(res[z[i]].i,2)+"j"
-        output[i] = math.round(res[i].r,2)+"+"+math.round(res[i].i,2)+"j"
-        
-          }
-          document.getElementById("bitreversaloffft4").innerText += bitrev
-          document.getElementById("outputseqoffft4").innerText += output
+            let res=[]
+            for (var i=0;i<n;i+=2){
+                res[i] = math.multiply(math.add(a[i],a[i+1]),String(0.5));
+                res[i+1] = math.multiply(math.add(a[i], math.multiply(a[i+1], String(-1))), String(0.5));
+            }
+            let bitrev = []
+            let output = []
+            z=[0,2,1,3];
+            for(let i=0;i<n;i++){           
+                if(Number(res[z[i]]['im'].toFixed(2))<0) {
+                    bitrev.push(res[z[i]]["re"].toFixed(2) + res[z[i]]['im'].toFixed(2) + "i");
+                } else if(Number(res[z[i]]['im'].toFixed(2))>0) {
+                    bitrev.push(res[z[i]]["re"].toFixed(2) + "+" + res[z[i]]['im'].toFixed(2) + "i");
+                } else {
+                    bitrev.push(res[z[i]]["re"].toFixed(2));
+                }
+
+                if(Number(res[i]['im'].toFixed(2))<0) {
+                    output.push(res[i]["re"].toFixed(2) + res[i]['im'].toFixed(2) + "i");
+                } else if(Number(res[i]['im'].toFixed(2))>0) {
+                    output.push(res[i]["re"].toFixed(2) + "+" + res[i]['im'].toFixed(2) + "i");
+                } else {
+                    output.push(res[i]["re"].toFixed(2));
+                }
+            }
+            document.getElementById("bitreversaloffft4").innerText += output;
+            document.getElementById("outputseqoffft4").innerText += bitrev;
         }
-                 
-    
-   
     </script>
