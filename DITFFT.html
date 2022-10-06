@@ -246,11 +246,11 @@ layout: default
             const stage2 = [];
             for(let i=0;i<n;i++){
                 if (math.round(b[i].i,2) < 0) {
-                    stage2[i] =String(math.round( b[i].r,2))+math.round(b[i].i,2)+"j";
+                    stage2[i] =String(math.round( b[i].r,2))+math.round(b[i].i,2)+"i";
                 } else if (math.round(b[i].i,2) == 0) {
                     stage2[i] =math.round( b[i].r,2);
                 } else {
-                    stage2[i] =math.round( b[i].r,2)+ "+" +math.round(b[i].i,2)+"j";
+                    stage2[i] =math.round( b[i].r,2)+ "+" +math.round(b[i].i,2)+"i";
                 }
             }
             document.getElementById("stage2seqoffft8").innerText += stage2;
@@ -264,11 +264,11 @@ layout: default
             const output = [];
             for(let i=0;i<n;i++){
                 if (math.round(res[i].i,2) < 0) {
-                    output[i] =String(math.round( res[i].r,2))+math.round(res[i].i,2)+"j";
+                    output[i] =String(math.round( res[i].r,2))+math.round(res[i].i,2)+"i";
                 } else if(math.round(res[i].i,2) == 0) {
                     output[i] =math.round( res[i].r,2);
                 } else {
-                    output[i] =math.round( res[i].r,2)+"+"+math.round(res[i].i,2)+"j";
+                    output[i] =math.round( res[i].r,2)+"+"+math.round(res[i].i,2)+"i";
                 }
             }
             document.getElementById("outputseq").innerText += output;
@@ -314,11 +314,11 @@ layout: default
         const output = []
         for(let i=0;i<n;i++) {
             if(math.round(b[i].i,2) < 0) {
-                output[i] = String(math.round( b[i].r,2))+math.round(b[i].i,2)+"j"
+                output[i] = String(math.round( b[i].r,2))+math.round(b[i].i,2)+"i";
             } else if(math.round(b[i].i,2) == 0) {
                 output[i] =math.round( b[i].r,2);
             } else {
-                output[i] =math.round( b[i].r,2)+"+"+math.round(b[i].i,2)+"j";
+                output[i] =math.round( b[i].r,2)+"+"+math.round(b[i].i,2)+"i";
             }
         }
         document.getElementById("outputseqoffft4").innerText += output;
